@@ -46,6 +46,7 @@ jobs:
           deploy_key: ''
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ${{ steps.publish_dir.outputs.publish_dir }}
+          publish_branch: 'master'
           # If you want the site to be published to a branch other than gh-pages,
           # set publish_branch: 'gh-pages' (default) or 'master' if repo is user site.
           # By default this action will create/update the 'gh-pages' branch.
