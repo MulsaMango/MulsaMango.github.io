@@ -85,3 +85,13 @@ This template comes with [Tailwind CSS](https://tailwindcss.com/) already config
 ---
 
 Built with ❤️ using React Router.
+
+### GitHub Pages
+
+This repository includes a GitHub Actions workflow at `.github/workflows/deploy.yml` that will automatically build the site and publish the static output to GitHub Pages whenever you push to `master`.
+
+Key points:
+- The workflow runs `npm run build` and detects `build/client`, `build`, or `dist` as the publish directory (React Router v7 places client assets in `build/client`).
+- It uses the automatic `GITHUB_TOKEN` so no extra secrets are required for a standard Pages deployment.
+- By default the action publishes to the `gh-pages` branch. If you want to publish to `master` (for a user site like `username.github.io`) update `publish_branch` in `.github/workflows/deploy.yml` and configure GitHub Pages in the repo settings accordingly.
+
