@@ -9,14 +9,19 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
-      # allow the action to create a deployment on pages
-      contents: read
+      # allow the action to create a deployment on pages and push commits
+      contents: write
       pages: write
       id-token: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          # ensure the action can push using the GITHUB_TOKEN
+          persist-credentials: true
+          # fetch full history so the action can create commits/compare
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -43,7 +48,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          deploy_key: ''
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ${{ steps.publish_dir.outputs.publish_dir }}
           publish_branch: 'master'
