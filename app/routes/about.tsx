@@ -1,7 +1,7 @@
-import { useLocation, Link } from "react-router";
+import { useLocation } from "react-router";
 import { useEffect, useState } from "react";
 
-export default function Landing() {
+export default function About() {
   const location = useLocation();
   const [activeHash, setActiveHash] = useState(location.hash || "");
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
@@ -10,10 +10,8 @@ export default function Landing() {
   const [showTooltip, setShowTooltip] = useState(false);
   
   useEffect(() => {
-    // Update active hash when location hash changes
     setActiveHash(location.hash);
     
-    // Also listen for hashchange events (when clicking anchor links)
     const handleHashChange = () => {
       setActiveHash(window.location.hash);
     };
@@ -60,14 +58,12 @@ export default function Landing() {
         }}
       >
         <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-        <a href="/" className="text-base font-medium text-gray-900">
+        <a href="/" className="text-base font-medium hover:opacity-70 transition-opacity text-gray-900">
           Tulsa <span className="logo-separator">⟡</span> Designer
         </a>
         <nav className="flex gap-6">
           {navItems.map((item) => {
-            const isActive = 
-              (item.href === "/" && location.pathname === "/") ||
-              (item.href === "/about" && location.pathname === "/about");
+            const isActive = location.pathname === item.href;
             return (
               <a
                 key={item.href}
@@ -99,62 +95,19 @@ export default function Landing() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-6 pt-24 pb-12 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          {/* Hero Image */}
-          <div className="w-full aspect-square flex items-center justify-center">
-            <img
-              src="/hero-image.png"
-              alt="Tulsa - Designer"
-              className="max-w-full h-auto object-contain"
-            />
-          </div>
-
-          {/* Hero Text */}
-          <div className="space-y-4">
-            <h2 className="text-3xl md:text-4xl font-semibold leading-tight text-gray-800">
-              Ahoy, I'm Tulsa.
-            </h2>
-            <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-              A UX and UI Designer living in Sydney. Currently doing all things Design Systems at WiseTech Global.
+      {/* About Content */}
+      <section className="max-w-7xl mx-auto px-6 py-12 md:py-20">
+        <div className="max-w-3xl mx-auto space-y-6">
+          <h1 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-8">About</h1>
+          <div className="space-y-4 text-gray-600">
+            <p>
+              This is a placeholder for your about section. You can add information about yourself, 
+              your background, interests, or anything else you'd like to share.
+            </p>
+            <p>
+              Feel free to customize this section with your own content, experiences, and personality.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* Project Showcase */}
-      <section id="work" className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <Link
-              key={project.id || project.title}
-              to={`/project/${project.id}`}
-              className="group cursor-pointer transition-transform hover:scale-[1.02] block"
-            >
-              {/* Project Image Placeholder */}
-              <div className="w-full aspect-square bg-gray-100 rounded-lg mb-3 flex items-center justify-center overflow-hidden">
-                {project.image ? (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className={`w-full h-full ${project.bgColor || "bg-gradient-to-br from-indigo-200 via-purple-200 to-pink-200"} flex items-center justify-center`}>
-                    <div className="text-gray-600 text-sm font-medium">{project.title}</div>
-                  </div>
-                )}
-              </div>
-              {/* Project Text */}
-              <div className="text-sm">
-                <span className="font-medium">{project.title}</span>
-                {project.category && (
-                  <span className="text-gray-600"> / {project.category}</span>
-                )}
-              </div>
-            </Link>
-          ))}
         </div>
       </section>
 
@@ -185,7 +138,7 @@ export default function Landing() {
               Resume
             </a>
             <a
-              href="https://www.linkedin.com/in/tulsa-daley/"
+              href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-gray-700 hover:underline flex items-center gap-2 font-mono"
@@ -205,7 +158,7 @@ export default function Landing() {
               <button
                 onClick={async () => {
                   try {
-                    await navigator.clipboard.writeText("tulsadaley@gmail.com");
+                    await navigator.clipboard.writeText("hello@example.com");
                     setEmailCopied(true);
                     setTimeout(() => {
                       setEmailCopied(false);
@@ -236,7 +189,7 @@ export default function Landing() {
                     </>
                   )}
                 </svg>
-                tulsadaley@gmail.com
+                hello@example.com
               </button>
               {showTooltip && (
                 <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap pointer-events-none z-10">
@@ -254,47 +207,3 @@ export default function Landing() {
   );
 }
 
-const projects = [
-  {
-    id: 1,
-    title: "Design System",
-    category: "Product design",
-    image: null,
-    bgColor: "bg-gray-100",
-  },
-  {
-    id: 2,
-    title: "Onboarding Flow",
-    category: "Experience design",
-    image: null,
-    bgColor: "bg-gray-100",
-  },
-  {
-    id: 3,
-    title: "Mobile Commerce",
-    category: "Product design",
-    image: null,
-    bgColor: "bg-gray-100",
-  },
-  {
-    id: 4,
-    title: "Identity Bridge",
-    category: "Exhibition design",
-    image: null,
-    bgColor: "bg-gray-100",
-  },
-  {
-    id: 5,
-    title: "Spectra",
-    category: "Senior capstone project",
-    image: null,
-    bgColor: "bg-gray-100",
-  },
-  {
-    id: 6,
-    title: "Public Library",
-    category: "Product design",
-    image: null,
-    bgColor: "bg-gray-100",
-  },
-];

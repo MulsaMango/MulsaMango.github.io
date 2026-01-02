@@ -1,15 +1,115 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+  --font-sans: "Instrument Sans", "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: "Inconsolata", ui-monospace, monospace;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+p {
+  font-family: var(--font-mono);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply dark:bg-gray-950;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
+}
+
+/* Bullet journal dot grid background */
+body {
+  background-color: #fefefe;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.12) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0;
+}
+
+/* Bento Grid Styles */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: minmax(180px, auto);
+  grid-auto-flow: row dense;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(200px, auto);
+  }
+}
+
+.bento-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.bento-large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.bento-wide {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.bento-tall {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+@media (max-width: 768px) {
+  .bento-large,
+  .bento-wide,
+  .bento-tall {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+/* Highlight animation - draws from left to right */
+@keyframes highlight-draw {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.highlight-active {
+  animation: highlight-draw 0.4s ease-out forwards;
+}
+
+/* Logo separator spin on hover */
+@keyframes spin-cute {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.logo-separator {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+a:hover .logo-separator {
+  animation: spin-cute 0.6s ease-in-out;
 }
