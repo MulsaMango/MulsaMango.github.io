@@ -113,3 +113,60 @@ body {
 a:hover .logo-separator {
   animation: spin-cute 0.6s ease-in-out;
 }
+
+/* Paper wash for case study content */
+.case-study-paper-wash {
+  position: relative;
+  padding: 2rem 1.5rem;
+  margin: 0 -1.5rem;
+}
+
+.case-study-paper-wash::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 252, 250, 0.7);
+  z-index: -1;
+  /* Feathered left and right edges on background only */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black 80px,
+    black calc(100% - 80px),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black 80px,
+    black calc(100% - 80px),
+    transparent 100%
+  );
+}
+
+@media (max-width: 768px) {
+  .case-study-paper-wash {
+    padding: 1.5rem 1rem;
+    margin: 0 -1rem;
+  }
+  
+  .case-study-paper-wash::before {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      black 40px,
+      black calc(100% - 40px),
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      black 40px,
+      black calc(100% - 40px),
+      transparent 100%
+    );
+  }
+}

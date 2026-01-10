@@ -164,13 +164,17 @@ export default function Project() {
 
         {/* Case Study Content */}
         {CaseStudyComponent ? (
-          <CaseStudyComponent project={project} />
+          <div className="case-study-paper-wash">
+            <CaseStudyComponent project={project} />
+          </div>
         ) : (
-          <div className="prose max-w-none">
-            <p className="text-gray-700 leading-relaxed">
-              Project content will go here. This is a placeholder for the project details,
-              case study, or any other content you'd like to display.
-            </p>
+          <div className="case-study-paper-wash">
+            <div className="prose max-w-none">
+              <p className="text-gray-700 leading-relaxed">
+                Project content will go here. This is a placeholder for the project details,
+                case study, or any other content you'd like to display.
+              </p>
+            </div>
           </div>
         )}
       </div>

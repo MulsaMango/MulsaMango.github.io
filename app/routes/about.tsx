@@ -58,7 +58,7 @@ export default function About() {
         }}
       >
         <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-        <a href="/" className="text-base font-medium hover:opacity-70 transition-opacity text-gray-900">
+        <a href="/" className="text-base font-medium hover:opacity-70 transition-opacity text-gray-600">
           Tulsa <span className="logo-separator">⟡</span> Designer
         </a>
         <nav className="flex gap-6">

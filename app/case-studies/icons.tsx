@@ -9,10 +9,10 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
     <article className="prose max-w-none">
       {/* Overview Section */}
       <section className="mb-12">
-        <h2 className="text-3xl font-semibold text-gray-900 mt-12 mb-6">
+        <h2 className="text-2xl font-semibold text-gray-900 mt-12 mb-6">
           Overview
         </h2>
-        <p className="text-gray-700 leading-relaxed mb-4">
+        <p className="!font-sans text-gray-700 leading-relaxed mb-4" style={{ fontFamily: 'var(--font-sans)' }}>
           This project involved redesigning the icon system for a design system, focusing on
           consistency, scalability, and improved visual communication. The goal was to create
           a comprehensive icon library that could support the growing needs of the product
@@ -20,24 +20,13 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
         </p>
       </section>
 
-      {/* Image Section */}
-      <figure className="w-full mb-12 -mx-6 md:-mx-12">
-        <img
-          src="/images/icons-overview.jpg"
-          alt="Icons overview"
-          className="w-full rounded-lg"
-        />
-        <figcaption className="text-sm text-gray-500 mt-2 text-center">
-          Overview of the icon redesign process
-        </figcaption>
-      </figure>
 
       {/* Problem Section */}
       <section className="mb-12">
-        <h2 className="text-3xl font-semibold text-gray-900 mt-12 mb-6">
+        <h2 className="text-2xl font-semibold text-gray-900 mt-12 mb-6">
           Problem
         </h2>
-        <p className="text-gray-700 leading-relaxed mb-4">
+        <p className="!font-sans text-gray-700 leading-relaxed mb-4" style={{ fontFamily: 'var(--font-sans)' }}>
           The existing icon system had several issues: inconsistent stroke weights, varying
           sizes, and lack of a cohesive visual language. This led to confusion for designers
           and developers when selecting appropriate icons for different contexts.
@@ -52,10 +41,10 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
 
       {/* Process Section */}
       <section className="mb-12">
-        <h2 className="text-3xl font-semibold text-gray-900 mt-12 mb-6">
+        <h2 className="text-2xl font-semibold text-gray-900 mt-12 mb-6">
           Process
         </h2>
-        <p className="text-gray-700 leading-relaxed mb-4">
+        <p className="!font-sans text-gray-700 leading-relaxed mb-4" style={{ fontFamily: 'var(--font-sans)' }}>
           We started by auditing all existing icons and identifying common patterns. Then we
           established design principles and created a new icon system based on a consistent
           grid and stroke weight.
@@ -64,40 +53,28 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
         {/* Two-column layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
           <div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Research</h3>
-            <p className="text-gray-700 leading-relaxed">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Research</h3>
+            <p className="!font-sans text-gray-700 leading-relaxed" style={{ fontFamily: 'var(--font-sans)' }}>
               Conducted a comprehensive audit of existing icons, analyzed competitor
               icon systems, and gathered feedback from designers and developers.
             </p>
           </div>
           <div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Design</h3>
-            <p className="text-gray-700 leading-relaxed">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Design</h3>
+            <p className="!font-sans text-gray-700 leading-relaxed" style={{ fontFamily: 'var(--font-sans)' }}>
               Created a unified design system with consistent stroke weights, grid-based
               layouts, and clear guidelines for sizing and usage.
             </p>
           </div>
         </div>
-
-        {/* Image showing process */}
-        <figure className="w-full mb-8">
-          <img
-            src="/images/icons-process.jpg"
-            alt="Icon design process"
-            className="w-full rounded-lg"
-          />
-          <figcaption className="text-sm text-gray-500 mt-2 text-center">
-            Design process and iterations
-          </figcaption>
-        </figure>
       </section>
 
       {/* Solution Section */}
       <section className="mb-12">
-        <h2 className="text-3xl font-semibold text-gray-900 mt-12 mb-6">
+        <h2 className="text-2xl font-semibold text-gray-900 mt-12 mb-6">
           Solution
         </h2>
-        <p className="text-gray-700 leading-relaxed mb-4">
+        <p className="!font-sans text-gray-700 leading-relaxed mb-4" style={{ fontFamily: 'var(--font-sans)' }}>
           We created a new icon system with the following key improvements:
         </p>
         <ul className="list-disc list-inside text-gray-700 leading-relaxed space-y-2 mb-6">
@@ -107,19 +84,14 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
           <li>Clear documentation and usage guidelines</li>
           <li>Improved accessibility with better contrast and sizing</li>
         </ul>
-
-        {/* Video placeholder - you can add actual video later */}
-        <div className="w-full aspect-video bg-gray-100 rounded-lg mb-8 flex items-center justify-center">
-          <p className="text-gray-500">Video demo of icon system</p>
-        </div>
       </section>
 
       {/* Results Section */}
       <section className="mb-12">
-        <h2 className="text-3xl font-semibold text-gray-900 mt-12 mb-6">
+        <h2 className="text-2xl font-semibold text-gray-900 mt-12 mb-6">
           Results
         </h2>
-        <p className="text-gray-700 leading-relaxed mb-4">
+        <p className="!font-sans text-gray-700 leading-relaxed mb-4" style={{ fontFamily: 'var(--font-sans)' }}>
           The new icon system has significantly improved consistency across the product and
           reduced design and development time. Designers can now easily find and use appropriate
           icons, while developers have clear guidelines for implementation.
@@ -127,7 +99,7 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
         
         {/* Quote */}
         <blockquote className="border-l-4 border-gray-300 pl-6 my-8 italic text-gray-700">
-          <p className="text-lg mb-2">
+          <p className="!font-sans text-lg mb-2" style={{ fontFamily: 'var(--font-sans)' }}>
             "The new icon system has made our design process so much more efficient. We spend
             less time searching for icons and more time building great experiences."
           </p>
@@ -140,10 +112,10 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
 
       {/* Conclusion */}
       <section>
-        <h2 className="text-3xl font-semibold text-gray-900 mt-12 mb-6">
+        <h2 className="text-2xl font-semibold text-gray-900 mt-12 mb-6">
           Conclusion
         </h2>
-        <p className="text-gray-700 leading-relaxed mb-4">
+        <p className="!font-sans text-gray-700 leading-relaxed mb-4" style={{ fontFamily: 'var(--font-sans)' }}>
           This project demonstrated the importance of systematic thinking in design. By
           establishing clear principles and guidelines, we created a scalable icon system
           that will continue to serve the product as it grows.
