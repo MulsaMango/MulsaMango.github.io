@@ -1,51 +1,7 @@
 import { useParams, Link, useLocation } from "react-router";
 import { useEffect, useState } from "react";
-
-// Import or define projects data (you might want to move this to a shared file)
-const projects = [
-  {
-    id: 1,
-    title: "Design System",
-    category: "Product design",
-    image: null,
-    bgColor: "bg-gray-100",
-  },
-  {
-    id: 2,
-    title: "Onboarding Flow",
-    category: "Experience design",
-    image: null,
-    bgColor: "bg-gray-100",
-  },
-  {
-    id: 3,
-    title: "Mobile Commerce",
-    category: "Product design",
-    image: null,
-    bgColor: "bg-gray-100",
-  },
-  {
-    id: 4,
-    title: "Identity Bridge",
-    category: "Exhibition design",
-    image: null,
-    bgColor: "bg-gray-100",
-  },
-  {
-    id: 5,
-    title: "Spectra",
-    category: "Senior capstone project",
-    image: null,
-    bgColor: "bg-gray-100",
-  },
-  {
-    id: 6,
-    title: "Public Library",
-    category: "Product design",
-    image: null,
-    bgColor: "bg-gray-100",
-  },
-];
+import { projects } from "../data/projects";
+import { getCaseStudyComponent } from "../case-studies";
 
 export default function Project() {
   const { id } = useParams();
@@ -53,6 +9,7 @@ export default function Project() {
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const project = projects.find((p) => p.id === Number(id));
+  const CaseStudyComponent = project ? getCaseStudyComponent(project.id) : undefined;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -110,7 +67,7 @@ export default function Project() {
         }}
       >
         <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-          <Link to="/" className="text-base font-medium text-gray-900">
+          <Link to="/" className="text-base font-medium text-gray-600">
             Tulsa <span className="logo-separator">⟡</span> Designer
           </Link>
           <nav className="flex gap-6">
@@ -171,7 +128,18 @@ export default function Project() {
 
         {/* Project Header */}
         <div className="mb-8">
-          <span className="text-sm text-gray-600 mb-2 block">{project.category}</span>
+          {project.tags && project.tags.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mb-4">
+              {project.tags.map((tag, idx) => (
+                <span
+                  key={idx}
+                  className="inline-block px-2.5 py-1 text-xs font-mono bg-gray-100 text-gray-700 rounded"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
           <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4">
             {project.title}
           </h1>
@@ -194,13 +162,17 @@ export default function Project() {
           )}
         </div>
 
-        {/* Project Content Placeholder */}
-        <div className="prose max-w-none">
-          <p className="text-gray-700 leading-relaxed">
-            Project content will go here. This is a placeholder for the project details,
-            case study, or any other content you'd like to display.
-          </p>
-        </div>
+        {/* Case Study Content */}
+        {CaseStudyComponent ? (
+          <CaseStudyComponent project={project} />
+        ) : (
+          <div className="prose max-w-none">
+            <p className="text-gray-700 leading-relaxed">
+              Project content will go here. This is a placeholder for the project details,
+              case study, or any other content you'd like to display.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
