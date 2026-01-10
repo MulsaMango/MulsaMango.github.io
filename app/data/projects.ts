@@ -17,7 +17,7 @@ export const projects: Project[] = [
   {
     id: 2,
     title: "Framework",
-    tags: ["UX Research", "Process"],
+    tags: ["UX Research", "Process improvement"],
     image: null,
     bgColor: "bg-gray-100",
   },
@@ -31,7 +31,7 @@ export const projects: Project[] = [
   {
     id: 4,
     title: "Toolbar",
-    tags: ["Design System", "Process"],
+    tags: ["Design System", "Process improvement"],
     image: null,
     bgColor: "bg-gray-100",
   },
@@ -45,7 +45,7 @@ export const projects: Project[] = [
   {
     id: 6,
     title: "Vpply design system",
-    tags: ["UI Design", "Data Table", "Process"],
+    tags: ["UI Design", "Data Table", "Process improvement"],
     image: null,
     bgColor: "bg-gray-100",
   },

@@ -114,7 +114,7 @@ export default function About() {
       {/* Footer */}
       <footer className="max-w-7xl mx-auto px-6 py-8 mt-20 border-t border-gray-200">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-gray-600">© 2025 Tulsa</p>
+          <p className="text-sm text-gray-600"><span className="logo-separator">⟡</span> Website made by me and my mate Cursor 🤖</p>
           <div className="flex gap-6 items-center">
             <a
               href="#resume"
@@ -138,7 +138,7 @@ export default function About() {
               Resume
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/tulsa-daley/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-gray-700 hover:underline flex items-center gap-2 font-mono"
@@ -158,7 +158,7 @@ export default function About() {
               <button
                 onClick={async () => {
                   try {
-                    await navigator.clipboard.writeText("hello@example.com");
+                    await navigator.clipboard.writeText("tulsadaley@gmail.com");
                     setEmailCopied(true);
                     setTimeout(() => {
                       setEmailCopied(false);
@@ -189,7 +189,7 @@ export default function About() {
                     </>
                   )}
                 </svg>
-                hello@example.com
+                tulsadaley@gmail.com
               </button>
               {showTooltip && (
                 <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap pointer-events-none z-10">
