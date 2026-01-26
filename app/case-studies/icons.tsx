@@ -15,7 +15,7 @@ interface IconsCaseStudyProps {
 export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
   return (
     <article className="prose max-w-none">
-      <Heading2 id="icons">Icons</Heading2>
+      <Heading2 id="icons">Overview</Heading2>
       {/* Overview Section */}
       <section className="mb-12">
         <p>
@@ -70,6 +70,7 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
         <SmallCaseStudyImage
           src={appleIcons}
           alt="Comparison between old macOS menus and new macOS menus. The new menus overuse icons."
+          caption="Updated MacOS Tahoe menu on the right - perfect example of more icons ≠ more clarity"
         />
 
         <p>
@@ -298,9 +299,10 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
           </li>
         </ul>
         <p>
-          <img
+          <Image
             src={iconContributionDocs}
             alt="Samples from the icon contribution guide showing documentation, examples, and guidelines for contributing new icons to the design system"
+            caption="Samples from the contribution guide. At the time, our Design System was called Supply."
           />
         </p>
         <Heading3 id="operational-layer-design-to-production-parity">
