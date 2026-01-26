@@ -15,6 +15,7 @@ interface IconsCaseStudyProps {
 export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
   return (
     <article className="prose max-w-none">
+      <Heading2 id="icons">Icons</Heading2>
       {/* Overview Section */}
       <section className="mb-12">
         <p>
