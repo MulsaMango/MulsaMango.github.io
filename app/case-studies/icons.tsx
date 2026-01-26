@@ -1,6 +1,12 @@
 import type { Project } from "../data/projects";
-import { SmallCaseStudyImage } from "./case-study-image";
+import { Image, SmallCaseStudyImage } from "./case-study-image";
+import { Heading2, Heading3 } from "./case-study-typography";
 import itsTheSamePicture from "./icons-images/its-the-same-picture.jpg";
+import iconContributionDocs from "./icons-images/icon-contribution-docs.png";
+import iconGrid from "./icons-images/icon-grid.png";
+import iconWorkshop from "./icons-images/icon-workshop-figjam.png";
+import appleIcons from "./icons-images/sequoia-vs-tahoe-icons.png";
+import truckExample from "./icons-images/truck-icon-example.png";
 
 interface IconsCaseStudyProps {
   project: Project;
@@ -13,7 +19,7 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
       <section className="mb-12">
         <p>
           I led a successful end to end rebuild of the design system’s icon
-          library (200+ icons at the time), spanning three layers:
+          library (150+ icons at the time), spanning three layers:
         </p>
         <ul>
           <li>
@@ -29,9 +35,7 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
             best practice usage guidance.
           </li>
         </ul>
-        <h2 id="small-but-mighty" className="font-semibold">
-          Small but mighty
-        </h2>
+        <Heading2 id="small-but-mighty">Small but mighty</Heading2>
         <p>
           When used strategically, icons compress meaning into a consistent
           visual shorthand, speed up scanning, and make actions and concepts
@@ -47,20 +51,23 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
         <blockquote>
           <p>
             <strong>
-              ...adding an icon to everything is exactly the wrong thing to do.”
+              ...adding an icon to everything is exactly the wrong thing to do.
             </strong>
           </p>
         </blockquote>
-        <p>
-          <em>Niki Tonsky,</em>
-          <a href="https://tonsky.me/blog/tahoe-icons/">
-            It&#39;s hard to justify Tahoe icons,
-          </a>{" "}
-          <em>2026</em>
+        <p className="text-sm -mt-4 mb-0">
+          {" "}
+          <em>
+            Niki Tonsky,{" "}
+            <a href="https://tonsky.me/blog/tahoe-icons/">
+              It&#39;s hard to justify Tahoe icons,
+            </a>{" "}
+            2026
+          </em>
         </p>
 
         <SmallCaseStudyImage
-          src="https://capacities-files.s3.eu-central-1.amazonaws.com/private/d5e9b613-aae1-4c46-8961-99e8b2d83047/raw.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIA5VTNRR6EBR56K2NK%2F20260126%2Feu-central-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20260126T063046Z&amp;X-Amz-Expires=43200&amp;X-Amz-Signature=30b59229d51c72d0ba422b07a11c116d5362292ee2fbdb6092a3b1e0b10ff1ca&amp;X-Amz-SignedHeaders=host&amp;x-amz-checksum-mode=ENABLED&amp;x-id=GetObject"
+          src={appleIcons}
           alt="Comparison between old macOS menus and new macOS menus. The new menus overuse icons."
         />
 
@@ -78,9 +85,9 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
             success and there were clear opportunities to improve it.
           </strong>
         </p>
-        <h2 id="the-cost-of-minimal-governance">
+        <Heading2 id="the-cost-of-minimal-governance">
           The cost of minimal governance
-        </h2>
+        </Heading2>
         <p>
           In its early form, the icon library had an open contribution model,
           meaning designers could freely add to the library and publish icons as
@@ -96,13 +103,14 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
         </p>
         <ul>
           <li>
-            Icons were added without vetting, leading to duplicates,
-            inconsistent quality, and inappropriate additions.
+            Icons were added without vetting, leading to duplicates (or
+            "near-enough" duplicates), inconsistent quality, and inappropriate
+            additions.
           </li>
           <li>
             Stroke weight, sizing, alignment, and naming drifted over time, even
             when sourced from the same set. This can translate poorly when these
-            inconsistencies are noticable in the product
+            inconsistencies are noticable in the product.
           </li>
           <li>
             Design and production could fall out of sync because there was no
@@ -117,12 +125,12 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
         <p>
           <SmallCaseStudyImage
             src={itsTheSamePicture}
-            alt="its-the-same-picture"
+            alt="Pam from 'The Office' meme showing two similar looking icons side by side, a pencil icon with no detail and a pencil icon with a line detail. The two icons represent the same action, so having both in the library is confusing and unnecessary."
           />
         </p>
-        <h2 id="what-done-meant-for-this-rebuild">
+        <Heading2 id="what-done-meant-for-this-rebuild">
           What “done” meant for this rebuild
-        </h2>
+        </Heading2>
         <p>I needed to deliver:</p>
         <ul>
           <li>
@@ -149,7 +157,9 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
           <li>Documented usage guidelines to reduce misuse and overuse</li>
         </ul>
         <hr />
-        <h2 id="selected-project-highlights">Selected project highlights</h2>
+        <Heading2 id="selected-project-highlights">
+          Selected project highlights
+        </Heading2>
         <p>
           This was a multi phase project. Each phase went deep, with plenty of
           healthy trade offs along the way. I started by fixing what was already
@@ -160,15 +170,15 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
           The highlights below cover the main beats. If you&#39;re interested in
           more juicy details, I&#39;m happy to chat.
         </p>
-        <h3 id="ui-fundamentals-icon-library-first-aid">
+        <Heading3 id="ui-fundamentals-icon-library-first-aid">
           UI fundamentals: icon library first aid
-        </h3>
+        </Heading3>
         <ul>
           <li>
             Audited the library with a focus to reduce bloat. Removed
-            duplicates, &#39;near-enough&#39; duplicates, and then reviewed
-            usage analytics in Figma and the codebase to identify icons with
-            zero or minimal usage.
+            duplicates, "near-enough" duplicates, and then reviewed usage
+            analytics in Figma and the codebase to identify icons with zero or
+            minimal usage.
           </li>
           <li>
             Increased the uniformity of the remaining icons by addressing
@@ -181,15 +191,16 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
           </li>
         </ul>
         <p>
-          <img
-            src="https://capacities-files.s3.eu-central-1.amazonaws.com/private/826b2e4f-fa61-4ddf-aa7f-c4b36df2990a/raw.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIA5VTNRR6EBR56K2NK%2F20260126%2Feu-central-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20260126T011719Z&amp;X-Amz-Expires=43200&amp;X-Amz-Signature=e4df0df81078fa316c36781030a59a6fdb9616c27efa7d62337bc3a724d3e1ae&amp;X-Amz-SignedHeaders=host&amp;x-amz-checksum-mode=ENABLED&amp;x-id=GetObject"
-            alt="CleanShot 2026-01-26 at 12.16.30@2x"
+          <Image
+            src={iconGrid}
+            alt="Diagram showing a 20 px icon canvas with a 14 px live area and a 3 px inset, plus example icons aligned to key shapes (rounded rectangles, circle, square)."
+            caption="Built on a 20 by 20 px canvas, with a 14 by 14 px live area (3 px inset) and 1 px stroke weight"
           />
         </p>
-        <h3 id="system-layer-a-naming-convention-that-optimizes-for-scale-and-long-term-clarity">
+        <Heading3 id="system-layer-a-naming-convention-that-optimizes-for-scale-and-long-term-clarity">
           System layer: a naming convention that optimizes for scale and long
           term clarity
-        </h3>
+        </Heading3>
         <p>
           I established an object first naming approach because it keeps names
           stable as variants grow, and avoids baking a single screen specific
@@ -200,7 +211,7 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
           widely understood role in our UI, I named it by function to reduce
           misuse. “Save” is the clearest example: in a strict object-first
           scheme it’d be “floppy disk”, but in practice it should only ever mean
-          save.
+          "save".
         </p>
         <ul>
           <li>
@@ -219,13 +230,13 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
         </ul>
         <p>
           <img
-            src="https://capacities-files.s3.eu-central-1.amazonaws.com/private/67b53599-9b69-4a26-8a5f-b826254a4a39/raw.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIA5VTNRR6EBR56K2NK%2F20260126%2Feu-central-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20260126T002641Z&amp;X-Amz-Expires=43200&amp;X-Amz-Signature=b435cb1e1f0bbac08ded2d1565759a6afdab756955265d205733882eea61256e&amp;X-Amz-SignedHeaders=host&amp;x-amz-checksum-mode=ENABLED&amp;x-id=GetObject"
-            alt="truck-example"
+            src={truckExample}
+            alt="Examples of truck icon variants showing the naming convention: truck, truck-check, truck-plus, and truck-lock, demonstrating how modifiers are added as suffixes to the base object name"
           />
         </p>
-        <h3 id="system-layer-search-metadata-that-matches-how-people-actually-search">
+        <Heading3 id="system-layer-search-metadata-that-matches-how-people-actually-search">
           System layer: search metadata that matches how people actually search
-        </h3>
+        </Heading3>
         <p>
           To help reduce accidental duplicates (or near-enough duplicates) being
           added to the system, it was important to make icons easy to discover.
@@ -253,14 +264,15 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
           cultivate shared ownership, which helps build trust in the system.
         </p>
         <p>
-          <img
-            src="https://capacities-files.s3.eu-central-1.amazonaws.com/private/83ffc00e-513b-4b87-b224-e0f21cc3cec7/raw.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIA5VTNRR6EBR56K2NK%2F20260125%2Feu-central-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20260125T233612Z&amp;X-Amz-Expires=43200&amp;X-Amz-Signature=76816b896783566a7a1ed1cda4c0240607fb0d7fb4d8405a9ac2f947e5d969bd&amp;X-Amz-SignedHeaders=host&amp;x-amz-checksum-mode=ENABLED&amp;x-id=GetObject"
-            alt="icon-workshop"
+          <Image
+            src={iconWorkshop}
+            alt="Screenshot of a FigJam workshop board showing collaborative work with embedded designers to capture search terms and keywords for icon discoverability"
+            caption="Icon search terms and naming workshop held in FigJam with 15+ embedded designers"
           />
         </p>
-        <h3 id="operational-layer-a-new-contribution-process">
+        <Heading3 id="operational-layer-a-new-contribution-process">
           Operational layer: a new contribution process
-        </h3>
+        </Heading3>
         <p>
           I introduced a contribution process that combined education,
           guardrails, and a clear review loop so the library preserved quality
@@ -269,7 +281,7 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
         <ul>
           <li>
             Established and documented a standard contribution process for
-            requesting for contributing icons
+            requesting for contributing icons.
           </li>
           <li>
             Set upfront guardrails with a short icon ethos and a preflight
@@ -286,13 +298,13 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
         </ul>
         <p>
           <img
-            src="https://capacities-files.s3.eu-central-1.amazonaws.com/private/50e3ef26-9d3e-4221-8c1c-7abb20f24c60/raw.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIA5VTNRR6EBR56K2NK%2F20260126%2Feu-central-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20260126T040646Z&amp;X-Amz-Expires=43200&amp;X-Amz-Signature=0cf2922bfb9486b3c066a794fd3e29fa049f95c8512596dc3cd773d670b1bd96&amp;X-Amz-SignedHeaders=host&amp;x-amz-checksum-mode=ENABLED&amp;x-id=GetObject"
-            alt="icon-contribution"
+            src={iconContributionDocs}
+            alt="Samples from the icon contribution guide showing documentation, examples, and guidelines for contributing new icons to the design system"
           />
         </p>
-        <h3 id="operational-layer-design-to-production-parity">
+        <Heading3 id="operational-layer-design-to-production-parity">
           Operational layer: design to production parity
-        </h3>
+        </Heading3>
         <p>
           A clean icon library in Figma is only useful if it matches what’s
           available in production. When icons changed, I put a workflow in place
@@ -315,7 +327,7 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
           </li>
         </ul>
         <hr />
-        <h2 id="impact">Impact</h2>
+        <Heading2 id="impact">Impact</Heading2>
         <p>
           Icons are small, but in dense enterprise workflows they can do some
           serious heavy lifting in the UI. This work drastically raised the
@@ -334,7 +346,7 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
             usage across product teams.
           </li>
         </ul>
-        <h2 id="reflection">Reflection</h2>
+        <Heading2 id="reflection">Reflection</Heading2>
         <p>
           This was a genuinely satisfying project to lead. I got to go deep on
           the technical craft of UI iconography, work closely with design system
