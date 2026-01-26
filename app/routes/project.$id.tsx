@@ -2,6 +2,7 @@ import { useParams, Link, useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import { projects } from "../data/projects";
 import { getCaseStudyComponent } from "../case-studies";
+import { TableOfContents } from "../components/TableOfContents";
 
 export default function Project() {
   const { id } = useParams();
@@ -107,6 +108,9 @@ export default function Project() {
           </nav>
         </div>
       </header>
+
+      {/* Table of Contents - only show for case studies */}
+      {CaseStudyComponent && <TableOfContents />}
 
       {/* Project Content */}
       <div className="max-w-4xl mx-auto px-6 py-12">
