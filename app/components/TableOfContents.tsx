@@ -160,7 +160,7 @@ export function TableOfContents() {
 
   return (
     <nav
-      className="hidden 2xl:block fixed top-24 right-8 z-40 max-h-[calc(100vh-8rem)] overflow-visible"
+      className="hidden min-[1415px]:block fixed top-24 right-8 z-40 max-h-[calc(100vh-8rem)] overflow-visible"
       aria-label="Table of contents"
       onMouseEnter={() => isCollapsed && setIsHovering(true)}
       onMouseLeave={() => isCollapsed && setIsHovering(false)}
