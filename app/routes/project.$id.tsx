@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { projects } from "../data/projects";
 import { getCaseStudyComponent } from "../case-studies";
 import { TableOfContents } from "../components/TableOfContents";
-import iconProjectBanner from "../case-studies/icons-images/icon-project-banner.png";
+import { InteractiveBanner } from "../components/InteractiveBanner";
 
 export default function Project() {
   const { id } = useParams();
@@ -153,24 +153,24 @@ export default function Project() {
         </div>
 
         {/* Project Image/Placeholder */}
-        <div className={`w-full ${project.id === 1 ? '' : 'aspect-video'} bg-gray-100 ${project.id === 1 ? 'rounded-md border border-gray-300' : 'rounded-lg'} mb-12 flex items-center justify-center overflow-hidden`}>
+        <div className="mb-12">
           {project.id === 1 ? (
-            <img
-              src={iconProjectBanner}
-              alt={project.title}
-              className="w-full h-auto object-contain"
-            />
-          ) : project.image ? (
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-full object-cover"
-            />
+            <InteractiveBanner />
           ) : (
-            <div
-              className={`w-full h-full ${project.bgColor} flex items-center justify-center`}
-            >
-              <div className="text-gray-600 text-lg font-medium">{project.title}</div>
+            <div className="w-full aspect-video bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+              {project.image ? (
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div
+                  className={`w-full h-full ${project.bgColor} flex items-center justify-center`}
+                >
+                  <div className="text-gray-600 text-lg font-medium">{project.title}</div>
+                </div>
+              )}
             </div>
           )}
         </div>
