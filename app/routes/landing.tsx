@@ -1,92 +1,14 @@
 import { useLocation, Link } from "react-router";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { projects } from "../data/projects";
+import iconProjectCard from "../case-studies/icons-images/icon-project-card.png";
 
 export default function Landing() {
   const location = useLocation();
-  const [activeHash, setActiveHash] = useState(location.hash || "");
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [emailCopied, setEmailCopied] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
-  const [viewMode, setViewMode] = useState<"card" | "list">(() => {
-    // Read from window global set by blocking script (prevents flash)
-    if (typeof window !== "undefined") {
-      const globalValue = (window as any).__PROJECT_VIEW_MODE__;
-      if (globalValue === "card" || globalValue === "list") {
-        return globalValue;
-      }
-      // Fallback to localStorage if global not set
-      try {
-        const saved = localStorage.getItem("projectViewMode");
-        if (saved === "card" || saved === "list") {
-          return saved;
-        }
-      } catch (e) {
-        // localStorage might not be available
-      }
-    }
-    return "card";
-  });
-
-  // Save view mode preference to localStorage whenever it changes
-  const hasMounted = useRef(false);
-  const projectsSectionRef = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    hasMounted.current = true;
-    // Get reference to projects section
-    projectsSectionRef.current = document.getElementById("work");
-  }, []);
-
-  useEffect(() => {
-    // Only save if component has mounted (skip initial render)
-    if (hasMounted.current && typeof window !== "undefined") {
-      try {
-        localStorage.setItem("projectViewMode", viewMode);
-      } catch (e) {
-        // localStorage might not be available
-      }
-    }
-  }, [viewMode]);
-
-  // Handle view mode change with scroll preservation
-  const handleViewModeChange = (newMode: "card" | "list") => {
-    // Save current scroll position relative to projects section
-    const section = projectsSectionRef.current;
-    if (section) {
-      const scrollOffset = window.scrollY - section.offsetTop;
-
-      setViewMode(newMode);
-
-      // Restore scroll position after a brief delay to allow DOM update
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          if (section) {
-            window.scrollTo({
-              top: section.offsetTop + scrollOffset,
-              behavior: "instant" as ScrollBehavior,
-            });
-          }
-        });
-      });
-    } else {
-      setViewMode(newMode);
-    }
-  };
-
-  useEffect(() => {
-    // Update active hash when location hash changes
-    setActiveHash(location.hash);
-
-    // Also listen for hashchange events (when clicking anchor links)
-    const handleHashChange = () => {
-      setActiveHash(window.location.hash);
-    };
-
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, [location.hash]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -193,169 +115,63 @@ export default function Landing() {
 
       {/* Project Showcase */}
       <section id="work" className="max-w-7xl mx-auto px-6 py-12">
-        {/* Header and View Toggle */}
-        <div className="flex justify-between items-center mb-6">
+        <div className="mb-6">
           <h2 className="text-2xl font-semibold text-gray-900">
             Selected work
           </h2>
-          <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1">
-            <button
-              onClick={() => handleViewModeChange("card")}
-              className={`px-3 py-1.5 text-sm rounded transition-colors flex items-center ${
-                viewMode === "card"
-                  ? "bg-white text-gray-900 shadow-sm"
-                  : "text-gray-600 hover:text-gray-900"
-              }`}
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="mr-1.5"
-              >
-                <rect x="3" y="3" width="7" height="7" />
-                <rect x="14" y="3" width="7" height="7" />
-                <rect x="3" y="14" width="7" height="7" />
-                <rect x="14" y="14" width="7" height="7" />
-              </svg>
-              Card
-            </button>
-            <button
-              onClick={() => handleViewModeChange("list")}
-              className={`px-3 py-1.5 text-sm rounded transition-colors flex items-center ${
-                viewMode === "list"
-                  ? "bg-white text-gray-900 shadow-sm"
-                  : "text-gray-600 hover:text-gray-900"
-              }`}
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="mr-1.5"
-              >
-                <line x1="8" y1="6" x2="21" y2="6" />
-                <line x1="8" y1="12" x2="21" y2="12" />
-                <line x1="8" y1="18" x2="21" y2="18" />
-                <line x1="3" y1="6" x2="3.01" y2="6" />
-                <line x1="3" y1="12" x2="3.01" y2="12" />
-                <line x1="3" y1="18" x2="3.01" y2="18" />
-              </svg>
-              List
-            </button>
-          </div>
         </div>
 
-        {/* Card View */}
-        {viewMode === "card" && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project) => (
-              <Link
-                key={project.id || project.title}
-                to={`/project/${project.id}`}
-                className="group cursor-pointer transition-transform hover:scale-[1.02] block"
+        {/* Project Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project) => (
+            <Link
+              key={project.id || project.title}
+              to={`/project/${project.id}`}
+              className="group cursor-pointer block"
+              style={{ cursor: "pointer" }}
+            >
+              {/* Project Image Placeholder */}
+              <div
+                className="w-full aspect-square bg-gray-100 rounded-md mb-3 flex items-center justify-center overflow-hidden border border-gray-300 group-hover:shadow-sm transition-all"
                 style={{ cursor: "pointer" }}
               >
-                {/* Project Image Placeholder */}
-                <div
-                  className="w-full aspect-square bg-gray-100 rounded-lg mb-3 flex items-center justify-center overflow-hidden"
-                  style={{ cursor: "pointer" }}
-                >
-                  {project.image ? (
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover"
-                      style={{ cursor: "pointer" }}
-                    />
-                  ) : (
-                    <div
-                      className={`w-full h-full ${project.bgColor || "bg-gradient-to-br from-indigo-200 via-purple-200 to-pink-200"} flex items-center justify-center`}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <div className="text-gray-600 text-sm font-medium">
-                        {project.title}
-                      </div>
-                    </div>
-                  )}
-                </div>
-                {/* Project Text */}
-                <div className="text-sm" style={{ cursor: "pointer" }}>
-                  <div className="font-medium mb-2">{project.title}</div>
-                  {project.tags && project.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.tags.map((tag, idx) => (
-                        <span
-                          key={idx}
-                          className="inline-block px-2 py-0.5 text-xs font-mono bg-gray-100 text-gray-700 rounded"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
-
-        {/* List View */}
-        {viewMode === "list" && (
-          <div className="space-y-0 border-t border-gray-200">
-            {projects.map((project, index) => (
-              <Link
-                key={project.id || project.title}
-                to={`/project/${project.id}`}
-                className="block py-5 px-6 border-b border-gray-200 hover:bg-gray-50 transition-colors group cursor-pointer"
-                style={{ cursor: "pointer" }}
-              >
-                <div
-                  className="flex items-center gap-8"
-                  style={{ cursor: "pointer" }}
-                >
-                  <span className="text-base text-gray-500 font-mono w-10 flex-shrink-0">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-base font-medium text-gray-900 group-hover:text-gray-700 mb-2">
+                {project.image ? (
+                  <img
+                    src={project.id === 1 ? iconProjectCard : project.image}
+                    alt={project.title}
+                    className={`w-full h-full object-cover ${project.id === 1 ? "icon-project-image" : ""}`}
+                    style={{ cursor: "pointer" }}
+                  />
+                ) : (
+                  <div
+                    className={`w-full h-full ${project.bgColor || "bg-gradient-to-br from-indigo-200 via-purple-200 to-pink-200"} flex items-center justify-center`}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <div className="text-gray-600 text-sm font-medium">
                       {project.title}
                     </div>
-                    {project.tags && project.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5">
-                        {project.tags.map((tag, idx) => (
-                          <span
-                            key={idx}
-                            className="inline-block px-2 py-0.5 text-xs font-mono bg-gray-100 text-gray-700 rounded"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    )}
                   </div>
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    className="text-gray-400 group-hover:text-gray-600 transition-colors flex-shrink-0"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
+                )}
+              </div>
+              {/* Project Text */}
+              <div className="text-sm" style={{ cursor: "pointer" }}>
+                <div className="font-medium group-hover:font-bold mb-2 transition-all">{project.title}</div>
+                {project.tags && project.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="inline-block px-2 py-0.5 text-xs font-mono bg-gray-100 text-gray-700 rounded"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
 
       {/* Footer */}

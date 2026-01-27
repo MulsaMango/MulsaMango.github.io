@@ -27,7 +27,7 @@ export const SmallCaseStudyImage = ({
     <Image
       {...props}
       caption={caption}
-      className="w-full md:w-1/2 max-w-full h-auto mx-auto rounded-lg"
+      className="w-full md:w-1/2 max-w-full h-auto mx-auto rounded-md"
     />
   );
 };

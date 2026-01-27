@@ -173,3 +173,12 @@ a:hover .logo-separator {
 .prose ol li::marker {
   color: rgb(55, 65, 81); /* gray-700 */
 }
+
+/* Icon project card hover effect - subtle scale */
+.icon-project-image {
+  transition: transform 0.3s ease;
+}
+
+.group:hover .icon-project-image {
+  transform: scale(1.05);
+}

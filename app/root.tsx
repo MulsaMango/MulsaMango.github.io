@@ -31,20 +31,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var saved = localStorage.getItem('projectViewMode');
-                  if (saved === 'card' || saved === 'list') {
-                    window.__PROJECT_VIEW_MODE__ = saved;
-                  }
-                } catch(e) {}
-              })();
-            `,
-          }}
-        />
       </head>
       <body>
         {children}

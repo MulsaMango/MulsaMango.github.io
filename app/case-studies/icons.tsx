@@ -70,16 +70,16 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
         <SmallCaseStudyImage
           src={appleIcons}
           alt="Comparison between old macOS menus and new macOS menus. The new menus overuse icons."
-          caption="Updated MacOS Tahoe menu on the right - perfect example of more icons ≠ more clarity"
+          caption="Updated MacOS Tahoe menu on the right - perfect example of more icons ≠ more clarity."
         />
 
         <p>
-          WiseTech Global builds logistics software for expert users like
-          freight forwarders, customs brokers, and warehouse operators. Their
-          work is time sensitive and data dense, so efficiency often comes from
-          recognition and repetition: scanning tables, spotting statuses, and
-          firing frequent actions from predictable places. In that environment,
-          icons are a core part of the product’s visual vocabulary
+          WiseTech Global builds logistics software for logistics expert users
+          like freight forwarders, customs brokers, and warehouse operators.
+          Their work is time sensitive and data dense, so efficiency often comes
+          from recognition and repetition: scanning tables, spotting statuses,
+          and firing frequent actions from predictable places. In that
+          environment, icons are a core part of the product’s visual vocabulary.
         </p>
         <p>
           <strong>
@@ -196,7 +196,7 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
           <Image
             src={iconGrid}
             alt="Diagram showing a 20 px icon canvas with a 14 px live area and a 3 px inset, plus example icons aligned to key shapes (rounded rectangles, circle, square)."
-            caption="Built on a 20 by 20 px canvas, with a 14 by 14 px live area (3 px inset) and 1 px stroke weight"
+            caption="Built on a 20 by 20 px canvas, with a 14 by 14 px live area (3 px inset) and 1 px stroke weight."
           />
         </p>
         <Heading3 id="system-layer-a-naming-convention-that-optimizes-for-scale-and-long-term-clarity">
@@ -269,7 +269,7 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
           <Image
             src={iconWorkshop}
             alt="Screenshot of a FigJam workshop board showing collaborative work with embedded designers to capture search terms and keywords for icon discoverability"
-            caption="Icon search terms and naming workshop held in FigJam with 15+ embedded designers"
+            caption="Icon search terms and naming workshop facilitated in FigJam with 18+ embedded designers."
           />
         </p>
         <Heading3 id="operational-layer-a-new-contribution-process">

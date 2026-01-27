@@ -11,7 +11,7 @@ export const projects: Project[] = [
     id: 1,
     title: "Icons",
     tags: ["Process improvement", "UI Design", "Design System", "Iconography"],
-    image: null,
+    image: "icon-project-card", // Special marker for imported image
     bgColor: "bg-gray-100",
   },
   {

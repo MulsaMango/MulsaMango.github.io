@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { projects } from "../data/projects";
 import { getCaseStudyComponent } from "../case-studies";
 import { TableOfContents } from "../components/TableOfContents";
+import iconProjectBanner from "../case-studies/icons-images/icon-project-banner.png";
 
 export default function Project() {
   const { id } = useParams();
@@ -152,8 +153,14 @@ export default function Project() {
         </div>
 
         {/* Project Image/Placeholder */}
-        <div className="w-full aspect-video bg-gray-100 rounded-lg mb-12 flex items-center justify-center overflow-hidden">
-          {project.image ? (
+        <div className={`w-full ${project.id === 1 ? '' : 'aspect-video'} bg-gray-100 ${project.id === 1 ? 'rounded-md border border-gray-300' : 'rounded-lg'} mb-12 flex items-center justify-center overflow-hidden`}>
+          {project.id === 1 ? (
+            <img
+              src={iconProjectBanner}
+              alt={project.title}
+              className="w-full h-auto object-contain"
+            />
+          ) : project.image ? (
             <img
               src={project.image}
               alt={project.title}
