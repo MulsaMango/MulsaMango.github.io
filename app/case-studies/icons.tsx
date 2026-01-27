@@ -333,8 +333,8 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
         <hr />
         <Heading2 id="impact">Impact</Heading2>
         <p>
-          Icons are small, but in dense enterprise workflows they can do some
-          serious heavy lifting in the UI. This work drastically raised the
+          Icons can feel like 'UI garnish', but in dense expert workflows they
+          can do some serious heavy lifting. This work drastically raised the
           quality and consistency of the icon set, empowered product teams in
           better icon usage, and set the library up to scale as the system
           grows.
