@@ -1,6 +1,7 @@
 import { useLocation, Link } from "react-router";
 import { useEffect, useState } from "react";
 import { projects } from "../data/projects";
+import { getCaseStudyComponent } from "../case-studies";
 import iconProjectCard from "../case-studies/icons-images/icon-project-card.png";
 
 export default function Landing() {
@@ -148,14 +149,18 @@ export default function Landing() {
                     style={{ cursor: "pointer" }}
                   >
                     <div className="text-gray-600 text-sm font-medium">
-                      {project.title}
+                      {getCaseStudyComponent(project.id)
+                        ? project.title
+                        : "Coming soon"}
                     </div>
                   </div>
                 )}
               </div>
               {/* Project Text */}
               <div className="text-sm" style={{ cursor: "pointer" }}>
-                <div className="font-medium group-hover:font-bold mb-2 transition-all">{project.title}</div>
+                <div className="font-medium group-hover:font-bold mb-2 transition-all">
+                  {project.title}
+                </div>
                 {project.tags && project.tags.length > 0 && (
                   <div className="flex flex-wrap gap-1.5">
                     {project.tags.map((tag) => (
@@ -178,8 +183,7 @@ export default function Landing() {
       <footer className="max-w-7xl mx-auto px-6 py-8 mt-20 border-t border-gray-200">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-gray-600">
-            <span className="logo-separator">⟡</span> Website made by me and my
-            mate Cursor 🤖
+            Website made by me and Cursor 🤖
           </p>
           <div className="flex gap-6 items-center">
             <a

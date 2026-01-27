@@ -4,6 +4,7 @@ import { projects } from "../data/projects";
 import { getCaseStudyComponent } from "../case-studies";
 import { TableOfContents } from "../components/TableOfContents";
 import { InteractiveBanner } from "../components/InteractiveBanner";
+import iconProjectCard from "../case-studies/icons-images/icon-project-card.png";
 
 export default function Project() {
   const { id } = useParams();
@@ -204,16 +205,18 @@ export default function Project() {
                   to={`/project/${otherProject.id}`}
                   className="group block transition-transform hover:scale-[1.02]"
                 >
-                  <div className="w-full aspect-square bg-gray-100 rounded-lg mb-2 flex items-center justify-center overflow-hidden">
+                  <div className="w-full aspect-square bg-gray-100 rounded-md mb-2 flex items-center justify-center overflow-hidden border border-gray-300 group-hover:shadow-sm transition-all">
                     {otherProject.image ? (
                       <img
-                        src={otherProject.image}
+                        src={otherProject.id === 1 ? iconProjectCard : otherProject.image}
                         alt={otherProject.title}
-                        className="w-full h-full object-cover"
+                        className={`w-full h-full object-cover ${otherProject.id === 1 ? "icon-project-image" : ""}`}
                       />
                     ) : (
                       <div className={`w-full h-full ${otherProject.bgColor} flex items-center justify-center`}>
-                        <div className="text-gray-600 text-sm font-medium">{otherProject.title}</div>
+                        <div className="text-gray-600 text-sm font-medium">
+                          {getCaseStudyComponent(otherProject.id) ? otherProject.title : "Coming soon"}
+                        </div>
                       </div>
                     )}
                   </div>
