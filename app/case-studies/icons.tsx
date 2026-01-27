@@ -128,6 +128,7 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
           <SmallCaseStudyImage
             src={itsTheSamePicture}
             alt="Pam from 'The Office' meme showing two similar looking icons side by side, a pencil icon with no detail and a pencil icon with a line detail. The two icons represent the same action, so having both in the library is confusing and unnecessary."
+            caption="The library had many icons drawn slightly differently, only to mean the same thing. We didn’t need a pencil multiverse for edit actions."
           />
         </p>
         <Heading2 id="what-done-meant-for-this-rebuild">

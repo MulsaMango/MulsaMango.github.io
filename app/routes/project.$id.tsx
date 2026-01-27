@@ -194,7 +194,7 @@ export default function Project() {
 
         {/* More Projects Section */}
         <div className="mt-20 pt-12 border-t border-gray-200">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">More projects</h2>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6">See more of my work</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {projects
               .filter((p) => p.id !== project.id)

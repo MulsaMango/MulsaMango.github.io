@@ -9,7 +9,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: 1,
-    title: "Icons",
+    title: "Building a scalable icon system",
     tags: ["Process improvement", "UI Design", "Design System", "Iconography"],
     image: "icon-project-card", // Special marker for imported image
     bgColor: "bg-gray-100",
