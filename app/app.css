@@ -182,3 +182,61 @@ a:hover .logo-separator {
 .group:hover .icon-project-image {
   transform: scale(1.05);
 }
+
+/* About page – soft floating pixel art (centered on position, no shift) */
+@keyframes float-soft {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) translateY(-6px);
+  }
+}
+
+.about-float-icon {
+  /* Apply first keyframe immediately to prevent layout shift on load */
+  animation: float-soft 4s ease-in-out infinite both;
+}
+
+/* Bubble burst animation */
+@keyframes bubble-burst {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(var(--burst-scale, 1.5));
+    opacity: 0;
+    filter: blur(2px);
+  }
+}
+
+.about-bubble {
+  cursor: pointer;
+  pointer-events: auto !important;
+  transition: transform 0.15s ease-out;
+}
+
+.about-bubble:hover:not(.bubble-burst) {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.bubble-burst {
+  animation: bubble-burst var(--burst-duration, 200ms) ease-out forwards !important;
+  pointer-events: none !important;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .about-bubble:hover:not(.bubble-burst) {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .bubble-burst {
+    animation: none !important;
+    opacity: 0;
+  }
+}
