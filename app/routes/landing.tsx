@@ -157,7 +157,7 @@ export default function Landing() {
               </div>
               {/* Project Text */}
               <div className="text-sm" style={{ cursor: "pointer" }}>
-                <div className="font-medium group-hover:font-bold mb-2 transition-all">
+                <div className="font-medium mb-2">
                   {project.title}
                 </div>
                 {project.tags && project.tags.length > 0 && (

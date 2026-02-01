@@ -405,6 +405,13 @@ export default function About() {
             strategy to every project. When I'm not pushing pixels, you can find
             me exploring local coffee shops or getting lost in a good book.
           </p>
+          <p className="text-gray-600 leading-7 mb-16 max-w-xl mx-auto font-mono text-base font-medium">
+            A UX/UI designer with a passion for crafting delightful user
+            experiences. I believe that design should be both beautiful and
+            functional, and I strive to bring a unique blend of creativity and
+            strategy to every project. When I'm not pushing pixels, you can find
+            me exploring local coffee shops or getting lost in a good book.
+          </p>
 
           {/* Contact section */}
           <div className="max-w-xl mx-auto">
