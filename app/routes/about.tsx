@@ -342,10 +342,10 @@ export default function About() {
 
       {/* About Content */}
       <section className="max-w-7xl mx-auto px-6 pt-28 md:pt-32 pb-12 md:pb-20">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           {/* Title */}
           <h1 className="text-3xl md:text-4xl font-semibold text-gray-800 text-center mb-12">
-            This is the title of the about page
+            About me (and how I work){" "}
           </h1>
 
           {/* Floating pixel art cluster */}
@@ -398,23 +398,53 @@ export default function About() {
           </div>
 
           {/* Bio paragraph */}
-          <p className="text-gray-600 leading-7 mb-16 max-w-xl mx-auto font-mono text-base font-medium">
-            A UX/UI designer with a passion for crafting delightful user
-            experiences. I believe that design should be both beautiful and
-            functional, and I strive to bring a unique blend of creativity and
-            strategy to every project. When I'm not pushing pixels, you can find
-            me exploring local coffee shops or getting lost in a good book.
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-mono text-base font-medium">
+            I'm a designer with a love for systems thinking, visual craft, and
+            refining ways of working.
           </p>
-          <p className="text-gray-600 leading-7 mb-16 max-w-xl mx-auto font-mono text-base font-medium">
-            A UX/UI designer with a passion for crafting delightful user
-            experiences. I believe that design should be both beautiful and
-            functional, and I strive to bring a unique blend of creativity and
-            strategy to every project. When I'm not pushing pixels, you can find
-            me exploring local coffee shops or getting lost in a good book.
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-mono text-base font-medium">
+            I currently work on the design systems team at WiseTech Global, a
+            provider of enterprise B2B logistics software. It’s a mature product
+            in a complex domain with expert workflows and a lot of breadth, so
+            clarity and compatibility matter as much as innovation.
+          </p>
+
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-mono text-base font-medium">
+            Design systems pulled me toward what I’m naturally wired for:
+            pragmatic problem solving, attention to process, and craft. I care
+            about the way work gets done. I’ll sweat the details when they
+            matter, but I always take a strategic approach to my work factoring
+            in business goals, product goals, and technical or legacy
+            constraints.
+          </p>
+
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-mono text-base font-medium">
+            I love injecting my playful personality into everything that I do.
+            Creating an environment where{" "}
+            <span className="line-through">memes</span> humour and playfulness
+            thrive doesn’t just make work more enjoyable, it helps teams think
+            more openly, collaborate better, and stay creative when things get
+            sticky.
+          </p>
+
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-mono text-base font-medium">
+            Lately I've been experimenting with how AI tools can augment our
+            design workflows. I’ve been using tools like Figma Make, AI agents,
+            and Copilot to prototype and explore interactions, enrich developer
+            handoffs, and produce more consistent documentation faster. I'm also
+            starting to contribute directly to our production codebase - adding
+            variants, fixing bugs, and making small enhancements to components.
+          </p>
+
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-mono text-base font-medium">
+            Looking forward, I'm open to product design, UX/UI, or design
+            systems roles at companies that value design, encourage curiosity
+            and experimentation in how we work, and foster collaborative,
+            supportive teams. If that sounds like you, I'd love to chat!
           </p>
 
           {/* Contact section */}
-          <div className="max-w-xl mx-auto">
+          <div className="max-w-2xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 text-center mb-8">
               Contact
             </h2>

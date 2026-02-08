@@ -106,8 +106,35 @@ export default function Landing() {
               Ahoy, I'm Tulsa.
             </h2>
             <p className="font-mono text-base md:text-lg text-gray-600 leading-relaxed">
-              A UX and UI Designer living in Sydney. Currently doing all things
-              Design Systems at WiseTech Global.
+              I'm a designer who thinks in systems, loves visual craft, and is
+              getting comfy in code.
+            </p>
+            <p className="flex items-center gap-2 text-sm text-gray-500 font-mono">
+              <span className="shrink-0">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="w-4 h-4"
+                  aria-hidden
+                >
+                  <title>Location</title>
+                  <path
+                    fillRule="evenodd"
+                    d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </span>
+              Currently doing Design Systems at{" "}
+              <a
+                href="https://www.cargowise.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-gray-900 underline underline-offset-2"
+              >
+                WiseTech Global
+              </a>
             </p>
           </div>
         </div>
@@ -157,9 +184,7 @@ export default function Landing() {
               </div>
               {/* Project Text */}
               <div className="text-sm" style={{ cursor: "pointer" }}>
-                <div className="font-medium mb-2">
-                  {project.title}
-                </div>
+                <div className="font-medium mb-2">{project.title}</div>
                 {project.tags && project.tags.length > 0 && (
                   <div className="flex flex-wrap gap-1.5">
                     {project.tags.map((tag) => (
