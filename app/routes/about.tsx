@@ -245,6 +245,8 @@ export default function About() {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [burstBubbles, setBurstBubbles] = useState<Set<string>>(new Set());
+  const [emailCopied, setEmailCopied] = useState(false);
+  const [showEmailTooltip, setShowEmailTooltip] = useState(false);
 
   const handleBubbleBurst = (id: string) => {
     setBurstBubbles((prev) => new Set(prev).add(id));
@@ -302,9 +304,9 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
           <a
             href="/"
-            className="text-base font-medium hover:opacity-70 transition-opacity text-gray-600"
+            className="text-base font-medium text-gray-600 hover:!text-gray-600"
           >
-            Tulsa <span className="logo-separator">⟡</span> Designer
+            Tulsa <span className="logo-separator" aria-hidden="true"></span> Daley
           </a>
           <nav className="flex gap-6">
             {navItems.map((item) => {
@@ -341,7 +343,7 @@ export default function About() {
       </header>
 
       {/* About Content */}
-      <section className="max-w-7xl mx-auto px-6 pt-28 md:pt-32 pb-12 md:pb-20">
+      <section className="max-w-7xl mx-auto px-6 pt-28 md:pt-32 pb-12 md:pb-20 font-sans">
         <div className="max-w-4xl mx-auto">
           {/* Title */}
           <h1 className="text-3xl md:text-4xl font-semibold text-gray-800 text-center mb-12">
@@ -398,18 +400,18 @@ export default function About() {
           </div>
 
           {/* Bio paragraph */}
-          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-mono text-base font-medium">
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
             I'm a designer with a love for systems thinking, visual craft, and
             refining ways of working.
           </p>
-          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-mono text-base font-medium">
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
             I currently work on the design systems team at WiseTech Global, a
             provider of enterprise B2B logistics software. It’s a mature product
             in a complex domain with expert workflows and a lot of breadth, so
             clarity and compatibility matter as much as innovation.
           </p>
 
-          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-mono text-base font-medium">
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
             Design systems pulled me toward what I’m naturally wired for:
             pragmatic problem solving, attention to process, and craft. I care
             about the way work gets done. I’ll sweat the details when they
@@ -418,7 +420,7 @@ export default function About() {
             constraints.
           </p>
 
-          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-mono text-base font-medium">
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
             I love injecting my playful personality into everything that I do.
             Creating an environment where{" "}
             <span className="line-through">memes</span> humour and playfulness
@@ -427,7 +429,7 @@ export default function About() {
             sticky.
           </p>
 
-          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-mono text-base font-medium">
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
             Lately I've been experimenting with how AI tools can augment our
             design workflows. I’ve been using tools like Figma Make, AI agents,
             and Copilot to prototype and explore interactions, enrich developer
@@ -436,7 +438,7 @@ export default function About() {
             variants, fixing bugs, and making small enhancements to components.
           </p>
 
-          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-mono text-base font-medium">
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
             Looking forward, I'm open to product design, UX/UI, or design
             systems roles at companies that value design, encourage curiosity
             and experimentation in how we work, and foster collaborative,
@@ -444,42 +446,109 @@ export default function About() {
           </p>
 
           {/* Contact section */}
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 text-center mb-8">
-              Contact
+          <div className="max-w-2xl mx-auto mt-20">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 text-center mb-12">
+              Let's chat!
             </h2>
-            <div className="space-y-4">
-              <a
-                href="mailto:hello@example.com"
-                className="flex items-center justify-between py-3 border-b border-gray-200 text-gray-700 hover:text-gray-900 transition-colors group"
-              >
-                <span className="font-mono text-base">Email</span>
-                <span className="text-gray-400 group-hover:text-gray-600 transition-colors">
-                  ↗
-                </span>
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between py-3 border-b border-gray-200 text-gray-700 hover:text-gray-900 transition-colors group"
-              >
-                <span className="font-mono text-base">LinkedIn</span>
-                <span className="text-gray-400 group-hover:text-gray-600 transition-colors">
-                  ↗
-                </span>
-              </a>
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between py-3 border-b border-gray-200 text-gray-700 hover:text-gray-900 transition-colors group"
-              >
-                <span className="font-mono text-base">Resume</span>
-                <span className="text-gray-400 group-hover:text-gray-600 transition-colors">
-                  ↗
-                </span>
-              </a>
+            <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+              {/* Placeholder image */}
+              <div className="w-full md:w-[280px] shrink-0">
+                <div className="aspect-square w-full rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center">
+                  <span className="text-sm text-gray-400 font-sans">
+                    Image placeholder
+                  </span>
+                </div>
+              </div>
+
+              {/* Contact links */}
+              <div className="space-y-4 flex-1 w-full">
+                <div className="relative">
+                  <button
+                    onClick={async () => {
+                      try {
+                        await navigator.clipboard.writeText(
+                          "tulsadaley@gmail.com",
+                        );
+                        setEmailCopied(true);
+                        setTimeout(() => {
+                          setEmailCopied(false);
+                        }, 2000);
+                      } catch (err) {
+                        console.error("Failed to copy email:", err);
+                      }
+                    }}
+                    type="button"
+                    onMouseEnter={() => setShowEmailTooltip(true)}
+                    onMouseLeave={() => setShowEmailTooltip(false)}
+                    className="flex items-center justify-between w-full py-3 border-b border-gray-200 text-gray-700 hover:text-gray-900 transition-colors group cursor-pointer"
+                  >
+                    <span className="font-sans text-base">
+                      tulsadaley@gmail.com
+                    </span>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      className="text-gray-400 group-hover:text-gray-600 transition-all duration-200"
+                      aria-label="Copy email"
+                    >
+                      <title>Copy email</title>
+                      {emailCopied ? (
+                        <path
+                          d="M20 6L9 17l-5-5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      ) : (
+                        <>
+                          <rect
+                            x="9"
+                            y="9"
+                            width="13"
+                            height="13"
+                            rx="2"
+                            ry="2"
+                          />
+                          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                        </>
+                      )}
+                    </svg>
+                  </button>
+                  {showEmailTooltip && (
+                    <div className="absolute bottom-full right-0 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap pointer-events-none z-10">
+                      {emailCopied ? "Copied!" : "Click to copy email"}
+                      <div className="absolute top-full right-2 transform -mt-1">
+                        <div className="border-4 border-transparent border-t-gray-900"></div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <a
+                  href="https://www.linkedin.com/in/tulsa-daley/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between py-3 border-b border-gray-200 text-gray-700 hover:text-gray-900 transition-colors group"
+                >
+                  <span className="font-sans text-base">LinkedIn</span>
+                  <span className="text-gray-400 group-hover:text-gray-600 transition-colors">
+                    ↗
+                  </span>
+                </a>
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between py-3 border-b border-gray-200 text-gray-700 hover:text-gray-900 transition-colors group"
+                >
+                  <span className="font-sans text-base">Resume</span>
+                  <span className="text-gray-400 group-hover:text-gray-600 transition-colors">
+                    ↗
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

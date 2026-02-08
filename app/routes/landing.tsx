@@ -49,8 +49,8 @@ export default function Landing() {
         }}
       >
         <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-          <a href="/" className="text-base font-medium text-gray-600">
-            Tulsa <span className="logo-separator">⟡</span> Designer
+          <a href="/" className="text-base font-medium text-gray-600 hover:!text-gray-600">
+            Tulsa <span className="logo-separator" aria-hidden="true"></span> Daley
           </a>
           <nav className="flex gap-6">
             {navItems.map((item) => {
@@ -106,8 +106,8 @@ export default function Landing() {
               Ahoy, I'm Tulsa.
             </h2>
             <p className="font-mono text-base md:text-lg text-gray-600 leading-relaxed">
-              I'm a designer who thinks in systems, loves visual craft, and is
-              getting comfy in code.
+              An experienced designer who thinks in systems, loves visual craft,
+              and is getting comfy in code.
             </p>
             <p className="flex items-center gap-2 text-sm text-gray-500 font-mono">
               <span className="shrink-0">

@@ -89,23 +89,28 @@ body {
   animation: highlight-draw 0.4s ease-out forwards;
 }
 
-/* Logo separator spin on hover */
-@keyframes spin-cute {
-  from {
-    transform: rotate(0deg);
+/* Logo pixel separator */
+@keyframes pixel-bounce {
+  0%, 100% {
+    transform: translateY(0);
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    transform: translateY(-3px);
   }
 }
 
 .logo-separator {
   display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #61C353;
+  margin: 0 2px;
+  vertical-align: middle;
   transition: transform 0.3s ease;
 }
 
 a:hover .logo-separator {
-  animation: spin-cute 0.6s ease-in-out;
+  animation: pixel-bounce 0.4s ease-in-out;
 }
 
 /* Paper wash for case study content */

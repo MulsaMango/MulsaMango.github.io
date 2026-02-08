@@ -71,8 +71,8 @@ export default function Project() {
         }}
       >
         <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-          <Link to="/" className="text-base font-medium text-gray-600">
-            Tulsa <span className="logo-separator">⟡</span> Designer
+          <Link to="/" className="text-base font-medium text-gray-600 hover:!text-gray-600">
+            Tulsa <span className="logo-separator" aria-hidden="true"></span> Daley
           </Link>
           <nav className="flex gap-6">
             {navItems.map((item) => {
