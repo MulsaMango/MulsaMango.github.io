@@ -181,7 +181,7 @@ export default function Landing() {
               </div>
               {/* Project Text */}
               <div className="text-sm" style={{ cursor: "pointer" }}>
-                <div className="font-medium mb-2">{project.title}</div>
+                <div className="font-medium mb-2 text-gray-900">{project.title}</div>
                 {project.tags && project.tags.length > 0 && (
                   <div className="flex flex-wrap gap-1.5">
                     {project.tags.map((tag) => (
