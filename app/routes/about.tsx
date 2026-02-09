@@ -14,6 +14,8 @@ import onigiri from "./about-images/onigiri.png";
 import plant from "./about-images/plant.png";
 import terminal from "./about-images/terminal.png";
 import totoro from "./about-images/totoro.png";
+import tulsaHeadshot from "./about-images/tulsa-headshot.png";
+import pin from "./about-images/pin.png";
 
 // Icon positions and sizes matched to reference image
 // Reference: elliptical cluster with figma-cursor as the central focal point
@@ -452,12 +454,31 @@ export default function About() {
               Let's chat!
             </h2>
             <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
-              {/* Placeholder image */}
-              <div className="w-full md:w-[280px] shrink-0">
-                <div className="aspect-square w-full rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center">
-                  <span className="text-sm text-gray-400 font-sans">
-                    Image placeholder
-                  </span>
+              {/* Headshot */}
+              <div className="w-[200px] mx-auto md:mx-0 md:w-[280px] shrink-0">
+                <div className="relative inline-block">
+                  <img
+                    src={pin}
+                    alt=""
+                    className="absolute z-10 w-[38px] h-auto"
+                    style={{
+                      top: "-14px",
+                      left: "12px",
+                      transform: "rotate(-20deg)",
+                      imageRendering: "pixelated",
+                    }}
+                    draggable={false}
+                  />
+                  <div
+                    className="bg-white p-2 rounded shadow-md"
+                    style={{ transform: "rotate(3.5deg)" }}
+                  >
+                    <img
+                      src={tulsaHeadshot}
+                      alt="Tulsa Daley"
+                      className="aspect-square w-full rounded object-cover"
+                    />
+                  </div>
                 </div>
               </div>
 
