@@ -456,7 +456,7 @@ export default function About() {
             </h2>
             <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
               {/* Headshot */}
-              <div className="w-[280px] mx-auto md:mx-0 shrink-0">
+              <div className="w-[200px] mx-auto md:mx-0 md:w-[280px] shrink-0">
                 <div className="relative inline-block">
                   <img
                     src={pin}
