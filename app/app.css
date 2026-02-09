@@ -14,11 +14,12 @@ html {
 
 html,
 body {
-  @apply dark:bg-gray-950;
+  color-scheme: light;
+}
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+::selection {
+  background: rgba(71, 221, 78, 0.25);
+  color: inherit;
 }
 
 /* Bullet journal dot grid background */

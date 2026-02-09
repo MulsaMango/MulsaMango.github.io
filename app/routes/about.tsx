@@ -308,7 +308,8 @@ export default function About() {
             href="/"
             className="text-base font-medium text-gray-600 hover:!text-gray-600"
           >
-            Tulsa <span className="logo-separator" aria-hidden="true"></span> Daley
+            Tulsa <span className="logo-separator" aria-hidden="true"></span>{" "}
+            Daley
           </a>
           <nav className="flex gap-6">
             {navItems.map((item) => {
@@ -350,7 +351,7 @@ export default function About() {
         <div className="max-w-4xl mx-auto">
           {/* Title */}
           <h1 className="text-3xl md:text-4xl font-semibold text-gray-800 text-center mb-12">
-            About me (and how I work){" "}
+            A bit about me
           </h1>
 
           {/* Floating pixel art cluster */}
