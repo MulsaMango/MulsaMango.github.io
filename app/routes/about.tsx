@@ -310,7 +310,8 @@ export default function About() {
           </a>
           <nav className="flex gap-6">
             {navItems.map((item) => {
-              const isActive = location.pathname === item.href;
+              const normPath = location.pathname.replace(/\/+$/, "") || "/";
+              const isActive = normPath === item.href;
               return (
                 <a
                   key={item.href}

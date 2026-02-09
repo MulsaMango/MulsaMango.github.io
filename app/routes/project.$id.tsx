@@ -76,9 +76,8 @@ export default function Project() {
           </Link>
           <nav className="flex gap-6">
             {navItems.map((item) => {
-              const isActive =
-                (item.href === "/" && location.pathname === "/") ||
-                (item.href === "/about" && location.pathname === "/about");
+              const normPath = location.pathname.replace(/\/+$/, "") || "/";
+              const isActive = normPath === item.href;
               return (
                 <Link
                   key={item.href}
