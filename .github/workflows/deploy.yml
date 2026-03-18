@@ -33,6 +33,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          VITE_PASSWORD: ${{ secrets.VITE_PASSWORD }}
 
       - name: Determine publish directory
         id: publish_dir
