@@ -142,7 +142,7 @@ export default function Project() {
               {project.tags.map((tag, idx) => (
                 <span
                   key={idx}
-                  className="inline-block px-2.5 py-1 text-xs font-mono bg-gray-100 text-gray-700 rounded"
+                  className="inline-block px-2.5 py-1 text-xs font-display bg-gray-100 border border-gray-200 text-gray-600 rounded"
                 >
                   {tag}
                 </span>

@@ -1,99 +1,65 @@
-# AI prototyping case study draft
+# Designing context for AI-assisted prototyping
 
 Archived from `app/case-studies/ai-prototyping.tsx` while this project is being re-evaluated as a private snapshot rather than a served case study.
 
-## The experiment
+## Snapshot
 
-WiseTech's design function ran a deliberate investigation into AI-accelerated design. I was part of a team of designers who dedicated a focused two-week sprint to understand where AI actually makes a meaningful difference in a mature design process, and we wanted to go deep enough to find out.
+This is a short snapshot of a two-week enterprise design experiment I was part of, exploring how AI could support coded prototyping when given the right context, constraints, and workflow structure.
 
-AI prototyping tools are everywhere now, and increasingly accessible. What they generally lack is the ability to produce anything of real value in mature enterprise products. CargoWise is built for logistics experts like freight forwarders, customs brokers, and warehouse operators. The work is data-dense, the terminology is domain-specific, and the design system and design team behind it have established standards. That's a different challenge from generating a demo screen, and it's the one we set out to test.
+The public version is intentionally high level. The full project involved internal tooling, product context, and implementation detail that I would be happy to talk through in a hiring process.
 
-We started with two explicit questions.
+## The effort
 
-**Can designers bypass Figma and go straight to code?** What would it take to make that viable in practice? Not as a demonstration, but as a repeatable workflow for a real design squad working on complex enterprise software.
+A small design team explored whether designers could use AI to produce useful interactive prototypes inside a mature enterprise software environment. The goal was not to generate impressive demo screens. It was to understand whether AI could help with real design work where the product is complex, the design system is established, and the output needs to be useful beyond the first prompt.
 
-**What's the best possible AI context setup for an entire design squad?** Role types modelled as skilled agents. Domains encoded as structured, versioned knowledge. Research artefacts feeding into every session. The whole architecture considered upfront.
+The central question became:
 
-Both questions sit on the prototyping and build phase of the design process. That's where the sprint was focused. This case study describes what the team built, what worked, and what's still unsolved.
+**What context does AI need before its output becomes genuinely useful?**
 
-Image placeholder: double diamond with prototyping phase highlighted, or playground home screenshot.
+## Why context mattered
 
-## What we built
+AI can produce polished-looking UI quickly. That is both useful and risky. In enterprise software, a screen can look convincing while still using the wrong component, missing a domain assumption, flattening important terminology, or ignoring a pattern the team relies on.
 
-The team built a code-based prototyping environment where designers write components using WiseTech's design system and see them rendered live in the browser. The design system is the boundary condition: every prototype is built exclusively from its components, and the AI works within that constraint.
+The experiment treated context as a design material, not a prompt accessory. Instead of relying on one-off instructions, the team explored how to surround the AI with structured information it could use consistently.
 
-The repository is also where the AI's broader working context lives. Domain knowledge, workflow instructions, component references, and quality checks all sit alongside the prototype code in the same file system. Everything the AI needs is in the repo, readable by both the AI and the team, and reviewable like any other file.
+That included:
 
-The architecture has four parts:
+- **Design system context:** component rules, usage guidance, layout patterns, and known misuse cases.
+- **Product and domain context:** curated artefacts that helped the AI understand the problem space before generating UI.
+- **Workflow context:** skills that guided the AI through research, prototyping, critique, polish, and validation.
+- **Quality context:** review passes that checked whether outputs were not only functional, but appropriate, consistent, and usable.
 
-- **The World-View:** a structured knowledge hub where domain research lives as versioned markdown files.
-- **Skills:** plain text instruction files that tell the AI how to run each phase of the workflow.
-- **Agents:** longer-running task handlers for research consolidation and prototype validation.
-- **Design system references:** the component catalogue, pattern library, and icon reference, all as machine-readable files the AI consults during a session.
+The point was not to give the AI more context for its own sake. The work was in deciding which context mattered, how it should be structured, and when it should be used.
 
-Image placeholder: repo file structure diagram showing context, skills, agents, and design system references.
+## What made it interesting
 
-## The context architecture
+This project sat at the intersection of design systems, enterprise product knowledge, and emerging AI workflow design.
 
-As AI tools have become more capable of navigating file systems and reading context directly, how you structure that context starts to matter. What files the model has access to, how they're organised, and when they get loaded. A well-structured file system with consistent naming and predictable paths becomes something the AI can navigate on its own, rather than something a human has to manually assemble and paste in. The playground is built around that idea.
+The team experimented with a code-based prototyping environment where designers could work closer to implementation, using real design system components rather than static mockups. The AI was guided by layered context and reusable workflow instructions, so each session had a stronger starting point than an empty chat window.
 
-### Advisory-first: every session starts with research
+Some of the most interesting lessons came from the limits:
 
-Every session starts with a research phase, and the designer's prompt drives it. When someone requests a prototype, the advisory skill uses that request to determine which domain files to load, which role definitions apply, and what terminology the session should use. Building only starts once that brief is assembled and written to a context file in the prototype folder. The prototyping skill reads that file when the build begins. That handoff is the concrete link between the research layer and the build.
+- More context was not always better. Targeted, structured context often produced stronger outputs than large, noisy inputs.
+- Polished AI output could create false confidence. Design and subject matter review became more important, not less.
+- Design system knowledge needed to be machine-readable before AI could reliably work inside it.
+- Designers still needed to make the important judgement calls: what was appropriate, what was misleading, and what only looked right on the surface.
 
-In enterprise software, terminology and role assumptions are load-bearing. An AI will produce plausible-looking output regardless of whether its domain assumptions are correct. Wrong assumptions mean redesign, not iteration. The advisory phase is how the team kept that from happening by default.
+## My role
 
-Image placeholder: diagram showing advisory skill pulling in supply context and portfolio context, writing context.md, then handing off to prototyping skill.
+I was involved across the experiment, with a particular lens on the overlap between design system constraints, context structure, and output quality.
 
-### Domain knowledge as structured files
+My contribution centred on how design knowledge could be made usable by AI: component guidance, workflow instructions, quality checks, and the patterns that help an AI produce something closer to a real design system output rather than a visual approximation.
 
-The discovery work a design squad produces, role analysis, org context, and competitive research, typically lives in documents that are useful for humans but hard for an AI to access reliably. The goal was to close that gap.
+It was collaborative by nature. The value came from combining design system thinking, embedded product knowledge, and rapid experimentation with AI tooling.
 
-The answer was a version-controlled file hierarchy called the World-View. It holds two layers:
+## What I took from it
 
-- **External layer:** industry knowledge like role types, organisation types, competitive analysis, and cross-cutting pattern indexes. Stable, domain-wide, and shared across projects.
-- **Internal layer:** product-specific knowledge like product visions and information architecture maps. AI-generated, requires PM sign-off before use, and decays as the product changes.
+The project sharpened my view that AI-assisted design is not just about prompting. In complex environments, the real work is shaping the conditions around the model: the context it can access, the constraints it needs to respect, the workflow it follows, and the review loops that catch plausible-but-wrong output.
 
-The advisory skill loads files selectively based on the request. A prototype about a warehouse manager's check-in workflow loads the relevant role definition and org-type context, not the full hierarchy. Consistent naming conventions mean the skill can construct the right file path from the prompt, without needing a separate manifest.
+The designer's role changes in that model, but it does not disappear. It becomes more strategic in some places and more exacting in others. Designers need to understand the problem space, structure the right inputs, set the right guardrails, and stay alert to when a polished output is masking a weak decision.
 
-### A workflow the AI can follow
+**Context raises the floor. Design judgement sets the ceiling.**
 
-The skill system encodes the design workflow in a form the AI can follow step by step, and a human can read and audit. Advisory, then prototyping, then a quality pipeline covering validation, design critique, copy review, polish, and edge-case hardening. Each skill has one clear job and they compose cleanly.
+## Conversation starter
 
-The goal was a scaffold rather than a gate. Hard rules create workarounds. A well-designed scaffold makes the right path feel natural, and over time designers started following it without needing the system to redirect them.
-
-### Quality in passes, not checkboxes
-
-Post-build quality review runs as a sequence of separate passes:
-
-- **Deterministic checks first:** invalid icon names, layout misuse, WCAG AA failures.
-- **Design critique:** visual hierarchy, information architecture, domain alignment.
-- **Copy review:** labels, empty states, error messages.
-
-This mirrors how design review actually works. A reviewer checking component props isn't well-placed to evaluate information architecture at the same time. Separating the passes produces more precise feedback at each stage.
-
-Image placeholder: screenshot of a finished prototype.
-
-## Reflections
-
-### What the architecture earned
-
-The experiment proved that a domain-grounded, compounding AI prototyping environment produces better outputs than generic prompting. The research-first rule, the layered knowledge hub, the quality pipeline. Each adds friction upfront that pays off in output quality. Skip any one and the outputs drift toward plausible-but-wrong.
-
-The core value: the AI handles the scaffolding work, component lookup, domain research, terminology grounding, quality checking, so the designer can stay focused on the actual design decisions. That's what the system was built for.
-
-### What it costs to maintain
-
-**The maintenance surface was underestimated.** Every layer requires active curation. Skills drift when the design system updates. The knowledge hub drifts when the product changes. The component catalogue becomes unreliable when new components ship without a catalogue entry. A neglected version of this system is worse than no system, because the AI follows stale context confidently.
-
-The LLM dependency is also hard to plan around. The scaffolding is only as good as the model's ability to follow it. When models improve, the ceiling rises, and it has risen visibly over the course of this experiment. When they hallucinate or fail to respect instruction ordering, the whole pipeline suffers.
-
-### The gap the system doesn't close
-
-Non-developer onboarding is a genuine, unsolved friction point. Git, branches, pull requests, understanding context windows, knowing when the AI has gone off-track versus when your prompt is underspecified. These are real barriers. Designers who'd spent time in a codebase ramped up quickly. Designers without that exposure faced a steeper learning curve than anticipated.
-
-The system works best when the person using it has a working mental model of what's happening. Not a technical model, but a conceptual one: why the research phase matters, what the skills are doing, how to recognise when the AI has produced something valid but design-wrong. That model accumulates through use. It's not something you can document your way into.
-
-Domain knowledge, component rules, workflow patterns, terminology conventions, quality criteria: all encodable. Design judgment is not. The AI still needs the designer to know what a good outcome looks like.
-
-Suggestion: a side-by-side comparison showing a generic AI prototype output versus a domain-grounded one from the playground would powerfully illustrate the thesis.
+This snapshot only covers the public-facing shape of the work. There is much more I can discuss in person around context architecture, design systems, coded prototyping, skills-based AI workflows, and what this kind of tooling changes about design practice inside enterprise teams.

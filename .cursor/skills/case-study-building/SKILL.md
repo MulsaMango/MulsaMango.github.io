@@ -24,6 +24,16 @@ Before drafting anything, define a brief. This frames the entire case study.
 
 Everything in the case study should serve one of the key angles. If a detail is interesting but doesn't support them, cut it.
 
+### Clarifying questions before writing
+
+Before proposing a brief or starting any draft, ask the user clarifying questions. Don't assume intent from the raw content alone. These are worth asking every time:
+
+- **What makes this one interesting?** What's the core differentiator? For WiseTech projects, this is often the enterprise domain and team maturity. Don't let the AI decide what the interesting angle is.
+- **What are you attached to in the draft?** Specific structures (like two explicit questions), titles, framings, or phrases the user has already chosen deliberately. Don't flatten these during refinement.
+- **What's the domain context?** Product name, user types, why the domain makes the work harder or more interesting than a generic version of the same project.
+- **What's still rough vs. intentional?** Some parts of a draft are placeholders; others are carefully worded. Ask before rewriting.
+- **Where do you want your voice strongest?** Which sections should carry the most personal perspective? (Often reflections, but not always.)
+
 **"Trailer, not the full movie."** Enough to hook people and leave them wanting more.
 
 ### Example brief (Icons)
@@ -48,6 +58,7 @@ Consistent shape, flexible headings: **Context → Problem → Process → Outco
 - Not every beat needs equal weight. The brief determines emphasis.
 - Transitions between beats should feel natural, not like switching sections of a form.
 - A short reflection at the end is encouraged but not mandatory.
+- Reflections are strongest as a structured section with named `Heading3` sub-sections (e.g. "What the architecture earned", "What it costs to maintain"), not a single closing paragraph. This creates scannable, specific reflection topics and natural places for first-person voice.
 
 ## Voice, tone, and point of view
 
@@ -66,6 +77,7 @@ Consistent shape, flexible headings: **Context → Problem → Process → Outco
   - **Led end-to-end:** predominantly "I"
   - **Part of a team:** "we" and "the team" for shared work, "I" only for specific individual contributions
 - The shift between third and first person should feel natural, not mechanical
+- Third person can carry more than just context and problem. Process and architecture sections often read better in third person too (especially for team work), with first person concentrating in reflections where personal voice has the most impact
 
 ### Humor
 
@@ -79,7 +91,7 @@ Consistent shape, flexible headings: **Context → Problem → Process → Outco
 - Use to anchor takeaways within paragraphs ("Process change is people change")
 - Must feel organic to surrounding text, not like standalone pull quotes
 - If it reads like a LinkedIn post on its own, cut it or rewrite it
-- Use sparingly and intentionally
+- Use sparingly and intentionally. A whole case study should have a handful at most, concentrated in reflections or key takeaway moments. If you're bolding something in every section, you're overusing it
 
 ### External references
 
@@ -143,6 +155,12 @@ The goal is to leave a hiring manager thinking "I want to hear more about this",
 - Trust the reader's intelligence. These are design leaders, not newcomers.
 - Don't define standard design practice.
 - Explain specialist context only when it's specific to the company or domain (like what freight forwarders do, or why a legacy pipeline was slow).
+
+### Don't genericise
+
+- The specific domain, enterprise context, and team maturity are often the most interesting and differentiating parts of a case study. "Mature enterprise software" and "established design team" are substance, not background. Don't dilute them into generic descriptions when refining.
+- Preserve the user's original framing structures. If the draft has two explicit questions, a provocative title, or a specific structural choice, that's usually deliberate. Don't flatten it into something cleaner but less distinctive.
+- Prefer the user's original title over a "safer" descriptive alternative. A specific, provocative question ("Can AI produce prototypes worth shipping in complex enterprise software?") beats a generic label ("AI-accelerated design prototyping") every time.
 
 ## Visual content
 

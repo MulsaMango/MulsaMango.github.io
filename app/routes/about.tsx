@@ -1,4 +1,4 @@
-import { useLocation } from "react-router";
+import { Link, useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import { Footer } from "../components/Footer";
 
@@ -8,17 +8,17 @@ import bubbleSm from "./about-images/bubble-sm.png";
 import coffee from "./about-images/coffee.png";
 import donut from "./about-images/donut.png";
 import doubleDiamond from "./about-images/double-diamond.png";
-import figmaCursor from "./about-images/figma-cursor.png";
+import aboutTulsa from "./about-images/about-tulsa.png";
 import figma from "./about-images/figma.png";
 import onigiri from "./about-images/onigiri.png";
-import plant from "./about-images/plant.png";
+import robot from "./about-images/robot.png";
 import terminal from "./about-images/terminal.png";
 import totoro from "./about-images/totoro.png";
 import tulsaHeadshot from "./about-images/tulsa-headshot.png";
 import pin from "./about-images/pin.png";
 
 // Icon positions and sizes matched to reference image
-// Reference: elliptical cluster with figma-cursor as the central focal point
+// Reference: elliptical cluster with about-tulsa as the central focal point
 // Rotations added to match the tilted feel in the reference (cursor has no rotation)
 // Bubbles have burst parameters: smaller bubbles burst faster and expand more
 const ABOUT_ICONS = [
@@ -86,8 +86,8 @@ const ABOUT_ICONS = [
   },
   // Left side
   {
-    id: "plant",
-    src: plant,
+    id: "robot",
+    src: robot,
     alt: "",
     left: "22%",
     top: "42%",
@@ -96,7 +96,7 @@ const ABOUT_ICONS = [
     duration: 3.5,
     delay: 1.1,
   },
-  // Left bubble cluster (below plant) - 2 medium + 1 small
+  // Left bubble cluster (below robot) - 2 medium + 1 small
   {
     id: "bubble-med-1",
     src: bubbleMed,
@@ -139,14 +139,14 @@ const ABOUT_ICONS = [
     burstScale: 1.7,
     burstDuration: 150,
   },
-  // Center - cursor is the focal point
+  // Center - about title is the focal point
   {
-    id: "figma-cursor",
-    src: figmaCursor,
+    id: "about-tulsa",
+    src: aboutTulsa,
     alt: "",
     left: "50%",
     top: "44%",
-    width: 90,
+    width: 150,
     rotate: 0,
     duration: 4.2,
     delay: 0.6,
@@ -241,17 +241,44 @@ const ABOUT_ICONS = [
   },
 ] as const;
 
+const BUBBLE_POP_FRAGMENTS = [
+  { id: "top-left", dx: "-18px", dy: "-18px", delay: "0ms", size: 5 },
+  { id: "top-right", dx: "18px", dy: "-16px", delay: "18ms", size: 4 },
+  { id: "right", dx: "24px", dy: "4px", delay: "32ms", size: 5 },
+  { id: "bottom", dx: "2px", dy: "22px", delay: "42ms", size: 4 },
+  { id: "left", dx: "-22px", dy: "6px", delay: "26ms", size: 4 },
+] as const;
+
 export default function About() {
   const location = useLocation();
   const [activeHash, setActiveHash] = useState(location.hash || "");
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [burstBubbles, setBurstBubbles] = useState<Set<string>>(new Set());
+  const [returningBubbles, setReturningBubbles] = useState<Set<string>>(
+    new Set()
+  );
   const [emailCopied, setEmailCopied] = useState(false);
   const [showEmailTooltip, setShowEmailTooltip] = useState(false);
 
   const handleBubbleBurst = (id: string) => {
     setBurstBubbles((prev) => new Set(prev).add(id));
+    window.setTimeout(() => {
+      setBurstBubbles((prev) => {
+        const next = new Set(prev);
+        next.delete(id);
+        return next;
+      });
+      setReturningBubbles((prev) => new Set(prev).add(id));
+
+      window.setTimeout(() => {
+        setReturningBubbles((prev) => {
+          const next = new Set(prev);
+          next.delete(id);
+          return next;
+        });
+      }, 900);
+    }, 10000);
   };
 
   useEffect(() => {
@@ -349,10 +376,28 @@ export default function About() {
       {/* About Content */}
       <section className="max-w-7xl mx-auto px-6 pt-28 md:pt-32 pb-12 md:pb-20 font-sans">
         <div className="max-w-4xl mx-auto">
-          {/* Title */}
-          <h1 className="text-3xl md:text-4xl font-semibold text-gray-800 text-center mb-12">
-            A bit about me
-          </h1>
+          <h1 className="sr-only">About Tulsa Daley</h1>
+
+          <div className="max-w-2xl mx-auto mb-8">
+            {/* Back Link */}
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                aria-hidden="true"
+              >
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+              Back to Work
+            </Link>
+          </div>
 
           {/* Floating pixel art cluster */}
           <div
@@ -362,52 +407,82 @@ export default function About() {
             {ABOUT_ICONS.map((icon) => {
               const isBubble = "isBubble" in icon && icon.isBubble;
               const hasBurst = burstBubbles.has(icon.id);
+              const isReturning = returningBubbles.has(icon.id);
 
               return (
-                <img
-                  key={icon.id}
-                  src={icon.src}
-                  alt={icon.alt}
-                  className={`about-float-icon absolute select-none ${
-                    isBubble
-                      ? `about-bubble ${hasBurst ? "bubble-burst" : ""}`
-                      : "pointer-events-none"
-                  }`}
-                  style={
-                    {
-                      left: icon.left,
-                      top: icon.top,
-                      width: icon.width,
-                      height: "auto",
-                      animationDuration: `${icon.duration}s`,
-                      animationDelay: `${icon.delay}s`,
-                      "--rotate": `${icon.rotate}deg`,
-                      ...(isBubble && "burstScale" in icon
-                        ? {
-                            "--burst-scale": icon.burstScale,
-                            "--burst-duration": `${icon.burstDuration}ms`,
-                          }
-                        : {}),
-                    } as React.CSSProperties
-                  }
-                  draggable={false}
-                  loading="eager"
-                  decoding="sync"
-                  onMouseEnter={
-                    isBubble && !hasBurst
-                      ? () => handleBubbleBurst(icon.id)
-                      : undefined
-                  }
-                />
+                <div key={icon.id}>
+                  <img
+                    src={icon.src}
+                    alt={icon.alt}
+                    className={`about-float-icon absolute select-none ${
+                      isBubble
+                        ? `about-bubble ${hasBurst ? "bubble-burst" : ""} ${
+                            isReturning ? "bubble-return" : ""
+                          }`
+                        : "pointer-events-none"
+                    }`}
+                    style={
+                      {
+                        left: icon.left,
+                        top: icon.top,
+                        width: icon.width,
+                        height: "auto",
+                        ...(!isReturning
+                          ? {
+                              animationDuration: `${icon.duration}s`,
+                              animationDelay: `${icon.delay}s`,
+                            }
+                          : {}),
+                        "--rotate": `${icon.rotate}deg`,
+                        ...(isBubble && "burstScale" in icon
+                          ? {
+                              "--burst-scale": icon.burstScale,
+                              "--burst-duration": `${icon.burstDuration}ms`,
+                            }
+                          : {}),
+                      } as React.CSSProperties
+                    }
+                    draggable={false}
+                    loading="eager"
+                    decoding="sync"
+                    onMouseEnter={
+                      isBubble && !hasBurst
+                        ? () => handleBubbleBurst(icon.id)
+                        : undefined
+                    }
+                  />
+                  {isBubble &&
+                    hasBurst &&
+                    BUBBLE_POP_FRAGMENTS.map((fragment) => (
+                      <span
+                        key={`${icon.id}-${fragment.id}`}
+                        className="bubble-pop-fragment absolute pointer-events-none"
+                        style={
+                          {
+                            left: icon.left,
+                            top: icon.top,
+                            width: fragment.size,
+                            height: fragment.size,
+                            "--pop-dx": fragment.dx,
+                            "--pop-dy": fragment.dy,
+                            "--pop-delay": fragment.delay,
+                          } as React.CSSProperties
+                        }
+                      />
+                    ))}
+                </div>
               );
             })}
           </div>
 
           {/* Bio paragraph */}
           <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
-            I'm interested in how good product design gets made: the systems
-            that support it, the craft that makes it feel considered, and the
-            workflows that help teams explore and refine better ideas.
+            <span className="font-semibold text-gray-800">
+              I'm interested in how good product design gets made:
+            </span>{" "}
+            the systems that support it, the craft that makes it feel
+            considered, and the workflows that help teams explore and refine
+            better ideas.
           </p>
           <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
             I currently work on the design systems team at WiseTech Global, a

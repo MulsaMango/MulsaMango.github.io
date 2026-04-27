@@ -192,7 +192,7 @@ export default function Landing() {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="inline-block px-2 py-0.5 text-xs font-mono bg-gray-100 text-gray-700 rounded"
+                        className="inline-block px-2 py-0.5 text-xs font-display bg-gray-100 border border-gray-200 text-gray-600 rounded"
                       >
                         {tag}
                       </span>

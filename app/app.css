@@ -228,16 +228,67 @@ a:hover .logo-separator {
 /* Bubble burst animation */
 @keyframes bubble-burst {
   0% {
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) scale(1);
     opacity: 1;
   }
-  60% {
-    opacity: 0.6;
+  28% {
+    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) scale(1.12, 0.84);
+    opacity: 1;
+  }
+  64% {
+    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) scale(var(--burst-scale, 1.5));
+    opacity: 0.75;
   }
   100% {
-    transform: translate(-50%, -50%) scale(var(--burst-scale, 1.5));
+    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) scale(var(--burst-scale, 1.5));
     opacity: 0;
     filter: blur(2px);
+  }
+}
+
+@keyframes bubble-pop-fragment {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(
+        calc(-50% + var(--pop-dx, 0px)),
+        calc(-50% + var(--pop-dy, 0px))
+      )
+      scale(0.45);
+    opacity: 0;
+  }
+}
+
+@keyframes bubble-return {
+  0% {
+    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) scale(0.18);
+    opacity: 0;
+    filter: blur(2px);
+  }
+  45% {
+    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) scale(0.88);
+    opacity: 0.45;
+    filter: blur(0);
+  }
+  72% {
+    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) scale(1.06);
+    opacity: 0.85;
+    filter: blur(0);
+  }
+  88% {
+    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) scale(0.98);
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) scale(1);
+    opacity: 1;
+    filter: blur(0);
   }
 }
 
@@ -247,12 +298,24 @@ a:hover .logo-separator {
   transition: transform 0.15s ease-out;
 }
 
-.about-bubble:hover:not(.bubble-burst) {
+.about-bubble:hover:not(.bubble-burst):not(.bubble-return) {
   transform: translate(-50%, -50%) scale(1.1);
 }
 
 .bubble-burst {
-  animation: bubble-burst var(--burst-duration, 200ms) ease-out forwards !important;
+  animation: bubble-burst var(--burst-duration, 240ms) cubic-bezier(0.2, 0.8, 0.3, 1.1) forwards !important;
+  pointer-events: none !important;
+}
+
+.bubble-pop-fragment {
+  background: #47dd4e;
+  border-radius: 1px;
+  box-shadow: 0 0 0 1px rgba(71, 221, 78, 0.15);
+  animation: bubble-pop-fragment 360ms ease-out var(--pop-delay, 0ms) forwards;
+}
+
+.bubble-return {
+  animation: bubble-return 820ms cubic-bezier(0.16, 1, 0.3, 1) both;
   pointer-events: none !important;
 }
 
@@ -265,5 +328,14 @@ a:hover .logo-separator {
   .bubble-burst {
     animation: none !important;
     opacity: 0;
+  }
+
+  .bubble-pop-fragment {
+    animation: none;
+    opacity: 0;
+  }
+
+  .bubble-return {
+    animation: none;
   }
 }
