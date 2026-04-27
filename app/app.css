@@ -221,6 +221,7 @@ a:hover .logo-separator {
 }
 
 .about-float-icon {
+  left: var(--about-left);
   /* Apply first keyframe immediately to prevent layout shift on load */
   animation: float-soft 4s ease-in-out infinite both;
 }
@@ -308,10 +309,18 @@ a:hover .logo-separator {
 }
 
 .bubble-pop-fragment {
+  left: var(--about-left);
   background: #47dd4e;
   border-radius: 1px;
   box-shadow: 0 0 0 1px rgba(71, 221, 78, 0.15);
   animation: bubble-pop-fragment 360ms ease-out var(--pop-delay, 0ms) forwards;
+}
+
+@media (max-width: 520px) {
+  .about-float-icon,
+  .bubble-pop-fragment {
+    left: var(--about-mobile-left, var(--about-left));
+  }
 }
 
 .bubble-return {
