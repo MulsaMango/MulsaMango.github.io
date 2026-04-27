@@ -226,6 +226,10 @@ a:hover .logo-separator {
   animation: float-soft 4s ease-in-out infinite both;
 }
 
+.about-pixel-art {
+  filter: drop-shadow(0 6px 10px rgba(17, 24, 39, 0.2));
+}
+
 /* Bubble burst animation */
 @keyframes bubble-burst {
   0% {

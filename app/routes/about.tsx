@@ -436,7 +436,7 @@ export default function About() {
                         ? `about-bubble ${hasBurst ? "bubble-burst" : ""} ${
                             isReturning ? "bubble-return" : ""
                           }`
-                        : "pointer-events-none"
+                        : "about-pixel-art pointer-events-none"
                     }`}
                     style={
                       {
