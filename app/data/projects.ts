@@ -15,13 +15,6 @@ export const projects: Project[] = [
     bgColor: "bg-gray-100",
   },
   {
-    id: 2,
-    title: "Framework",
-    tags: ["UX Research", "Process improvement"],
-    image: null,
-    bgColor: "bg-gray-100",
-  },
-  {
     id: 3,
     title: "Multi-level grouping",
     tags: ["UI Design", "Data Table"],

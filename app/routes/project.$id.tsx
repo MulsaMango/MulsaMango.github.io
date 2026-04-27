@@ -71,7 +71,10 @@ export default function Project() {
         }}
       >
         <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-          <Link to="/" className="text-base font-medium text-gray-600 hover:!text-gray-600">
+          <Link
+            to="/"
+            className="font-display text-base font-medium text-gray-600 hover:!text-gray-600"
+          >
             Tulsa <span className="logo-separator" aria-hidden="true"></span> Daley
           </Link>
           <nav className="flex gap-6">
@@ -82,7 +85,7 @@ export default function Project() {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`text-sm relative inline-block transition-colors ${
+                  className={`font-display text-sm relative inline-block transition-colors ${
                     isActive
                       ? "text-gray-900 font-medium"
                       : "text-gray-600 hover:text-gray-900 hover:font-medium"

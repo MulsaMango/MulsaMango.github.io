@@ -49,7 +49,10 @@ export default function Landing() {
         }}
       >
         <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-          <a href="/" className="text-base font-medium text-gray-600 hover:!text-gray-600">
+          <a
+            href="/"
+            className="font-display text-base font-medium text-gray-600 hover:!text-gray-600"
+          >
             Tulsa <span className="logo-separator" aria-hidden="true"></span> Daley
           </a>
           <nav className="flex gap-6">
@@ -60,7 +63,7 @@ export default function Landing() {
                 <a
                   key={item.href}
                   href={item.href}
-                  className={`text-sm relative inline-block transition-colors ${
+                  className={`font-display text-sm relative inline-block transition-colors ${
                     isActive
                       ? "text-gray-900 font-medium"
                       : "text-gray-600 hover:text-gray-900 hover:font-medium"
@@ -104,11 +107,13 @@ export default function Landing() {
             <h2 className="text-3xl md:text-4xl font-semibold leading-tight text-gray-800">
               Ahoy, I'm Tulsa.
             </h2>
-            <p className="font-mono text-base md:text-lg text-gray-600 leading-relaxed">
-              An experienced designer who thinks in systems, loves visual craft,
-              and is getting comfy in code.
+            <p className="font-sans text-sm md:text-base text-gray-500 leading-[1.75]">
+              A systems-minded product designer with a design systems backbone,
+              a love for thoughtful UI, and a growing practice in AI-powered
+              workflows that improve how design gets explored, tested, and
+              refined.
             </p>
-            <p className="text-sm text-gray-500 font-mono leading-relaxed">
+            <p className="text-sm text-gray-500 font-sans leading-relaxed">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"

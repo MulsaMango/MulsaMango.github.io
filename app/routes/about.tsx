@@ -306,7 +306,7 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
           <a
             href="/"
-            className="text-base font-medium text-gray-600 hover:!text-gray-600"
+            className="font-display text-base font-medium text-gray-600 hover:!text-gray-600"
           >
             Tulsa <span className="logo-separator" aria-hidden="true"></span>{" "}
             Daley
@@ -319,7 +319,7 @@ export default function About() {
                 <a
                   key={item.href}
                   href={item.href}
-                  className={`text-sm relative inline-block transition-colors ${
+                  className={`font-display text-sm relative inline-block transition-colors ${
                     isActive
                       ? "text-gray-900 font-medium"
                       : "text-gray-600 hover:text-gray-900 hover:font-medium"
@@ -405,8 +405,9 @@ export default function About() {
 
           {/* Bio paragraph */}
           <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
-            I'm a designer with a love for systems thinking, visual craft, and
-            refining ways of working.
+            I'm interested in how good product design gets made: the systems
+            that support it, the craft that makes it feel considered, and the
+            workflows that help teams explore and refine better ideas.
           </p>
           <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
             I currently work on the design systems team at WiseTech Global, a
@@ -417,29 +418,22 @@ export default function About() {
 
           <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
             Design systems pulled me toward what I’m naturally wired for:
-            pragmatic problem solving, attention to process, and craft. I care
-            about the way work gets done. I’ll sweat the details when they
-            matter, but I always take a strategic approach to my work factoring
-            in business goals, product goals, and technical or legacy
-            constraints.
+            pragmatic problem solving, attention to process, and craft. I’ll
+            sweat the details when they matter, but I always take a pragmatic
+            approach to my work factoring in business goals, product goals, and
+            technical or legacy constraints.
           </p>
 
           <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
-            I love injecting my playful personality into everything that I do.
-            Creating an environment where{" "}
-            <span className="line-through">memes</span> humour and playfulness
-            thrive doesn’t just make work more enjoyable, it helps teams think
-            more openly, collaborate better, and stay creative when things get
-            sticky.
-          </p>
-
-          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
-            Lately I've been experimenting with how AI tools can augment our
-            design workflows. I’ve been using tools like Figma Make, AI agents,
-            and Copilot to prototype and explore interactions, enrich developer
-            handoffs, and produce more consistent documentation faster. I'm also
-            starting to contribute directly to our production codebase - adding
-            variants, fixing bugs, and making small enhancements to components.
+            Lately I've been exploring AI-powered design workflows across design
+            and code environments, using tools like Figma Make, GitHub Copilot,
+            and Claude Code. I’m especially interested in the layer beneath the
+            prompt: structured skills, reusable markdown instructions, MCP
+            servers, and design-system context that helps AI work with clearer
+            intent and stronger guardrails. I’ve been excited to see how AI can
+            pair with mature, enterprise-level design systems to strengthen more
+            of the design process, from early exploration and prototyping
+            through documentation, handoff, and coded delivery.
           </p>
 
           <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
