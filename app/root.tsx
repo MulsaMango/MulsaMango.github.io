@@ -10,8 +10,10 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 import { PasswordGate } from "./components/PasswordGate";
+import onigiriFavicon from "./routes/about-images/onigiri.png";
 
 export const links: Route.LinksFunction = () => [
+  { rel: "icon", type: "image/png", href: onigiriFavicon },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",

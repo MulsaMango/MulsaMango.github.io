@@ -38,11 +38,6 @@ export default function Project() {
   ];
 
   const location = useLocation();
-  const [activeHash, setActiveHash] = useState("");
-
-  useEffect(() => {
-    setActiveHash(location.pathname);
-  }, [location]);
 
   if (!project) {
     return (
@@ -130,6 +125,7 @@ export default function Project() {
             stroke="currentColor"
             strokeWidth="2"
           >
+            <title>Back</title>
             <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
           Back to Work
@@ -139,10 +135,10 @@ export default function Project() {
         <div className="mb-8">
           {project.tags && project.tags.length > 0 && (
             <div className="flex flex-wrap gap-1.5 mb-4">
-              {project.tags.map((tag, idx) => (
+              {project.tags.map((tag) => (
                 <span
-                  key={idx}
-                  className="inline-block px-2.5 py-1 text-xs font-display bg-gray-100 border border-gray-200 text-gray-600 rounded"
+                  key={tag}
+                  className="inline-block px-1.5 py-0.5 text-[0.625rem] font-display uppercase tracking-[0.06em] bg-gray-100 border border-gray-200 text-gray-600 rounded"
                 >
                   {tag}
                 </span>

@@ -53,7 +53,8 @@ export default function Landing() {
             href="/"
             className="font-display text-base font-medium text-gray-600 hover:!text-gray-600"
           >
-            Tulsa <span className="logo-separator" aria-hidden="true"></span> Daley
+            Tulsa <span className="logo-separator" aria-hidden="true"></span>{" "}
+            Daley
           </a>
           <nav className="flex gap-6">
             {navItems.map((item) => {
@@ -133,7 +134,7 @@ export default function Landing() {
                 href="https://www.cargowise.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 hover:text-gray-900 underline underline-offset-2"
+                className="text-gray-600 hover:text-[#3CBC42] underline underline-offset-2 transition-colors"
               >
                 WiseTech Global
               </a>
@@ -186,13 +187,15 @@ export default function Landing() {
               </div>
               {/* Project Text */}
               <div className="text-sm" style={{ cursor: "pointer" }}>
-                <div className="font-medium mb-2 text-gray-900">{project.title}</div>
+                <div className="font-medium mb-2 text-gray-900">
+                  {project.title}
+                </div>
                 {project.tags && project.tags.length > 0 && (
                   <div className="flex flex-wrap gap-1.5">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="inline-block px-2 py-0.5 text-xs font-display bg-gray-100 border border-gray-200 text-gray-600 rounded"
+                        className="inline-block px-1.5 py-0.5 text-[0.625rem] font-display uppercase tracking-[0.06em] bg-gray-100 border border-gray-200 text-gray-600 rounded"
                       >
                         {tag}
                       </span>
