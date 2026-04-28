@@ -119,15 +119,11 @@ export default function Landing() {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="w-4 h-4 inline-block align-text-bottom mr-1.5 shrink-0"
+                className="w-5 h-5 inline-block align-text-bottom mr-1 shrink-0"
                 aria-hidden
               >
                 <title>Location</title>
-                <path
-                  fillRule="evenodd"
-                  d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
-                  clipRule="evenodd"
-                />
+                <path d="M12 2.75c-3.1 0-5.45 2.43-5.45 5.65 0 4.57 4.42 9.92 5.14 10.76a.4.4 0 0 0 .62 0c.72-.84 5.14-6.19 5.14-10.76 0-3.22-2.35-5.65-5.45-5.65zm0 8.35a2.55 2.55 0 1 1 0-5.1 2.55 2.55 0 0 1 0 5.1z" />
               </svg>
               Currently doing Design Systems at{" "}
               <a
