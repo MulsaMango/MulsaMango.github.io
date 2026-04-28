@@ -119,7 +119,7 @@ export default function Landing() {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="w-5 h-5 inline-block align-text-bottom mr-1 shrink-0"
+                className="w-5 h-5 inline-block align-text-bottom mr-1 shrink-0 text-gray-900"
                 aria-hidden
               >
                 <title>Location</title>
