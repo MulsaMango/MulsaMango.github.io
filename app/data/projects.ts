@@ -42,4 +42,11 @@ export const projects: Project[] = [
     image: null,
     bgColor: "bg-gray-100",
   },
+  {
+    id: 7,
+    title: "Coming soon",
+    tags: ["Product Design", "Design System"],
+    image: null,
+    bgColor: "bg-gray-100",
+  },
 ];

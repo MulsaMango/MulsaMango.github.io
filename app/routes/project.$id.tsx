@@ -33,8 +33,8 @@ export default function Project() {
   }, [lastScrollY]);
 
   const navItems = [
-    { href: "/", label: "Work" },
-    { href: "/about", label: "About" },
+    { href: "/", label: "WORK" },
+    { href: "/about", label: "ABOUT" },
   ];
 
   const location = useLocation();
@@ -70,7 +70,7 @@ export default function Project() {
             to="/"
             className="font-display text-base font-medium text-gray-600 hover:!text-gray-600"
           >
-            Tulsa <span className="logo-separator" aria-hidden="true"></span> Daley
+            TULSA <span className="logo-separator" aria-hidden="true"></span> DALEY
           </Link>
           <nav className="flex gap-6">
             {navItems.map((item) => {

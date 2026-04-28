@@ -31,8 +31,8 @@ export default function Landing() {
   }, [lastScrollY]);
 
   const navItems = [
-    { href: "/", label: "Work" },
-    { href: "/about", label: "About" },
+    { href: "/", label: "WORK" },
+    { href: "/about", label: "ABOUT" },
   ];
 
   return (
@@ -53,8 +53,8 @@ export default function Landing() {
             href="/"
             className="font-display text-base font-medium text-gray-600 hover:!text-gray-600"
           >
-            Tulsa <span className="logo-separator" aria-hidden="true"></span>{" "}
-            Daley
+            TULSA <span className="logo-separator" aria-hidden="true"></span>{" "}
+            DALEY
           </a>
           <nav className="flex gap-6">
             {navItems.map((item) => {
@@ -109,7 +109,7 @@ export default function Landing() {
               Ahoy, I'm Tulsa.
             </h2>
             <p className="font-sans text-sm md:text-base text-gray-500 leading-[1.75]">
-              A systems-minded product designer with a design systems backbone,
+              A systems-minded Product Designer with a design systems backbone,
               a love for thoughtful UI, and a growing practice in AI-powered
               workflows that improve how design gets explored, tested, and
               refined.

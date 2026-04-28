@@ -268,7 +268,6 @@ const BUBBLE_POP_FRAGMENTS = [
 
 export default function About() {
   const location = useLocation();
-  const [activeHash, setActiveHash] = useState(location.hash || "");
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [burstBubbles, setBurstBubbles] = useState<Set<string>>(new Set());
@@ -299,17 +298,6 @@ export default function About() {
   };
 
   useEffect(() => {
-    setActiveHash(location.hash);
-
-    const handleHashChange = () => {
-      setActiveHash(window.location.hash);
-    };
-
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, [location.hash]);
-
-  useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
@@ -330,8 +318,8 @@ export default function About() {
   }, [lastScrollY]);
 
   const navItems = [
-    { href: "/", label: "Work" },
-    { href: "/about", label: "About" },
+    { href: "/", label: "WORK" },
+    { href: "/about", label: "ABOUT" },
   ];
 
   return (
@@ -352,8 +340,8 @@ export default function About() {
             href="/"
             className="font-display text-base font-medium text-gray-600 hover:!text-gray-600"
           >
-            Tulsa <span className="logo-separator" aria-hidden="true"></span>{" "}
-            Daley
+            TULSA <span className="logo-separator" aria-hidden="true"></span>{" "}
+            DALEY
           </a>
           <nav className="flex gap-6">
             {navItems.map((item) => {
@@ -650,12 +638,12 @@ export default function About() {
                   </span>
                 </a>
                 <a
-                  href="/resume.pdf"
+                  href="https://github.com/tulsa-code"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between py-3 border-b border-gray-200 text-gray-700 hover:text-gray-900 transition-colors group"
                 >
-                  <span className="font-sans text-base">Resume</span>
+                  <span className="font-sans text-base">GitHub</span>
                   <span className="text-gray-400 group-hover:text-gray-600 transition-colors">
                     ↗
                   </span>
