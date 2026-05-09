@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Footer } from "../components/Footer";
 
 import bubbleLrg from "./about-images/bubble-lrg.png";
@@ -266,6 +266,10 @@ const BUBBLE_POP_FRAGMENTS = [
   { id: "left", dx: "-22px", dy: "6px", delay: "26ms", size: 4 },
 ] as const;
 
+const triggerBubbleHaptic = () => {
+  window.navigator.vibrate?.(12);
+};
+
 export default function About() {
   const location = useLocation();
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
@@ -276,6 +280,7 @@ export default function About() {
   );
   const [emailCopied, setEmailCopied] = useState(false);
   const [showEmailTooltip, setShowEmailTooltip] = useState(false);
+  const lastTouchBurstAt = useRef(0);
 
   const handleBubbleBurst = (id: string) => {
     setBurstBubbles((prev) => new Set(prev).add(id));
@@ -295,6 +300,20 @@ export default function About() {
         });
       }, 900);
     }, 10000);
+  };
+
+  const handleBubbleTouchBurst = (id: string) => {
+    lastTouchBurstAt.current = Date.now();
+    triggerBubbleHaptic();
+    handleBubbleBurst(id);
+  };
+
+  const handleBubbleHoverBurst = (id: string) => {
+    if (Date.now() - lastTouchBurstAt.current < 700) {
+      return;
+    }
+
+    handleBubbleBurst(id);
   };
 
   useEffect(() => {
@@ -453,7 +472,16 @@ export default function About() {
                     decoding="sync"
                     onMouseEnter={
                       isBubble && !hasBurst
-                        ? () => handleBubbleBurst(icon.id)
+                        ? () => handleBubbleHoverBurst(icon.id)
+                        : undefined
+                    }
+                    onPointerUp={
+                      isBubble && !hasBurst
+                        ? (event) => {
+                            if (event.pointerType === "touch") {
+                              handleBubbleTouchBurst(icon.id);
+                            }
+                          }
                         : undefined
                     }
                   />
