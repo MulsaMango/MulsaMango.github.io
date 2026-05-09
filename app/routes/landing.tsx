@@ -2,8 +2,8 @@ import { useLocation, Link } from "react-router";
 import { useEffect, useState } from "react";
 import { projects } from "../data/projects";
 import { getCaseStudyComponent } from "../case-studies";
-import iconProjectCard from "../case-studies/icons-images/icon-project-card.png";
 import { Footer } from "../components/Footer";
+import { IconProjectPreview } from "../components/IconProjectPreview";
 
 export default function Landing() {
   const location = useLocation();
@@ -161,11 +161,13 @@ export default function Landing() {
                 className="w-full aspect-square bg-gray-100 rounded-md mb-3 flex items-center justify-center overflow-hidden border border-gray-300 group-hover:shadow-sm transition-all"
                 style={{ cursor: "pointer" }}
               >
-                {project.image ? (
+                {project.id === 1 ? (
+                  <IconProjectPreview />
+                ) : project.image ? (
                   <img
-                    src={project.id === 1 ? iconProjectCard : project.image}
+                    src={project.image}
                     alt={project.title}
-                    className={`w-full h-full object-cover ${project.id === 1 ? "icon-project-image" : ""}`}
+                    className="w-full h-full object-cover"
                     style={{ cursor: "pointer" }}
                   />
                 ) : (

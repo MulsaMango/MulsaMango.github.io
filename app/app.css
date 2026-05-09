@@ -201,13 +201,47 @@ a:hover .logo-separator {
   color: rgb(55, 65, 81); /* gray-700 */
 }
 
-/* Icon project card hover effect - subtle scale */
-.icon-project-image {
-  transition: transform 0.3s ease;
+/* Icon project card hover effect - controlled scatter */
+.icon-project-preview {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #f9fafb;
+  cursor: pointer;
+  isolation: isolate;
 }
 
-.group:hover .icon-project-image {
-  transform: scale(1.05);
+.icon-project-layer {
+  position: absolute;
+  top: var(--icon-top);
+  left: var(--icon-left);
+  width: 5.8%;
+  min-width: 1.15rem;
+  max-width: 2rem;
+  height: auto;
+  opacity: 0.96;
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center;
+  transition:
+    transform 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 640ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 0ms;
+  will-change: transform;
+}
+
+.icon-project-preview--compact .icon-project-layer {
+  min-width: 1rem;
+}
+
+.group:hover .icon-project-layer,
+.group:focus-visible .icon-project-layer {
+  opacity: 1;
+  transform:
+    translate(calc(-50% + var(--burst-x)), calc(-50% + var(--burst-y)))
+    rotate(var(--burst-rotation))
+    scale(var(--burst-scale));
+  transition-delay: var(--burst-delay);
 }
 
 /* About page – soft floating pixel art (centered on position, no shift) */
@@ -321,6 +355,18 @@ a:hover .logo-separator {
 }
 
 @media (max-width: 520px) {
+  .icon-project-layer {
+    min-width: 1rem;
+  }
+
+  .group:hover .icon-project-layer,
+  .group:focus-visible .icon-project-layer {
+    transform:
+      translate(calc(-50% + var(--mobile-burst-x)), calc(-50% + var(--mobile-burst-y)))
+      rotate(var(--burst-rotation))
+      scale(var(--mobile-burst-scale));
+  }
+
   .about-float-icon,
   .bubble-pop-fragment {
     left: var(--about-mobile-left, var(--about-left));
@@ -350,5 +396,16 @@ a:hover .logo-separator {
 
   .bubble-return {
     animation: none;
+  }
+
+  .icon-project-preview,
+  .icon-project-layer {
+    transition-duration: 1ms;
+  }
+
+  .group:hover .icon-project-layer,
+  .group:focus-visible .icon-project-layer {
+    transform: translate(-50%, -50%) scale(1.03);
+    transition-delay: 0ms;
   }
 }
