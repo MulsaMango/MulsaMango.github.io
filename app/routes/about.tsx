@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Footer } from "../components/Footer";
 
 import bubbleLrg from "./about-images/bubble-lrg.png";
@@ -266,6 +266,68 @@ const BUBBLE_POP_FRAGMENTS = [
   { id: "left", dx: "-22px", dy: "6px", delay: "26ms", size: 4 },
 ] as const;
 
+const CURSOR_INTRO_TARGET_BUBBLE_ID = "bubble-sm-1";
+const CURSOR_INTRO_POP_DELAY_MS = 1280;
+const CURSOR_INTRO_DURATION_MS = 2200;
+
+const EXPERIENCE_ITEMS = [
+  {
+    role: "Current role title",
+    organization: "Company Name",
+    period: "2024 - Present",
+    isCurrent: true,
+    description:
+      "Placeholder text for the current role. This can describe the type of work, product area, team focus, and the kind of impact this experience represents.",
+  },
+  {
+    role: "Previous role title",
+    organization: "Company Name",
+    period: "2022 - 2024",
+    isCurrent: false,
+    description:
+      "Placeholder text for a previous role. This can cover research, strategy, delivery, collaboration, or any other meaningful parts of the working history.",
+  },
+  {
+    role: "Earlier role title",
+    organization: "Company Name",
+    period: "2020 - 2022",
+    isCurrent: false,
+    description:
+      "Placeholder text for an earlier role. This keeps the timeline structure visible while leaving room to refine the content later.",
+  },
+] as const;
+
+type PokeOffset = {
+  x: string;
+  y: string;
+  rotate: string;
+};
+
+const getPokeOffset = (
+  event: React.PointerEvent<HTMLDivElement>,
+): PokeOffset => {
+  const rect = event.currentTarget.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  const relativeX = (event.clientX - centerX) / Math.max(rect.width / 2, 1);
+  const relativeY = (event.clientY - centerY) / Math.max(rect.height / 2, 1);
+  const clamp = (value: number) => Math.max(-1, Math.min(1, value));
+  const nudgeX = clamp(-relativeX) * 5;
+  const nudgeY = clamp(-relativeY) * 5;
+  const nudgeRotate = clamp(-relativeX) * 1.6;
+
+  return {
+    x: `${nudgeX.toFixed(2)}px`,
+    y: `${nudgeY.toFixed(2)}px`,
+    rotate: `${nudgeRotate.toFixed(2)}deg`,
+  };
+};
+
+const canUsePixelArtPoke = (event: React.PointerEvent<HTMLDivElement>) =>
+  event.pointerType === "mouse" &&
+  window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 const triggerBubbleHaptic = () => {
   window.navigator.vibrate?.(12);
 };
@@ -276,13 +338,15 @@ export default function About() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [burstBubbles, setBurstBubbles] = useState<Set<string>>(new Set());
   const [returningBubbles, setReturningBubbles] = useState<Set<string>>(
-    new Set()
+    new Set(),
   );
+  const [pokedIcons, setPokedIcons] = useState<Record<string, PokeOffset>>({});
+  const [isCursorIntroActive, setIsCursorIntroActive] = useState(true);
   const [emailCopied, setEmailCopied] = useState(false);
   const [showEmailTooltip, setShowEmailTooltip] = useState(false);
   const lastTouchBurstAt = useRef(0);
 
-  const handleBubbleBurst = (id: string) => {
+  const handleBubbleBurst = useCallback((id: string) => {
     setBurstBubbles((prev) => new Set(prev).add(id));
     window.setTimeout(() => {
       setBurstBubbles((prev) => {
@@ -300,7 +364,7 @@ export default function About() {
         });
       }, 900);
     }, 10000);
-  };
+  }, []);
 
   const handleBubbleTouchBurst = (id: string) => {
     lastTouchBurstAt.current = Date.now();
@@ -315,6 +379,65 @@ export default function About() {
 
     handleBubbleBurst(id);
   };
+
+  const handlePixelArtPointerEnter = (
+    id: string,
+    event: React.PointerEvent<HTMLDivElement>,
+  ) => {
+    if (!canUsePixelArtPoke(event) || pokedIcons[id]) {
+      return;
+    }
+
+    const nextOffset = getPokeOffset(event);
+
+    setPokedIcons((prev) => {
+      const currentOffset = prev[id];
+
+      if (
+        currentOffset?.x === nextOffset.x &&
+        currentOffset.y === nextOffset.y &&
+        currentOffset.rotate === nextOffset.rotate
+      ) {
+        return prev;
+      }
+
+      return {
+        ...prev,
+        [id]: nextOffset,
+      };
+    });
+  };
+
+  const clearPixelArtPoke = (id: string) => {
+    setPokedIcons((prev) => {
+      if (!(id in prev)) {
+        return prev;
+      }
+
+      const next = { ...prev };
+      delete next[id];
+      return next;
+    });
+  };
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setIsCursorIntroActive(false);
+      return;
+    }
+
+    const popTimeout = window.setTimeout(() => {
+      handleBubbleBurst(CURSOR_INTRO_TARGET_BUBBLE_ID);
+    }, CURSOR_INTRO_POP_DELAY_MS);
+    const introTimeout = window.setTimeout(() => {
+      setIsCursorIntroActive(false);
+    }, CURSOR_INTRO_DURATION_MS);
+
+    return () => {
+      window.clearTimeout(popTimeout);
+      window.clearTimeout(introTimeout);
+    };
+  }, [handleBubbleBurst]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -432,41 +555,81 @@ export default function About() {
               const isBubble = "isBubble" in icon && icon.isBubble;
               const hasBurst = burstBubbles.has(icon.id);
               const isReturning = returningBubbles.has(icon.id);
+              const pokeOffset = pokedIcons[icon.id];
+              const isCursorIntroIcon =
+                isCursorIntroActive && icon.id === "about-tulsa";
+              const isCursorIntroTarget =
+                isCursorIntroActive &&
+                icon.id === CURSOR_INTRO_TARGET_BUBBLE_ID &&
+                !hasBurst;
+              const iconStyle = {
+                "--about-left": icon.left,
+                "--about-mobile-left": icon.mobileLeft,
+                top: icon.top,
+                width: icon.width,
+                height: "auto",
+                ...(!isReturning
+                  ? {
+                      animationDuration: `${icon.duration}s`,
+                      animationDelay: `${icon.delay}s`,
+                    }
+                  : {}),
+                "--rotate": `${icon.rotate}deg`,
+                "--poke-x": pokeOffset?.x ?? "0px",
+                "--poke-y": pokeOffset?.y ?? "0px",
+                "--poke-rotate": pokeOffset?.rotate ?? "0deg",
+                ...(isBubble && "burstScale" in icon
+                  ? {
+                      "--burst-scale": icon.burstScale,
+                      "--burst-duration": `${icon.burstDuration}ms`,
+                    }
+                  : {}),
+              } as React.CSSProperties;
+
+              if (!isBubble) {
+                return (
+                  <div
+                    key={icon.id}
+                    className={`about-float-icon about-pixel-art-shell absolute select-none ${
+                      isCursorIntroIcon ? "about-intro-anchor" : ""
+                    }`}
+                    style={iconStyle}
+                    onPointerEnter={(event) =>
+                      handlePixelArtPointerEnter(icon.id, event)
+                    }
+                    onPointerLeave={() => clearPixelArtPoke(icon.id)}
+                  >
+                    <span
+                      className={
+                        icon.id === "about-tulsa" ? "about-cursor-intro" : ""
+                      }
+                    >
+                      <img
+                        src={icon.src}
+                        alt={icon.alt}
+                        className={`about-pixel-art ${
+                          pokeOffset ? "about-pixel-art-poked" : ""
+                        }`}
+                        draggable={false}
+                        loading="eager"
+                        decoding="sync"
+                      />
+                    </span>
+                  </div>
+                );
+              }
 
               return (
                 <div key={icon.id}>
                   <img
                     src={icon.src}
                     alt={icon.alt}
-                    className={`about-float-icon absolute select-none ${
-                      isBubble
-                        ? `about-bubble ${hasBurst ? "bubble-burst" : ""} ${
-                            isReturning ? "bubble-return" : ""
-                          }`
-                        : "about-pixel-art pointer-events-none"
+                    className={`about-float-icon about-bubble absolute select-none ${
+                      hasBurst ? "bubble-burst" : ""
+                    } ${isReturning ? "bubble-return" : ""} ${
+                      isCursorIntroTarget ? "about-intro-anchor" : ""
                     }`}
-                    style={
-                      {
-                        "--about-left": icon.left,
-                        "--about-mobile-left": icon.mobileLeft,
-                        top: icon.top,
-                        width: icon.width,
-                        height: "auto",
-                        ...(!isReturning
-                          ? {
-                              animationDuration: `${icon.duration}s`,
-                              animationDelay: `${icon.delay}s`,
-                            }
-                          : {}),
-                        "--rotate": `${icon.rotate}deg`,
-                        ...(isBubble && "burstScale" in icon
-                          ? {
-                              "--burst-scale": icon.burstScale,
-                              "--burst-duration": `${icon.burstDuration}ms`,
-                            }
-                          : {}),
-                      } as React.CSSProperties
-                    }
+                    style={iconStyle}
                     draggable={false}
                     loading="eager"
                     decoding="sync"
@@ -513,48 +676,91 @@ export default function About() {
           {/* Bio paragraph */}
           <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
             <span className="font-semibold text-gray-800">
-              I'm interested in how good product design gets made:
+              I’m interested in how good product design gets made:
             </span>{" "}
             the systems that support it, the craft that makes it feel
-            considered, and the workflows that help teams explore and refine
-            better ideas.
+            considered, and the workflows that help teams shape better
+            solutions.
           </p>
           <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
             I currently work on the design systems team at WiseTech Global, a
             provider of enterprise B2B logistics software. It’s a mature product
-            in a complex domain with expert workflows and a lot of breadth, so
-            clarity and compatibility matter as much as innovation.
+            in a complex domain, with expert workflows, legacy constraints, and
+            a lot of breadth - so clarity and compatibility matter as much as
+            innovation.
           </p>
 
           <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
             Design systems pulled me toward what I’m naturally wired for:
-            pragmatic problem solving, attention to process, and craft. I’ll
-            sweat the details when they matter, but I always take a pragmatic
-            approach to my work factoring in business goals, product goals, and
+            pragmatic problem solving paired with process and craft. I’ll sweat
+            the details when they matter, but I always take a pragmatic approach
+            to my work, factoring in business goals, product goals, and
             technical or legacy constraints.
           </p>
 
           <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
-            Lately I've been exploring AI-powered design workflows across design
-            and code environments, using tools like Figma Make, GitHub Copilot,
-            and Claude Code. I’m especially interested in the layer beneath the
-            prompt: structured skills, reusable markdown instructions, MCP
-            servers, and design-system context that helps AI work with clearer
-            intent and stronger guardrails. I’ve been excited to see how AI can
-            pair with mature, enterprise-level design systems to strengthen more
-            of the design process, from early exploration and prototyping
-            through documentation, handoff, and coded delivery.
+            Lately, I’ve been deeply exploring what it means to be an AI-enabled
+            designer across design and code environments. I’m especially
+            interested in the layer beneath the prompt: structured skills,
+            reusable instructions, MCP servers, and design-system context that
+            help AI work with clearer intent and stronger guardrails.
           </p>
 
           <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
-            Looking forward, I'm open to product design, UX/UI, or design
-            systems roles at companies that value design, encourage curiosity
-            and experimentation in how we work, and foster collaborative,
-            supportive teams. If that sounds like you, I'd love to chat!
+            Before WiseTech, I worked in recruitment tech, helping establish
+            early design system foundations and designing flows across job
+            seeker and employer experiences. Earlier, I was part of the
+            workplace experience team at Atlassian, shaping the physical and
+            digital environments that supported how people worked across a large
+            tech organisation.
           </p>
 
+          {/* Experience section */}
+          <section
+            className="max-w-2xl mx-auto mt-16 pt-16 border-t border-gray-200/80 text-left"
+            aria-labelledby="experience-heading"
+          >
+            <h2
+              id="experience-heading"
+              className="text-2xl md:text-3xl font-semibold text-gray-800 mb-12"
+            >
+              Experience
+            </h2>
+            <ol className="space-y-10">
+              {EXPERIENCE_ITEMS.map((item) => (
+                <li
+                  key={`${item.role}-${item.period}`}
+                  className="grid grid-cols-[14px_1fr] gap-x-5"
+                >
+                  <span
+                    className="mt-2 h-2.5 w-2.5 bg-[#47DD4E] shadow-[2px_2px_0_rgba(0,0,0,0.08)]"
+                    aria-hidden
+                  />
+                  <div>
+                    <div className="mb-1 flex flex-wrap items-center gap-2">
+                      <h3 className="!font-sans text-xl font-medium text-gray-900">
+                        {item.role}
+                      </h3>
+                      {item.isCurrent && (
+                        <span className="inline-block px-1.5 py-0.5 text-xs font-sans bg-gray-100 border border-gray-200 text-gray-600 rounded">
+                          Current
+                        </span>
+                      )}
+                    </div>
+                    <p className="font-sans text-base text-gray-500 mb-3">
+                      {item.organization} · {item.period}
+                    </p>
+                    <p className="font-sans text-base leading-7 text-gray-600">
+                      {item.description}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+
           {/* Contact section */}
-          <div className="max-w-2xl mx-auto mt-20">
+          <div className="max-w-2xl mx-auto mt-16 pt-16 border-t border-gray-200/80">
             <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 text-center mb-12">
               Let's chat!
             </h2>
