@@ -92,7 +92,7 @@ export default function Landing() {
       </header>
 
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-6 pt-24 pb-12 md:py-20">
+      <section className="max-w-7xl mx-auto px-6 pt-24 pb-6 md:pt-20 md:pb-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Hero Image */}
           <div className="w-full aspect-square flex items-center justify-center">
@@ -144,7 +144,7 @@ export default function Landing() {
       </section>
 
       {/* Project Showcase */}
-      <section id="work" className="max-w-7xl mx-auto px-6 py-12">
+      <section id="work" className="max-w-7xl mx-auto px-6 pt-0 pb-12">
         <div className="mb-6">
           <h2 className="text-2xl font-semibold text-gray-900">
             Selected work
