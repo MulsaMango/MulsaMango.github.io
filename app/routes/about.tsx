@@ -269,6 +269,10 @@ const BUBBLE_POP_FRAGMENTS = [
 const CURSOR_INTRO_TARGET_BUBBLE_ID = "bubble-sm-1";
 const CURSOR_INTRO_POP_DELAY_MS = 1280;
 const CURSOR_INTRO_DURATION_MS = 2200;
+const CURSOR_TIP_POSITION = {
+  x: 0.14,
+  y: 0.27,
+} as const;
 
 const EXPERIENCE_ITEMS = [
   {
@@ -301,6 +305,11 @@ type PokeOffset = {
   x: string;
   y: string;
   rotate: string;
+};
+
+type CursorIntroOffset = {
+  x: string;
+  y: string;
 };
 
 const getPokeOffset = (
@@ -342,9 +351,17 @@ export default function About() {
   );
   const [pokedIcons, setPokedIcons] = useState<Record<string, PokeOffset>>({});
   const [isCursorIntroActive, setIsCursorIntroActive] = useState(true);
+  const [cursorIntroOffset, setCursorIntroOffset] =
+    useState<CursorIntroOffset>({
+      x: "-62px",
+      y: "-33px",
+    });
   const [emailCopied, setEmailCopied] = useState(false);
   const [showEmailTooltip, setShowEmailTooltip] = useState(false);
   const lastTouchBurstAt = useRef(0);
+  const cursorIntroAnchorRef = useRef<HTMLDivElement | null>(null);
+  const cursorIntroImageRef = useRef<HTMLImageElement | null>(null);
+  const cursorIntroTargetRef = useRef<HTMLImageElement | null>(null);
 
   const handleBubbleBurst = useCallback((id: string) => {
     setBurstBubbles((prev) => new Set(prev).add(id));
@@ -419,6 +436,39 @@ export default function About() {
       return next;
     });
   };
+
+  const updateCursorIntroOffset = useCallback(() => {
+    const cursorAnchor = cursorIntroAnchorRef.current;
+    const cursorImage = cursorIntroImageRef.current;
+    const targetBubble = cursorIntroTargetRef.current;
+
+    if (!cursorAnchor || !cursorImage || !targetBubble) {
+      return;
+    }
+
+    const imageRect = cursorImage.getBoundingClientRect();
+    const targetRect = targetBubble.getBoundingClientRect();
+    const cursorTip = {
+      x: imageRect.left + imageRect.width * CURSOR_TIP_POSITION.x,
+      y: imageRect.top + imageRect.height * CURSOR_TIP_POSITION.y,
+    };
+    const targetCenter = {
+      x: targetRect.left + targetRect.width / 2,
+      y: targetRect.top + targetRect.height / 2,
+    };
+
+    setCursorIntroOffset({
+      x: `${(targetCenter.x - cursorTip.x).toFixed(2)}px`,
+      y: `${(targetCenter.y - cursorTip.y).toFixed(2)}px`,
+    });
+  }, []);
+
+  useEffect(() => {
+    updateCursorIntroOffset();
+    window.addEventListener("resize", updateCursorIntroOffset);
+
+    return () => window.removeEventListener("resize", updateCursorIntroOffset);
+  }, [updateCursorIntroOffset]);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -578,6 +628,8 @@ export default function About() {
                 "--poke-x": pokeOffset?.x ?? "0px",
                 "--poke-y": pokeOffset?.y ?? "0px",
                 "--poke-rotate": pokeOffset?.rotate ?? "0deg",
+                "--cursor-pop-x": cursorIntroOffset.x,
+                "--cursor-pop-y": cursorIntroOffset.y,
                 ...(isBubble && "burstScale" in icon
                   ? {
                       "--burst-scale": icon.burstScale,
@@ -589,6 +641,9 @@ export default function About() {
               if (!isBubble) {
                 return (
                   <div
+                    ref={
+                      icon.id === "about-tulsa" ? cursorIntroAnchorRef : null
+                    }
                     key={icon.id}
                     className={`about-float-icon about-pixel-art-shell absolute select-none ${
                       isCursorIntroIcon ? "about-intro-anchor" : ""
@@ -605,6 +660,11 @@ export default function About() {
                       }
                     >
                       <img
+                        ref={
+                          icon.id === "about-tulsa"
+                            ? cursorIntroImageRef
+                            : null
+                        }
                         src={icon.src}
                         alt={icon.alt}
                         className={`about-pixel-art ${
@@ -622,6 +682,11 @@ export default function About() {
               return (
                 <div key={icon.id}>
                   <img
+                    ref={
+                      icon.id === CURSOR_INTRO_TARGET_BUBBLE_ID
+                        ? cursorIntroTargetRef
+                        : null
+                    }
                     src={icon.src}
                     alt={icon.alt}
                     className={`about-float-icon about-bubble absolute select-none ${
@@ -686,8 +751,8 @@ export default function About() {
             I currently work on the design systems team at WiseTech Global, a
             provider of enterprise B2B logistics software. It’s a mature product
             in a complex domain, with expert workflows, legacy constraints, and
-            a lot of breadth - so clarity and compatibility matter as much as
-            innovation.
+            a lot of breadth - so consistency and compatibility matter as much
+            as innovation.
           </p>
 
           <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
