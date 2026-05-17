@@ -351,11 +351,12 @@ export default function About() {
   );
   const [pokedIcons, setPokedIcons] = useState<Record<string, PokeOffset>>({});
   const [isCursorIntroActive, setIsCursorIntroActive] = useState(true);
-  const [cursorIntroOffset, setCursorIntroOffset] =
-    useState<CursorIntroOffset>({
+  const [cursorIntroOffset, setCursorIntroOffset] = useState<CursorIntroOffset>(
+    {
       x: "-62px",
       y: "-33px",
-    });
+    },
+  );
   const [emailCopied, setEmailCopied] = useState(false);
   const [showEmailTooltip, setShowEmailTooltip] = useState(false);
   const lastTouchBurstAt = useRef(0);
@@ -661,9 +662,7 @@ export default function About() {
                     >
                       <img
                         ref={
-                          icon.id === "about-tulsa"
-                            ? cursorIntroImageRef
-                            : null
+                          icon.id === "about-tulsa" ? cursorIntroImageRef : null
                         }
                         src={icon.src}
                         alt={icon.alt}
@@ -758,7 +757,7 @@ export default function About() {
           <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
             Design systems pulled me toward what I’m naturally wired for:
             pragmatic problem solving paired with process and craft. I’ll sweat
-            the details when they matter, but I always take a pragmatic approach
+            the details when they matter, but I always take a strategic approach
             to my work, factoring in business goals, product goals, and
             technical or legacy constraints.
           </p>
