@@ -21,6 +21,13 @@ import pin from "./about-images/pin.png";
 // Reference: elliptical cluster with about-tulsa as the central focal point
 // Rotations added to match the tilted feel in the reference (cursor has no rotation)
 // Bubbles have burst parameters: smaller bubbles burst faster and expand more
+// enterDelay (ms) groups icons into waves that pop in a couple at a time:
+//   0ms   – focal (about-tulsa)
+//   110ms – top anchor icons (figma, robot, terminal)
+//   220ms – edge anchor icons (totoro, double-diamond, onigiri, donut, coffee)
+//   360ms – medium bubbles + large bubble
+//   480ms – small bubbles
+// Total entrance settles ~820ms — still before the cursor intro pops bubble-sm-1 at 1280ms.
 const ABOUT_ICONS = [
   // Top row
   {
@@ -34,6 +41,7 @@ const ABOUT_ICONS = [
     rotate: 0,
     duration: 4.0,
     delay: 0.3,
+    enterDelay: 480,
     isBubble: true,
     burstScale: 1.7,
     burstDuration: 150,
@@ -49,6 +57,7 @@ const ABOUT_ICONS = [
     rotate: -18,
     duration: 4.2,
     delay: 0,
+    enterDelay: 220,
   },
   {
     id: "figma",
@@ -61,6 +70,7 @@ const ABOUT_ICONS = [
     rotate: 0,
     duration: 3.8,
     delay: 0.5,
+    enterDelay: 110,
   },
   {
     id: "bubble-lrg",
@@ -73,6 +83,7 @@ const ABOUT_ICONS = [
     rotate: 0,
     duration: 4.5,
     delay: 1,
+    enterDelay: 360,
     isBubble: true,
     burstScale: 1.3,
     burstDuration: 240,
@@ -88,6 +99,7 @@ const ABOUT_ICONS = [
     rotate: 12,
     duration: 4.1,
     delay: 0.2,
+    enterDelay: 220,
   },
   // Left side
   {
@@ -101,6 +113,7 @@ const ABOUT_ICONS = [
     rotate: 6,
     duration: 3.5,
     delay: 1.1,
+    enterDelay: 110,
   },
   // Left bubble cluster (below robot) - 2 medium + 1 small
   {
@@ -114,6 +127,7 @@ const ABOUT_ICONS = [
     rotate: 0,
     duration: 3.6,
     delay: 1.2,
+    enterDelay: 360,
     isBubble: true,
     burstScale: 1.4,
     burstDuration: 180,
@@ -129,6 +143,7 @@ const ABOUT_ICONS = [
     rotate: 0,
     duration: 4.1,
     delay: 0.9,
+    enterDelay: 360,
     isBubble: true,
     burstScale: 1.5,
     burstDuration: 170,
@@ -144,6 +159,7 @@ const ABOUT_ICONS = [
     rotate: 0,
     duration: 3.4,
     delay: 0.8,
+    enterDelay: 480,
     isBubble: true,
     burstScale: 1.7,
     burstDuration: 150,
@@ -160,6 +176,7 @@ const ABOUT_ICONS = [
     rotate: 0,
     duration: 4.2,
     delay: 0.6,
+    enterDelay: 0,
   },
   // Right side
   {
@@ -173,6 +190,7 @@ const ABOUT_ICONS = [
     rotate: 10,
     duration: 3.9,
     delay: 0.6,
+    enterDelay: 110,
   },
   {
     id: "bubble-med-3",
@@ -185,6 +203,7 @@ const ABOUT_ICONS = [
     rotate: 0,
     duration: 4.3,
     delay: 0.7,
+    enterDelay: 360,
     isBubble: true,
     burstScale: 1.45,
     burstDuration: 175,
@@ -200,6 +219,7 @@ const ABOUT_ICONS = [
     rotate: 0,
     duration: 4.4,
     delay: 0.4,
+    enterDelay: 480,
     isBubble: true,
     burstScale: 1.7,
     burstDuration: 140,
@@ -215,6 +235,7 @@ const ABOUT_ICONS = [
     rotate: 8,
     duration: 4.4,
     delay: 0.9,
+    enterDelay: 220,
   },
   {
     id: "bubble-sm-4",
@@ -227,6 +248,7 @@ const ABOUT_ICONS = [
     rotate: 0,
     duration: 4.0,
     delay: 1.0,
+    enterDelay: 480,
     isBubble: true,
     burstScale: 1.7,
     burstDuration: 150,
@@ -243,6 +265,7 @@ const ABOUT_ICONS = [
     rotate: -12,
     duration: 3.7,
     delay: 0.4,
+    enterDelay: 220,
   },
   {
     id: "totoro",
@@ -255,6 +278,7 @@ const ABOUT_ICONS = [
     rotate: 6,
     duration: 4.6,
     delay: 0.1,
+    enterDelay: 220,
   },
 ] as const;
 
@@ -276,28 +300,28 @@ const CURSOR_TIP_POSITION = {
 
 const EXPERIENCE_ITEMS = [
   {
-    role: "Current role title",
-    organization: "Company Name",
-    period: "2024 - Present",
+    role: "UI Designer (Design Systems)",
+    organization: "WiseTech Global",
+    period: "2023 - Present",
     isCurrent: true,
     description:
-      "Placeholder text for the current role. This can describe the type of work, product area, team focus, and the kind of impact this experience represents.",
+      "Designing across both the design system itself (primitives, tokens, components, patterns) and the operational layer that holds it together (governance, documentation, contribution flows, designer tooling). I've designed complex product surfaces like data tables, led strategic research that informs the future direction of the core product framework, and co-led AI-enabled prototyping tooling designers use day to day.",
   },
   {
-    role: "Previous role title",
-    organization: "Company Name",
-    period: "2022 - 2024",
+    role: "UX/UI Designer",
+    organization: "Vpply",
+    period: "2023",
     isCurrent: false,
     description:
-      "Placeholder text for a previous role. This can cover research, strategy, delivery, collaboration, or any other meaningful parts of the working history.",
+      "Designed across product, system, and cross-functional processes at a video-first hiring startup. Built out core flows for job seekers and employers, established the first component library, closed the design-to-dev gap on a previously siloed team, and audited the platform against WCAG 2.1 AA.",
   },
   {
-    role: "Earlier role title",
-    organization: "Company Name",
-    period: "2020 - 2022",
+    role: "Workplace Experience",
+    organization: "Atlassian",
+    period: "2021 - 2022",
     isCurrent: false,
     description:
-      "Placeholder text for an earlier role. This keeps the timeline structure visible while leaving room to refine the content later.",
+      "Curated digital and physical workplace experiences for 10,000+ employees globally during the shift to work-from-anywhere, across full-remote, hybrid, and in-office contexts. Helped shape recognition and care programs for remote employees, led a global dogs-in-the-office initiative across 12 locations, and coordinated facilities, events, and digital experiences that helped employees feel connected wherever they chose to work.",
   },
 ] as const;
 
@@ -350,6 +374,7 @@ export default function About() {
     new Set(),
   );
   const [pokedIcons, setPokedIcons] = useState<Record<string, PokeOffset>>({});
+  const [hasEntered, setHasEntered] = useState(false);
   const [isCursorIntroActive, setIsCursorIntroActive] = useState(true);
   const [cursorIntroOffset, setCursorIntroOffset] = useState<CursorIntroOffset>(
     {
@@ -470,6 +495,24 @@ export default function About() {
 
     return () => window.removeEventListener("resize", updateCursorIntroOffset);
   }, [updateCursorIntroOffset]);
+
+  useEffect(() => {
+    // Two RAFs ensure the initial opacity-0 / blur state is committed before
+    // we flip to entered, so the CSS transition runs (rather than the icons
+    // snapping straight to their final state on hydration).
+    const pendingFrames = { first: 0, second: 0 };
+
+    pendingFrames.first = window.requestAnimationFrame(() => {
+      pendingFrames.second = window.requestAnimationFrame(() => {
+        setHasEntered(true);
+      });
+    });
+
+    return () => {
+      window.cancelAnimationFrame(pendingFrames.first);
+      window.cancelAnimationFrame(pendingFrames.second);
+    };
+  }, []);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -619,12 +662,9 @@ export default function About() {
                 top: icon.top,
                 width: icon.width,
                 height: "auto",
-                ...(!isReturning
-                  ? {
-                      animationDuration: `${icon.duration}s`,
-                      animationDelay: `${icon.delay}s`,
-                    }
-                  : {}),
+                "--float-duration": `${icon.duration}s`,
+                "--float-delay": `${icon.delay}s`,
+                "--enter-delay": `${icon.enterDelay}ms`,
                 "--rotate": `${icon.rotate}deg`,
                 "--poke-x": pokeOffset?.x ?? "0px",
                 "--poke-y": pokeOffset?.y ?? "0px",
@@ -647,8 +687,8 @@ export default function About() {
                     }
                     key={icon.id}
                     className={`about-float-icon about-pixel-art-shell absolute select-none ${
-                      isCursorIntroIcon ? "about-intro-anchor" : ""
-                    }`}
+                      hasEntered ? "about-has-entered" : ""
+                    } ${isCursorIntroIcon ? "about-intro-anchor" : ""}`}
                     style={iconStyle}
                     onPointerEnter={(event) =>
                       handlePixelArtPointerEnter(icon.id, event)
@@ -689,10 +729,10 @@ export default function About() {
                     src={icon.src}
                     alt={icon.alt}
                     className={`about-float-icon about-bubble absolute select-none ${
-                      hasBurst ? "bubble-burst" : ""
-                    } ${isReturning ? "bubble-return" : ""} ${
-                      isCursorIntroTarget ? "about-intro-anchor" : ""
-                    }`}
+                      hasEntered ? "about-has-entered" : ""
+                    } ${hasBurst ? "bubble-burst" : ""} ${
+                      isReturning ? "bubble-return" : ""
+                    } ${isCursorIntroTarget ? "about-intro-anchor" : ""}`}
                     style={iconStyle}
                     draggable={false}
                     loading="eager"
@@ -738,15 +778,12 @@ export default function About() {
           </div>
 
           {/* Bio paragraph */}
-          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
-            <span className="font-semibold text-gray-800">
-              I’m interested in how good product design gets made:
-            </span>{" "}
-            the systems that support it, the craft that makes it feel
-            considered, and the workflows that help teams shape better
-            solutions.
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-sm">
+            Most of my work happens on the layer beneath product design: the
+            systems that support it, the craft that makes it feel considered,
+            and the workflows that help teams shape better solutions.
           </p>
-          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-sm">
             I currently work on the design systems team at WiseTech Global, a
             provider of enterprise B2B logistics software. It’s a mature product
             in a complex domain, with expert workflows, legacy constraints, and
@@ -754,7 +791,7 @@ export default function About() {
             as innovation.
           </p>
 
-          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-sm">
             Design systems pulled me toward what I’m naturally wired for:
             pragmatic problem solving paired with process and craft. I’ll sweat
             the details when they matter, but I always take a strategic approach
@@ -762,7 +799,7 @@ export default function About() {
             technical or legacy constraints.
           </p>
 
-          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-sm">
             Lately, I’ve been deeply exploring what it means to be an AI-enabled
             designer across design and code environments. I’m especially
             interested in the layer beneath the prompt: structured skills,
@@ -770,13 +807,11 @@ export default function About() {
             help AI work with clearer intent and stronger guardrails.
           </p>
 
-          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
-            Before WiseTech, I worked in recruitment tech, helping establish
-            early design system foundations and designing flows across job
-            seeker and employer experiences. Earlier, I was part of the
-            workplace experience team at Atlassian, shaping the physical and
-            digital environments that supported how people worked across a large
-            tech organisation.
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-sm">
+            Outside the work itself, I care a lot about the team I work with. I
+            do my best work alongside people who show up as themselves and let
+            others do the same. Building software has its prickly parts, and a
+            well-placed gif or meme goes a long way :)
           </p>
 
           {/* Experience section */}
@@ -786,23 +821,23 @@ export default function About() {
           >
             <h2
               id="experience-heading"
-              className="text-2xl md:text-3xl font-semibold text-gray-800 mb-12"
+              className="text-xl md:text-2xl font-semibold text-gray-800 mb-10"
             >
               Experience
             </h2>
-            <ol className="space-y-10">
+            <ol className="space-y-8">
               {EXPERIENCE_ITEMS.map((item) => (
                 <li
                   key={`${item.role}-${item.period}`}
-                  className="grid grid-cols-[14px_1fr] gap-x-5"
+                  className="grid grid-cols-[12px_1fr] gap-x-4"
                 >
                   <span
-                    className="mt-2 h-2.5 w-2.5 bg-[#47DD4E] shadow-[2px_2px_0_rgba(0,0,0,0.08)]"
+                    className="mt-1.5 h-2 w-2 bg-[#47DD4E] shadow-[2px_2px_0_rgba(0,0,0,0.08)]"
                     aria-hidden
                   />
                   <div>
                     <div className="mb-1 flex flex-wrap items-center gap-2">
-                      <h3 className="!font-sans text-xl font-medium text-gray-900">
+                      <h3 className="!font-sans text-lg font-medium text-gray-900">
                         {item.role}
                       </h3>
                       {item.isCurrent && (
@@ -811,10 +846,10 @@ export default function About() {
                         </span>
                       )}
                     </div>
-                    <p className="font-sans text-base text-gray-500 mb-3">
+                    <p className="font-sans text-sm text-gray-500 mb-2">
                       {item.organization} · {item.period}
                     </p>
-                    <p className="font-sans text-base leading-7 text-gray-600">
+                    <p className="font-sans text-sm leading-6 text-gray-600">
                       {item.description}
                     </p>
                   </div>

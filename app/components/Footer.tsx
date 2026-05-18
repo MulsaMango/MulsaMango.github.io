@@ -7,25 +7,7 @@ export function Footer() {
   return (
     <footer className="max-w-7xl mx-auto px-6 py-8 mt-20 border-t border-gray-200">
       <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-        <p className="flex items-center gap-1.5 text-sm text-gray-600">
-          Website made by me and
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="text-gray-500"
-            aria-label="AI"
-          >
-            <title>AI</title>
-            <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" />
-            <path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z" />
-          </svg>
-        </p>
+        <p className="text-sm text-gray-600">© 2026 Tulsa Daley</p>
         <div className="flex gap-6 items-center">
           <a
             href="https://github.com/tulsa-code"
