@@ -153,60 +153,69 @@ export default function Landing() {
 
         {/* Project Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <Link
-              key={project.id || project.title}
-              to={`/project/${project.id}`}
-              className="group cursor-pointer block"
-              style={{ cursor: "pointer" }}
-            >
-              {/* Project Image Placeholder */}
-              <div
-                className="w-full aspect-square bg-gray-100 rounded-md mb-3 flex items-center justify-center overflow-hidden border border-gray-300 group-hover:shadow-sm transition-all"
-                style={{ cursor: "pointer" }}
-              >
-                {project.id === 1 ? (
-                  <IconProjectPreview />
-                ) : project.image ? (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                    style={{ cursor: "pointer" }}
-                  />
-                ) : (
-                  <div
-                    className={`w-full h-full ${project.bgColor || "bg-gradient-to-br from-indigo-200 via-purple-200 to-pink-200"} flex items-center justify-center`}
-                    style={{ cursor: "pointer" }}
-                  >
-                    <div className="text-gray-600 text-sm font-medium">
-                      {getCaseStudyComponent(project.id)
-                        ? project.title
-                        : "Coming soon"}
-                    </div>
-                  </div>
-                )}
-              </div>
-              {/* Project Text */}
-              <div className="text-sm" style={{ cursor: "pointer" }}>
-                <div className="font-medium mb-2 text-gray-900">
-                  {project.title}
-                </div>
-                {project.tags && project.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="inline-block px-1.5 py-0.5 text-[0.625rem] font-display uppercase tracking-[0.06em] bg-gray-100 border border-gray-200 text-gray-600 rounded"
+          {projects.map((project) => {
+            const hasCaseStudy = Boolean(getCaseStudyComponent(project.id));
+            const cardInner = (
+              <>
+                {/* Project Image Placeholder */}
+                <div className="w-full aspect-square bg-gray-100 rounded-md mb-3 flex items-center justify-center overflow-hidden border border-gray-300 group-hover:shadow-sm transition-all">
+                  {project.id === 1 ? (
+                    <IconProjectPreview />
+                  ) : project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div
+                      className={`w-full h-full ${project.bgColor || "bg-gradient-to-br from-indigo-200 via-purple-200 to-pink-200"} flex items-center justify-center`}
+                    >
+                      <div
+                        className="inline-block origin-center text-gray-600 text-sm font-medium motion-safe:transition-transform motion-safe:duration-[640ms] motion-safe:[transition-timing-function:cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.08] motion-safe:group-focus-visible:scale-[1.08]"
                       >
-                        {tag}
-                      </span>
-                    ))}
+                        {getCaseStudyComponent(project.id)
+                          ? project.title
+                          : "Coming soon"}
+                      </div>
+                    </div>
+                  )}
+                </div>
+                {/* Project Text */}
+                <div className="text-sm">
+                  <div className="font-medium mb-2 text-gray-900">
+                    {project.title}
                   </div>
-                )}
+                  {project.tags && project.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="inline-block px-1.5 py-0.5 text-[0.625rem] font-display uppercase tracking-[0.06em] bg-gray-100 border border-gray-200 text-gray-600 rounded"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </>
+            );
+
+            return hasCaseStudy ? (
+              <Link
+                key={project.id}
+                to={`/project/${project.id}`}
+                className="group cursor-pointer block"
+              >
+                {cardInner}
+              </Link>
+            ) : (
+              <div key={project.id} className="group block cursor-default">
+                {cardInner}
               </div>
-            </Link>
-          ))}
+            );
+          })}
         </div>
       </section>
 

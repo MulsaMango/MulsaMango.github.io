@@ -166,7 +166,9 @@ export default function Project() {
                 <div
                   className={`w-full h-full ${project.bgColor} flex items-center justify-center`}
                 >
-                  <div className="text-gray-600 text-lg font-medium">{project.title}</div>
+                  <div className="text-gray-600 text-lg font-medium">
+                    {CaseStudyComponent ? project.title : "Coming soon"}
+                  </div>
                 </div>
               )}
             </div>
@@ -196,34 +198,51 @@ export default function Project() {
             {projects
               .filter((p) => p.id !== project.id)
               .slice(0, 3)
-              .map((otherProject) => (
-                <Link
-                  key={otherProject.id}
-                  to={`/project/${otherProject.id}`}
-                  className="group block transition-transform hover:scale-[1.02]"
-                >
-                  <div className="w-full aspect-square bg-gray-100 rounded-md mb-2 flex items-center justify-center overflow-hidden border border-gray-300 group-hover:shadow-sm transition-all">
-                    {otherProject.id === 1 ? (
-                      <IconProjectPreview compact />
-                    ) : otherProject.image ? (
-                      <img
-                        src={otherProject.image}
-                        alt={otherProject.title}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className={`w-full h-full ${otherProject.bgColor} flex items-center justify-center`}>
-                        <div className="text-gray-600 text-sm font-medium">
-                          {getCaseStudyComponent(otherProject.id) ? otherProject.title : "Coming soon"}
+              .map((otherProject) => {
+                const hasOtherCaseStudy = Boolean(getCaseStudyComponent(otherProject.id));
+                const cardInner = (
+                  <>
+                    <div className="w-full aspect-square bg-gray-100 rounded-md mb-2 flex items-center justify-center overflow-hidden border border-gray-300 group-hover:shadow-sm transition-all">
+                      {otherProject.id === 1 ? (
+                        <IconProjectPreview compact />
+                      ) : otherProject.image ? (
+                        <img
+                          src={otherProject.image}
+                          alt={otherProject.title}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className={`w-full h-full ${otherProject.bgColor} flex items-center justify-center`}>
+                          <div className="text-gray-600 text-sm font-medium">
+                            {getCaseStudyComponent(otherProject.id)
+                              ? otherProject.title
+                              : "Coming soon"}
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
+                    </div>
+                    <div
+                      className={`text-sm font-medium text-gray-900${hasOtherCaseStudy ? " group-hover:text-gray-700" : ""}`}
+                    >
+                      {otherProject.title}
+                    </div>
+                  </>
+                );
+
+                return hasOtherCaseStudy ? (
+                  <Link
+                    key={otherProject.id}
+                    to={`/project/${otherProject.id}`}
+                    className="group block cursor-pointer transition-transform hover:scale-[1.02]"
+                  >
+                    {cardInner}
+                  </Link>
+                ) : (
+                  <div key={otherProject.id} className="group block cursor-default">
+                    {cardInner}
                   </div>
-                  <div className="text-sm font-medium text-gray-900 group-hover:text-gray-700">
-                    {otherProject.title}
-                  </div>
-                </Link>
-              ))}
+                );
+              })}
           </div>
         </div>
       </div>

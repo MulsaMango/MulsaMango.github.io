@@ -1,6 +1,11 @@
 import { Link, useLocation } from "react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Footer } from "../components/Footer";
+import {
+  type PokeOffset,
+  canUsePixelArtPoke,
+  getPokeOffset,
+} from "../lib/pixelArtPoke";
 
 import bubbleLrg from "./about-images/bubble-lrg.png";
 import bubbleMed from "./about-images/bubble-med.png";
@@ -325,41 +330,10 @@ const EXPERIENCE_ITEMS = [
   },
 ] as const;
 
-type PokeOffset = {
-  x: string;
-  y: string;
-  rotate: string;
-};
-
 type CursorIntroOffset = {
   x: string;
   y: string;
 };
-
-const getPokeOffset = (
-  event: React.PointerEvent<HTMLDivElement>,
-): PokeOffset => {
-  const rect = event.currentTarget.getBoundingClientRect();
-  const centerX = rect.left + rect.width / 2;
-  const centerY = rect.top + rect.height / 2;
-  const relativeX = (event.clientX - centerX) / Math.max(rect.width / 2, 1);
-  const relativeY = (event.clientY - centerY) / Math.max(rect.height / 2, 1);
-  const clamp = (value: number) => Math.max(-1, Math.min(1, value));
-  const nudgeX = clamp(-relativeX) * 5;
-  const nudgeY = clamp(-relativeY) * 5;
-  const nudgeRotate = clamp(-relativeX) * 1.6;
-
-  return {
-    x: `${nudgeX.toFixed(2)}px`,
-    y: `${nudgeY.toFixed(2)}px`,
-    rotate: `${nudgeRotate.toFixed(2)}deg`,
-  };
-};
-
-const canUsePixelArtPoke = (event: React.PointerEvent<HTMLDivElement>) =>
-  event.pointerType === "mouse" &&
-  window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
-  !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const triggerBubbleHaptic = () => {
   window.navigator.vibrate?.(12);
@@ -686,9 +660,9 @@ export default function About() {
                       icon.id === "about-tulsa" ? cursorIntroAnchorRef : null
                     }
                     key={icon.id}
-                    className={`about-float-icon about-pixel-art-shell absolute select-none ${
+                    className={`about-cluster-item about-pixel-art-shell absolute select-none ${
                       hasEntered ? "about-has-entered" : ""
-                    } ${isCursorIntroIcon ? "about-intro-anchor" : ""}`}
+                    }`}
                     style={iconStyle}
                     onPointerEnter={(event) =>
                       handlePixelArtPointerEnter(icon.id, event)
@@ -696,23 +670,42 @@ export default function About() {
                     onPointerLeave={() => clearPixelArtPoke(icon.id)}
                   >
                     <span
-                      className={
-                        icon.id === "about-tulsa" ? "about-cursor-intro" : ""
-                      }
+                      className={`about-float-drift ${
+                        isCursorIntroIcon ? "about-intro-anchor" : ""
+                      }`}
                     >
-                      <img
-                        ref={
-                          icon.id === "about-tulsa" ? cursorIntroImageRef : null
-                        }
-                        src={icon.src}
-                        alt={icon.alt}
-                        className={`about-pixel-art ${
-                          pokeOffset ? "about-pixel-art-poked" : ""
-                        }`}
-                        draggable={false}
-                        loading="eager"
-                        decoding="sync"
-                      />
+                      <span className="about-icon-settle-wobble">
+                        {icon.id === "about-tulsa" ? (
+                          <span className="about-cursor-intro">
+                            <img
+                              ref={
+                                icon.id === "about-tulsa"
+                                  ? cursorIntroImageRef
+                                  : null
+                              }
+                              src={icon.src}
+                              alt={icon.alt}
+                              className={`about-pixel-art ${
+                                pokeOffset ? "about-pixel-art-poked" : ""
+                              }`}
+                              draggable={false}
+                              loading="eager"
+                              decoding="sync"
+                            />
+                          </span>
+                        ) : (
+                          <img
+                            src={icon.src}
+                            alt={icon.alt}
+                            className={`about-pixel-art ${
+                              pokeOffset ? "about-pixel-art-poked" : ""
+                            }`}
+                            draggable={false}
+                            loading="eager"
+                            decoding="sync"
+                          />
+                        )}
+                      </span>
                     </span>
                   </div>
                 );
@@ -720,38 +713,52 @@ export default function About() {
 
               return (
                 <div key={icon.id}>
-                  <img
-                    ref={
-                      icon.id === CURSOR_INTRO_TARGET_BUBBLE_ID
-                        ? cursorIntroTargetRef
-                        : null
-                    }
-                    src={icon.src}
-                    alt={icon.alt}
-                    className={`about-float-icon about-bubble absolute select-none ${
+                  <div
+                    className={`about-cluster-item absolute select-none ${
                       hasEntered ? "about-has-entered" : ""
-                    } ${hasBurst ? "bubble-burst" : ""} ${
-                      isReturning ? "bubble-return" : ""
-                    } ${isCursorIntroTarget ? "about-intro-anchor" : ""}`}
+                    }`}
                     style={iconStyle}
-                    draggable={false}
-                    loading="eager"
-                    decoding="sync"
-                    onMouseEnter={
-                      isBubble && !hasBurst
-                        ? () => handleBubbleHoverBurst(icon.id)
-                        : undefined
-                    }
-                    onPointerUp={
-                      isBubble && !hasBurst
-                        ? (event) => {
-                            if (event.pointerType === "touch") {
-                              handleBubbleTouchBurst(icon.id);
-                            }
+                  >
+                    <span
+                      className={`about-float-drift ${
+                        isCursorIntroTarget ? "about-intro-anchor" : ""
+                      }`}
+                    >
+                      <span
+                        className={`about-icon-settle-wobble ${
+                          hasBurst ? "bubble-burst" : ""
+                        } ${isReturning ? "bubble-return" : ""}`}
+                      >
+                        <img
+                          ref={
+                            icon.id === CURSOR_INTRO_TARGET_BUBBLE_ID
+                              ? cursorIntroTargetRef
+                              : null
                           }
-                        : undefined
-                    }
-                  />
+                          src={icon.src}
+                          alt={icon.alt}
+                          className="about-bubble select-none"
+                          draggable={false}
+                          loading="eager"
+                          decoding="sync"
+                          onMouseEnter={
+                            !hasBurst
+                              ? () => handleBubbleHoverBurst(icon.id)
+                              : undefined
+                          }
+                          onPointerUp={
+                            !hasBurst
+                              ? (event) => {
+                                  if (event.pointerType === "touch") {
+                                    handleBubbleTouchBurst(icon.id);
+                                  }
+                                }
+                              : undefined
+                          }
+                        />
+                      </span>
+                    </span>
+                  </div>
                   {isBubble &&
                     hasBurst &&
                     BUBBLE_POP_FRAGMENTS.map((fragment) => (

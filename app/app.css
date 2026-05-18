@@ -254,30 +254,60 @@ a:hover .logo-separator {
   }
 }
 
-.about-float-icon {
+/* One-shot settle: soft overshoot + gentle rotation — runs on inner wrapper so
+   float-soft transform on .about-float-drift stays independent. */
+@keyframes about-icon-settle {
+  0% {
+    transform: scale(0.92) rotate(-1.2deg);
+  }
+  48% {
+    transform: scale(1.042) rotate(0.75deg);
+  }
+  76% {
+    transform: scale(0.988) rotate(-0.28deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Positioning + fade-in entrance (opacity / blur). Float lives on .about-float-drift. */
+.about-cluster-item {
   left: var(--about-left);
-  /* Considered on-load entrance: each icon pops in with a quick opacity fade
-     plus a whisper of blur (cleared on enter) on a staggered --enter-delay.
-     We use transition (not animation) so it fires once and never re-triggers
-     when bubbles burst/return. No transform here — float-soft stays clean. */
   opacity: 0;
   filter: blur(1.5px);
   transition:
     opacity 340ms cubic-bezier(0.22, 1, 0.36, 1) var(--enter-delay, 0ms),
     filter 300ms cubic-bezier(0.22, 1, 0.36, 1) var(--enter-delay, 0ms);
-  /* Apply first keyframe immediately to prevent layout shift on load */
-  animation: float-soft var(--float-duration, 4s) ease-in-out
-    var(--float-delay, 0s) infinite both;
 }
 
-.about-float-icon.about-has-entered {
+.about-cluster-item.about-has-entered {
   opacity: 1;
   filter: none;
 }
 
-.about-intro-anchor {
+.about-float-drift {
+  display: block;
+  width: 100%;
+  transform-origin: center;
+  animation: float-soft var(--float-duration, 4s) ease-in-out
+    var(--float-delay, 0s) infinite both;
+}
+
+.about-float-drift.about-intro-anchor {
   animation: none;
   transform: translate(-50%, -50%) rotate(var(--rotate, 0deg));
+}
+
+.about-icon-settle-wobble {
+  display: block;
+  width: 100%;
+  transform-origin: center;
+}
+
+.about-cluster-item.about-has-entered .about-icon-settle-wobble {
+  animation: about-icon-settle 640ms cubic-bezier(0.33, 1.18, 0.52, 1)
+    var(--enter-delay, 0ms) both;
 }
 
 .about-pixel-art-shell {
@@ -325,22 +355,23 @@ a:hover .logo-separator {
   animation: about-cursor-pop-bubble 1840ms ease-in-out 360ms both;
 }
 
-/* Bubble burst animation */
+/* Bubble burst / return: scale + opacity only. Centering lives on .about-float-drift
+   (float-soft translate); translate(-50%,-50%) here would yank the wobble wrapper. */
 @keyframes bubble-burst {
   0% {
-    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) scale(1);
+    transform: scale(1);
     opacity: 1;
   }
   28% {
-    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) scale(1.12, 0.84);
+    transform: scale(1.12, 0.84);
     opacity: 1;
   }
   64% {
-    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) scale(var(--burst-scale, 1.5));
+    transform: scale(var(--burst-scale, 1.5));
     opacity: 0.75;
   }
   100% {
-    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) scale(var(--burst-scale, 1.5));
+    transform: scale(var(--burst-scale, 1.5));
     opacity: 0;
     filter: blur(2px);
   }
@@ -366,27 +397,27 @@ a:hover .logo-separator {
 
 @keyframes bubble-return {
   0% {
-    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) scale(0.18);
+    transform: scale(0.18);
     opacity: 0;
     filter: blur(2px);
   }
   45% {
-    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) scale(0.88);
+    transform: scale(0.88);
     opacity: 0.45;
     filter: blur(0);
   }
   72% {
-    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) scale(1.06);
+    transform: scale(1.06);
     opacity: 0.85;
     filter: blur(0);
   }
   88% {
-    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) scale(0.98);
+    transform: scale(0.98);
     opacity: 1;
     filter: blur(0);
   }
   100% {
-    transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) scale(1);
+    transform: scale(1);
     opacity: 1;
     filter: blur(0);
   }
@@ -395,11 +426,16 @@ a:hover .logo-separator {
 .about-bubble {
   cursor: pointer;
   pointer-events: auto !important;
+  display: block;
+  width: 100%;
+  height: auto;
+  transform-origin: center;
   transition: transform 0.15s ease-out;
 }
 
-.about-bubble:hover:not(.bubble-burst):not(.bubble-return) {
-  transform: translate(-50%, -50%) scale(1.1);
+.about-icon-settle-wobble:not(.bubble-burst):not(.bubble-return)
+  .about-bubble:hover {
+  transform: scale(1.1);
 }
 
 .bubble-burst {
@@ -428,7 +464,7 @@ a:hover .logo-separator {
       scale(var(--mobile-burst-scale));
   }
 
-  .about-float-icon,
+  .about-cluster-item,
   .bubble-pop-fragment {
     left: var(--about-mobile-left, var(--about-left));
   }
@@ -451,10 +487,14 @@ a:hover .logo-separator {
 
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-  .about-float-icon {
+  .about-cluster-item {
     opacity: 1;
     filter: none;
     transition: none;
+  }
+
+  .about-cluster-item.about-has-entered .about-icon-settle-wobble {
+    animation: none;
   }
 
   .about-pixel-art {
@@ -465,8 +505,8 @@ a:hover .logo-separator {
     animation: none;
   }
 
-  .about-bubble:hover:not(.bubble-burst) {
-    transform: translate(-50%, -50%) scale(1);
+  .about-icon-settle-wobble:not(.bubble-burst) .about-bubble:hover {
+    transform: none;
   }
   
   .bubble-burst {
