@@ -21,6 +21,16 @@ import terminal from "./about-images/terminal.png";
 import totoro from "./about-images/totoro.png";
 import tulsaHeadshot from "./about-images/tulsa-headshot.png";
 import pin from "./about-images/pin.png";
+import { buildMeta } from "../lib/siteMeta";
+
+export function meta() {
+  return buildMeta({
+    title: "About — Tulsa Daley",
+    description:
+      "Get to know Tulsa Daley — a product designer working on design systems for enterprise software, blending design, systems, and code.",
+    path: "/about",
+  });
+}
 
 // Icon positions and sizes matched to reference image
 // Reference: elliptical cluster with about-tulsa as the central focal point

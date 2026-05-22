@@ -6,6 +6,26 @@ import { TableOfContents } from "../components/TableOfContents";
 import { InteractiveBanner } from "../components/InteractiveBanner";
 import { Footer } from "../components/Footer";
 import { IconProjectPreview } from "../components/IconProjectPreview";
+import { buildMeta } from "../lib/siteMeta";
+import type { Route } from "./+types/project.$id";
+
+export function meta({ params }: Route.MetaArgs) {
+  const project = projects.find((p) => p.id === Number(params.id));
+
+  if (!project) {
+    return buildMeta({
+      title: "Project not found — Tulsa Daley",
+      description: "This project could not be found.",
+      path: `/project/${params.id}`,
+    });
+  }
+
+  return buildMeta({
+    title: `${project.title} — Tulsa Daley`,
+    description: `${project.title}. A case study by product designer Tulsa Daley.`,
+    path: `/project/${project.id}`,
+  });
+}
 
 export default function Project() {
   const { id } = useParams();

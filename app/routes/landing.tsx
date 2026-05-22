@@ -4,6 +4,16 @@ import { projects } from "../data/projects";
 import { getCaseStudyComponent } from "../case-studies";
 import { Footer } from "../components/Footer";
 import { IconProjectPreview } from "../components/IconProjectPreview";
+import { buildMeta } from "../lib/siteMeta";
+
+export function meta() {
+  return buildMeta({
+    title: "Tulsa Daley — Product Designer",
+    description:
+      "Product designer with a design systems backbone, strong UI craft, and a growing AI-enabled practice connecting design, systems, and code.",
+    path: "/",
+  });
+}
 
 export default function Landing() {
   const location = useLocation();
