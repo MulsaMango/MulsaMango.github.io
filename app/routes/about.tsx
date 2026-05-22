@@ -701,6 +701,11 @@ export default function About() {
                               draggable={false}
                               loading="eager"
                               decoding="sync"
+                              // On an uncached load the img has no intrinsic
+                              // height at mount, so the cursor-tip geometry (and
+                              // thus the cursor-to-bubble offset) is measured
+                              // wrong until the real dimensions arrive.
+                              onLoad={updateCursorIntroOffset}
                             />
                           </span>
                         ) : (
@@ -751,6 +756,13 @@ export default function About() {
                           draggable={false}
                           loading="eager"
                           decoding="sync"
+                          // The target bubble is the other half of the offset
+                          // geometry; re-measure once it has real dimensions.
+                          onLoad={
+                            icon.id === CURSOR_INTRO_TARGET_BUBBLE_ID
+                              ? updateCursorIntroOffset
+                              : undefined
+                          }
                           onMouseEnter={
                             !hasBurst
                               ? () => handleBubbleHoverBurst(icon.id)
