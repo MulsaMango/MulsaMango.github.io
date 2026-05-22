@@ -10,6 +10,7 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 import { PasswordGate } from "./components/PasswordGate";
+import { useRouteScrollXReset } from "./hooks/useRouteScrollXReset";
 
 export const links: Route.LinksFunction = () => [
   // Served from public/ at the site root — a dedicated square favicon, kept
@@ -46,6 +47,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  useRouteScrollXReset();
+
   return (
     <PasswordGate>
       <Outlet />

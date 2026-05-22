@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router";
+import { Link } from "react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Footer } from "../components/Footer";
 import {
@@ -22,6 +22,8 @@ import totoro from "./about-images/totoro.png";
 import tulsaHeadshot from "./about-images/tulsa-headshot.png";
 import pin from "./about-images/pin.png";
 import { buildMeta } from "../lib/siteMeta";
+import { SiteHeader } from "../components/SiteHeader";
+import { useHeaderScrollVisibility } from "../hooks/useHeaderScrollVisibility";
 
 export function meta() {
   return buildMeta({
@@ -350,9 +352,7 @@ const triggerBubbleHaptic = () => {
 };
 
 export default function About() {
-  const location = useLocation();
-  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const isHeaderVisible = useHeaderScrollVisibility();
   const [burstBubbles, setBurstBubbles] = useState<Set<string>>(new Set());
   const [returningBubbles, setReturningBubbles] = useState<Set<string>>(
     new Set(),
@@ -517,86 +517,9 @@ export default function About() {
     };
   }, [handleBubbleBurst]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      // Show header when scrolling up or at the top
-      if (currentScrollY < lastScrollY || currentScrollY < 10) {
-        setIsHeaderVisible(true);
-      }
-      // Hide header when scrolling down (but only after scrolling past a threshold)
-      else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsHeaderVisible(false);
-      }
-
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
-
-  const navItems = [
-    { href: "/", label: "WORK" },
-    { href: "/about", label: "ABOUT" },
-  ];
-
   return (
-    <div className="min-h-screen">
-      {/* Header */}
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 bg-[#fefefe] transition-transform duration-300 ${
-          isHeaderVisible ? "translate-y-0" : "-translate-y-full"
-        }`}
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, rgba(0, 0, 0, 0.12) 1px, transparent 1px)",
-          backgroundSize: "20px 20px",
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-          <a
-            href="/"
-            className="font-display text-base font-medium text-gray-600 hover:!text-gray-600"
-          >
-            TULSA <span className="logo-separator" aria-hidden="true"></span>{" "}
-            DALEY
-          </a>
-          <nav className="flex gap-6">
-            {navItems.map((item) => {
-              const normPath = location.pathname.replace(/\/+$/, "") || "/";
-              const isActive = normPath === item.href;
-              return (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className={`font-display text-sm relative inline-block transition-colors ${
-                    isActive
-                      ? "text-gray-900 font-medium"
-                      : "text-gray-600 hover:text-gray-900 hover:font-medium"
-                  }`}
-                >
-                  {item.label}
-                  {isActive && (
-                    <span
-                      className="absolute -bottom-0.5 h-4 -z-10 highlight-active"
-                      style={{
-                        left: "-4px",
-                        right: "-8px",
-                        background: `linear-gradient(120deg, rgba(71, 221, 78, 0.25) 0%, rgba(71, 221, 78, 0.3) 50%, rgba(71, 221, 78, 0.25) 100%)`,
-                        transform: "rotate(-0.3deg)",
-                        borderRadius: "2px",
-                        boxShadow: "0 1px 2px rgba(71, 221, 78, 0.1)",
-                      }}
-                    />
-                  )}
-                </a>
-              );
-            })}
-          </nav>
-        </div>
-      </header>
+    <div className="min-h-screen overflow-x-clip">
+      <SiteHeader isVisible={isHeaderVisible} />
 
       {/* About Content */}
       <section className="max-w-7xl mx-auto px-6 pt-28 md:pt-32 pb-12 md:pb-20 font-sans">
@@ -626,7 +549,7 @@ export default function About() {
 
           {/* Floating pixel art cluster */}
           <div
-            className="relative w-full h-[340px] md:h-[400px] mb-12"
+            className="relative mb-12 h-[340px] w-full overflow-x-clip md:h-[400px]"
             aria-hidden
           >
             {ABOUT_ICONS.map((icon) => {
@@ -807,12 +730,12 @@ export default function About() {
           </div>
 
           {/* Bio paragraph */}
-          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-sm">
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
             Most of my work happens on the layer beneath product design: the
             systems that support it, the craft that makes it feel considered,
             and the workflows that help teams shape better solutions.
           </p>
-          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-sm">
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
             I currently work on the design systems team at WiseTech Global, a
             provider of enterprise B2B logistics software. It’s a mature product
             in a complex domain, with expert workflows, legacy constraints, and
@@ -820,7 +743,7 @@ export default function About() {
             as innovation.
           </p>
 
-          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-sm">
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
             Design systems pulled me toward what I’m naturally wired for:
             pragmatic problem solving paired with process and craft. I’ll sweat
             the details when they matter, but I always take a strategic approach
@@ -828,7 +751,7 @@ export default function About() {
             technical or legacy constraints.
           </p>
 
-          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-sm">
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
             Lately, I’ve been deeply exploring what it means to be an AI-enabled
             designer across design and code environments. I’m especially
             interested in the layer beneath the prompt: structured skills,
@@ -836,7 +759,7 @@ export default function About() {
             help AI work with clearer intent and stronger guardrails.
           </p>
 
-          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-sm">
+          <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
             Outside the work itself, I care a lot about the team I work with. I
             do my best work alongside people who show up as themselves and let
             others do the same. Building software has its prickly parts, and a
@@ -850,35 +773,35 @@ export default function About() {
           >
             <h2
               id="experience-heading"
-              className="text-xl md:text-2xl font-semibold text-gray-800 mb-10"
+              className="text-2xl md:text-3xl font-semibold text-gray-800 mb-10 md:mb-12"
             >
               Experience
             </h2>
-            <ol className="space-y-8">
+            <ol className="space-y-10">
               {EXPERIENCE_ITEMS.map((item) => (
                 <li
                   key={`${item.role}-${item.period}`}
-                  className="grid grid-cols-[12px_1fr] gap-x-4"
+                  className="grid grid-cols-[14px_1fr] gap-x-5"
                 >
                   <span
-                    className="mt-1.5 h-2 w-2 bg-[#47DD4E] shadow-[2px_2px_0_rgba(0,0,0,0.08)]"
+                    className="mt-2 h-2.5 w-2.5 bg-[#47DD4E] shadow-[2px_2px_0_rgba(0,0,0,0.08)]"
                     aria-hidden
                   />
                   <div>
-                    <div className="mb-1 flex flex-wrap items-center gap-2">
-                      <h3 className="!font-sans text-lg font-medium text-gray-900">
+                    <div className="mb-1.5 flex flex-wrap items-center gap-2.5">
+                      <h3 className="!font-sans text-xl font-medium text-gray-900">
                         {item.role}
                       </h3>
                       {item.isCurrent && (
-                        <span className="inline-block px-1.5 py-0.5 text-xs font-sans bg-gray-100 border border-gray-200 text-gray-600 rounded">
+                        <span className="inline-block px-2 py-0.5 text-sm font-sans bg-gray-100 border border-gray-200 text-gray-600 rounded">
                           Current
                         </span>
                       )}
                     </div>
-                    <p className="font-sans text-sm text-gray-500 mb-2">
+                    <p className="font-sans text-base text-gray-500 mb-2.5">
                       {item.organization} · {item.period}
                     </p>
-                    <p className="font-sans text-sm leading-6 text-gray-600">
+                    <p className="font-sans text-base leading-7 text-gray-600">
                       {item.description}
                     </p>
                   </div>

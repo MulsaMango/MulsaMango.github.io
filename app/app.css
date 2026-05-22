@@ -27,6 +27,7 @@ html {
 html,
 body {
   color-scheme: light;
+  overflow-x: clip;
 }
 
 ::selection {

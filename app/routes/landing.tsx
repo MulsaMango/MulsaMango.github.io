@@ -1,9 +1,10 @@
-import { useLocation, Link } from "react-router";
-import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import { projects } from "../data/projects";
 import { getCaseStudyComponent } from "../case-studies";
 import { Footer } from "../components/Footer";
+import { SiteHeader } from "../components/SiteHeader";
 import { IconProjectPreview } from "../components/IconProjectPreview";
+import { useHeaderScrollVisibility } from "../hooks/useHeaderScrollVisibility";
 import { buildMeta } from "../lib/siteMeta";
 
 export function meta() {
@@ -16,90 +17,11 @@ export function meta() {
 }
 
 export default function Landing() {
-  const location = useLocation();
-  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      // Show header when scrolling up or at the top
-      if (currentScrollY < lastScrollY || currentScrollY < 10) {
-        setIsHeaderVisible(true);
-      }
-      // Hide header when scrolling down (but only after scrolling past a threshold)
-      else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsHeaderVisible(false);
-      }
-
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
-
-  const navItems = [
-    { href: "/", label: "WORK" },
-    { href: "/about", label: "ABOUT" },
-  ];
+  const isHeaderVisible = useHeaderScrollVisibility();
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 bg-[#fefefe] transition-transform duration-300 ${
-          isHeaderVisible ? "translate-y-0" : "-translate-y-full"
-        }`}
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, rgba(0, 0, 0, 0.12) 1px, transparent 1px)",
-          backgroundSize: "20px 20px",
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-          <a
-            href="/"
-            className="font-display text-base font-medium text-gray-600 hover:!text-gray-600"
-          >
-            TULSA <span className="logo-separator" aria-hidden="true"></span>{" "}
-            DALEY
-          </a>
-          <nav className="flex gap-6">
-            {navItems.map((item) => {
-              const normPath = location.pathname.replace(/\/+$/, "") || "/";
-              const isActive = normPath === item.href;
-              return (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className={`font-display text-sm relative inline-block transition-colors ${
-                    isActive
-                      ? "text-gray-900 font-medium"
-                      : "text-gray-600 hover:text-gray-900 hover:font-medium"
-                  }`}
-                >
-                  {item.label}
-                  {isActive && (
-                    <span
-                      className="absolute -bottom-0.5 h-4 -z-10 highlight-active"
-                      style={{
-                        left: "-4px",
-                        right: "-8px",
-                        background: `linear-gradient(120deg, rgba(71, 221, 78, 0.25) 0%, rgba(71, 221, 78, 0.3) 50%, rgba(71, 221, 78, 0.25) 100%)`,
-                        transform: "rotate(-0.3deg)",
-                        borderRadius: "2px",
-                        boxShadow: "0 1px 2px rgba(71, 221, 78, 0.1)",
-                      }}
-                    />
-                  )}
-                </a>
-              );
-            })}
-          </nav>
-        </div>
-      </header>
+      <SiteHeader isVisible={isHeaderVisible} />
 
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-6 pt-24 pb-12 md:pt-20 md:pb-10">
