@@ -11,20 +11,14 @@ import type { MetaDescriptor } from "react-router";
 export const SITE_URL = "https://tulsadaley.com";
 export const SITE_NAME = "Tulsa Daley";
 
-// Absolute URL is required: a crawler fetching the page off-site can't resolve a
-// root-relative path, so og:image must carry the full origin.
-export const OG_IMAGE = `${SITE_URL}/hero-image.png`;
-
 export function buildMeta({
   title,
   description,
   path = "/",
-  image = OG_IMAGE,
 }: {
   title: string;
   description: string;
   path?: string;
-  image?: string;
 }): MetaDescriptor[] {
   const url = `${SITE_URL}${path}`;
 
@@ -41,12 +35,12 @@ export function buildMeta({
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:url", content: url },
-    { property: "og:image", content: image },
-    { property: "og:image:alt", content: title },
 
-    { name: "twitter:card", content: "summary_large_image" },
+    // No og:image / twitter:image by choice — previews stay text-only. That makes
+    // "summary" (not "summary_large_image") the right card; the large variant is
+    // specifically the image card and degrades without one.
+    { name: "twitter:card", content: "summary" },
     { name: "twitter:title", content: title },
     { name: "twitter:description", content: description },
-    { name: "twitter:image", content: image },
   ];
 }
