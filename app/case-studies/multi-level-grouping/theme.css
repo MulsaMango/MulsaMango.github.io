@@ -70,3 +70,12 @@
     border-color: var(--border);
   }
 }
+
+/* The prototype's root div carries min-h-screen from its standalone Figma
+   origin. Inside the modal that pins the panel to viewport height and shows a
+   scrollbar even when the table is short (e.g. all groups collapsed). Neutralize
+   it here in the glue layer — unlayered so it beats the Tailwind utility —
+   rather than editing the generated component, which a re-export would undo. */
+.multi-level-grouping-embed > div {
+  min-height: 0;
+}
