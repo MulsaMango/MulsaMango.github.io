@@ -15,7 +15,7 @@ export function MultiLevelGroupingCaseStudy() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="group flex w-full items-center justify-between gap-4 rounded-lg border border-gray-200 bg-white/60 px-5 py-4 text-left transition-colors hover:border-gray-300 hover:bg-white"
+        className="group flex w-full cursor-pointer items-center justify-between gap-4 rounded-lg border border-gray-200 bg-white/60 px-5 py-4 text-left transition-colors hover:border-gray-300 hover:bg-white"
       >
         <span>
           <span className="block text-sm font-medium text-gray-900">
