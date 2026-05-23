@@ -1,4 +1,4 @@
-import App from "./App";
+import App from "./prototype/App";
 
 // Single mount point for the Figma Make prototype. The wrapper class scopes the
 // shadcn design tokens (see theme.css) so they never touch the portfolio's
