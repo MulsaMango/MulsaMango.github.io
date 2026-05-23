@@ -71,11 +71,17 @@
   }
 }
 
-/* The prototype's root div carries min-h-screen from its standalone Figma
-   origin. Inside the modal that pins the panel to viewport height and shows a
-   scrollbar even when the table is short (e.g. all groups collapsed). Neutralize
-   it here in the glue layer — unlayered so it beats the Tailwind utility —
-   rather than editing the generated component, which a re-export would undo. */
+/* The modal panel is a fixed size; the prototype should fill it and scroll
+   inside, not resize it. The prototype root carries min-h-screen from its
+   standalone Figma origin, which would force content past the panel height and
+   always show a scrollbar. Replace that with "fill the panel": the wrapper
+   takes the panel's height so the root's min-height:100% resolves against it,
+   making a short (collapsed) table fill the panel with its own canvas while a
+   tall (expanded) one grows and scrolls. Done here in the glue layer — unlayered
+   so it beats the Tailwind utility — so a re-export of the prototype won't undo it. */
+.multi-level-grouping-embed {
+  height: 100%;
+}
 .multi-level-grouping-embed > div {
-  min-height: 0;
+  min-height: 100%;
 }

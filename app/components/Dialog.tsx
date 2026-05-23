@@ -57,7 +57,7 @@ export function Dialog({ open, onClose, label, className, children }: DialogProp
       ref={ref}
       aria-label={label}
       onClick={handleBackdropClick}
-      className={`m-auto w-[95vw] max-w-[1400px] max-h-[90vh] overflow-hidden rounded-xl bg-white p-0 shadow-2xl backdrop:bg-gray-900/40 ${className ?? ""}`}
+      className={`m-auto h-[90vh] w-[95vw] max-w-[1400px] overflow-hidden rounded-xl bg-white p-0 shadow-2xl backdrop:bg-gray-900/40 ${className ?? ""}`}
     >
       <button
         type="button"
@@ -77,7 +77,7 @@ export function Dialog({ open, onClose, label, className, children }: DialogProp
           <path d="M18 6 6 18M6 6l12 12" />
         </svg>
       </button>
-      <div className="max-h-[90vh] overflow-y-auto">{children}</div>
+      <div className="h-full overflow-y-auto">{children}</div>
     </dialog>
   );
 }
