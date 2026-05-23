@@ -77,7 +77,9 @@ export function Dialog({ open, onClose, label, className, children }: DialogProp
           <path d="M18 6 6 18M6 6l12 12" />
         </svg>
       </button>
-      <div className="h-full overflow-y-auto">{children}</div>
+      {/* scrollbar-gutter:stable reserves the scrollbar's space at all times so
+          content doesn't shift when it appears as the panel content grows. */}
+      <div className="h-full overflow-y-auto [scrollbar-gutter:stable]">{children}</div>
     </dialog>
   );
 }
