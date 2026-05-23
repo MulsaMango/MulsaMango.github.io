@@ -1,13 +1,14 @@
 import type { Project } from "../data/projects";
 import type { ReactElement } from "react";
 import { IconsCaseStudy } from "./icons";
+import { MultiLevelGroupingCaseStudy } from "./multi-level-grouping";
 
 export type CaseStudyComponent = (props: { project: Project }) => ReactElement;
 
 // Map of project IDs to their case study components
 export const caseStudyComponents: Record<number, CaseStudyComponent> = {
   1: IconsCaseStudy,
-  // 3: MultiLevelGroupingCaseStudy,
+  4: MultiLevelGroupingCaseStudy,
   // etc.
 };
 
