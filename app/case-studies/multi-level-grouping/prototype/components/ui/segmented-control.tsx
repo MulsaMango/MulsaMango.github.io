@@ -20,7 +20,7 @@ export function SegmentedControl({ options, value, onValueChange, className }: S
           onClick={() => onValueChange(option.value)}
           disabled={option.hidden}
           className={cn(
-            "px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200",
+            "px-3 py-1.5 text-sm font-medium rounded-md transition-[background-color,box-shadow] duration-200",
             "focus:outline-none focus-visible:outline-2 focus-visible:outline-blue-500",
             option.hidden
               ? "invisible pointer-events-none"

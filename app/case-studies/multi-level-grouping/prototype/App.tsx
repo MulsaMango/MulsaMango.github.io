@@ -135,7 +135,11 @@ export default function App() {
             {/* Open / collapse / close */}
             <div className="flex items-center space-x-2">
               <Label className="text-sm text-gray-600">View:</Label>
+              {/* Reserve the wider "Close All" width on the last button so the
+                  control doesn't reflow when its label flips Close <-> Close All
+                  as the Groups count changes. */}
               <SegmentedControl
+                className="[&>button:last-child]:min-w-[5.25rem]"
                 options={groupControlOptions}
                 value={effectiveGroupControl}
                 onValueChange={handleGroupControlChange}

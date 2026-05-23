@@ -84,4 +84,7 @@
 }
 .multi-level-grouping-embed > div {
   min-height: 100%;
+  /* Extra headroom above the top control row so an over-reach toward it lands on
+     padding inside the modal rather than the backdrop, which would close it. */
+  padding-top: 2rem;
 }
