@@ -1,10 +1,10 @@
 import type { Project } from "../data/projects";
 import { Image, SmallCaseStudyImage } from "./case-study-image";
 import { Heading2, Heading3 } from "./case-study-typography";
-import itsTheSamePicture from "./icons-images/its-the-same-picture.jpg";
 import iconContributionDocs from "./icons-images/icon-contribution-docs.png";
 import iconGrid from "./icons-images/icon-grid.png";
 import iconWorkshop from "./icons-images/icon-workshop-figjam.png";
+import itsTheSamePicture from "./icons-images/its-the-same-picture.jpg";
 import appleIcons from "./icons-images/sequoia-vs-tahoe-icons.png";
 import truckExample from "./icons-images/truck-icon-example.png";
 
@@ -232,7 +232,7 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
           </li>
         </ul>
         <p>
-          <img
+          <Image
             src={truckExample}
             alt="Examples of truck icon variants showing the naming convention: truck, truck-check, truck-plus, and truck-lock, demonstrating how modifiers are added as suffixes to the base object name"
           />
@@ -304,6 +304,7 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
             src={iconContributionDocs}
             alt="Samples from the icon contribution guide showing documentation, examples, and guidelines for contributing new icons to the design system"
             caption="Samples from the contribution guide. At the time, our Design System was called Supply."
+            noBorder
           />
         </p>
         <Heading3 id="operational-layer-design-to-production-parity">

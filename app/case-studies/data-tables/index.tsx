@@ -2,15 +2,15 @@ import { useState } from "react";
 import { Dialog } from "../../components/Dialog";
 import { Image } from "../case-study-image";
 import { Heading2 } from "../case-study-typography";
-import filterConfigModalAnatomy from "./images/filter-config-modal-anatomy.png";
+import colourSchemesAutoTextColourSelection from "./images/colour-schemes-accessibility-auto-text-colour-selection.png";
+import colourSchemesNonBlockingContrastWarning from "./images/colour-schemes-accessibility-non-blocking-contrast-warning.png";
+import colourSchemesRecommendedTextColours from "./images/colour-schemes-accessibility-recommended-text-colours.png";
+import colourSchemesModalAnatomy from "./images/colour-schemes-modal-anatomy.png";
 import displayTableZebraPatternWithStatusBadges from "./images/display-table-zebra-pattern-with-status-badges.png";
 import editableTableInlineEditingWithSelectDropdown from "./images/editable-table-inline-editing-with-select-dropdown.png";
-import filterChipsAppliedToDisplayTable from "./images/filter-chips-applied-to-display-table.png";
 import filterChipStatesAndBehavioursSpec from "./images/filter-chip-states-and-behaviours-spec.png";
-import colourSchemesModalAnatomy from "./images/colour-schemes-modal-anatomy.png";
-import colourSchemesRecommendedTextColours from "./images/colour-schemes-accessibility-recommended-text-colours.png";
-import colourSchemesNonBlockingContrastWarning from "./images/colour-schemes-accessibility-non-blocking-contrast-warning.png";
-import colourSchemesAutoTextColourSelection from "./images/colour-schemes-accessibility-auto-text-colour-selection.png";
+import filterChipsAppliedToDisplayTable from "./images/filter-chips-applied-to-display-table.png";
+import filterConfigModalAnatomy from "./images/filter-config-modal-anatomy.png";
 import App from "./prototype/App";
 
 export function DataTablesCaseStudy() {
@@ -22,7 +22,8 @@ export function DataTablesCaseStudy() {
         <p>
           For expert users in WiseTech Global's flagship logistics product, data
           tables are the engine. They sit at the core of nearly every workflow,
-          and the logistics professionals using them spend their day inside them.
+          and the logistics professionals using them spend their day inside
+          them.
         </p>
         <p>
           These tables are more than a way to display data in rows and columns.
@@ -60,17 +61,17 @@ export function DataTablesCaseStudy() {
           Editable vs display tables
         </Heading2>
         <p>
-          Research surfaced a distinction in how users were actually using tables
-          across the product. There were two macro types: display tables, which
-          surfaced data and acted as a jumping-off point into detail views, and
-          editable tables, where data was directly modified inline. Visually they
-          were essentially identical. It was unclear to users what the behaviour
-          of a table was until they clicked on rows and entered either the
-          'working surface' or 'jumping off' experience.
+          Research surfaced a distinction in how users were actually using
+          tables across the product. There were two macro types: display tables,
+          which surfaced data and acted as a jumping-off point into detail
+          views, and editable tables, where data was directly modified inline.
+          Visually they were essentially identical. It was unclear to users what
+          the behaviour of a table was until they clicked on rows and entered
+          either the 'working surface' or 'jumping off' experience.
         </p>
         <p>
-          The design needed to make that distinction clear{" "}
-          <em>before</em> any interaction.
+          The design needed to make that distinction clear <em>before</em> any
+          interaction.
         </p>
         <p>
           <strong>Display tables</strong> cater to exploratory scanning and
@@ -87,11 +88,11 @@ export function DataTablesCaseStudy() {
         <p>
           <strong>Editable tables</strong> took on a more grid-like
           presentation, similar to a spreadsheet. A deliberate hover treatment
-          marks the cell under the cursor, a row-level hover supports navigation,
-          and the cells themselves mirror the design system's standard field
-          patterns. It's immediately clear that cells can be edited inline. A
-          date cell opens a calendar popover, and a select cell expands into its
-          options.
+          marks the cell under the cursor, a row-level hover supports
+          navigation, and the cells themselves mirror the design system's
+          standard field patterns. It's immediately clear that cells can be
+          edited inline. A date cell opens a calendar popover, and a select cell
+          expands into its options.
         </p>
         <Image
           src={editableTableInlineEditingWithSelectDropdown}
@@ -127,11 +128,12 @@ export function DataTablesCaseStudy() {
         />
         <p>
           This work was closely linked with the design of the filter chip
-          pattern - a compact way to present applied filters on top of the table.
-          In an earlier version of the product, filters appeared alongside the
-          data so users could see both at once. The web version moved filters
-          into a dedicated modal, which degraded that visibility. Chips restored
-          visibility on the table without the vertical weight of inline filters.
+          pattern - a compact way to present applied filters on top of the
+          table. In an earlier version of the product, filters appeared
+          alongside the data so users could see both at once. The web version
+          moved filters into a dedicated modal, which degraded that visibility.
+          Chips restored visibility on the table without the vertical weight of
+          inline filters.
         </p>
         <Image
           src={filterChipsAppliedToDisplayTable}
@@ -178,7 +180,7 @@ export function DataTablesCaseStudy() {
           find gaps that static frames couldn't surface.
         </p>
 
-        <div className="rounded-lg border border-gray-200 bg-white/60 p-5">
+        <div className="border border-gray-200 bg-white/60 p-5">
           <div className="flex items-center justify-between gap-4">
             <div>
               <span className="block text-sm font-medium text-gray-900">
@@ -223,9 +225,7 @@ export function DataTablesCaseStudy() {
             onClose={() => setOpen(false)}
             label="Multi-level grouping prototype"
           >
-            <div className="not-prose data-tables-embed">
-              {open && <App />}
-            </div>
+            <div className="not-prose data-tables-embed">{open && <App />}</div>
           </Dialog>
         </div>
 
@@ -236,25 +236,26 @@ export function DataTablesCaseStudy() {
           background and text colours defined for that rule.
         </p>
         <p>
-          My work covered the rule-building configuration modal and colour picking
-          mechanics, with accessibility nudges built in.
+          My work covered the rule-building configuration modal and colour
+          picking mechanics, with accessibility nudges built in.
         </p>
         <p>
           The configuration surface follows the filter rule-builder shape -
-          conditions chained with AND/OR, nested into groups for compound Boolean
-          logic. Reusing the filter pattern was deliberate: a second rule-builder
-          for essentially the same decision wouldn't have earned anything. The
-          harder design calls sat around priority. Multiple rules can match the
-          same row, and the design exposes which one wins rather than leaving it
-          implicit - a 'Stop if true' control on each rule halts evaluation once
-          it matches. Density was the other ongoing call: expert users build many
-          rules, so each collapses to a one-line summary by default and expands
-          on demand.
+          conditions chained with AND/OR, nested into groups for compound
+          Boolean logic. Reusing the filter pattern was deliberate: a second
+          rule-builder for essentially the same decision wouldn't have earned
+          anything. The harder design calls sat around priority. Multiple rules
+          can match the same row, and the design exposes which one wins rather
+          than leaving it implicit - a 'Stop if true' control on each rule halts
+          evaluation once it matches. Density was the other ongoing call: expert
+          users build many rules, so each collapses to a one-line summary by
+          default and expands on demand.
         </p>
         <p>
           We deliberately reused the UI of filters for colour schemes because
           they share an underlying logic - users would be immediately capable
-          with colour schemes if they were familiar with filters, and vice-versa.
+          with colour schemes if they were familiar with filters, and
+          vice-versa.
         </p>
         <Image
           src={colourSchemesModalAnatomy}
@@ -269,14 +270,19 @@ export function DataTablesCaseStudy() {
           contrast and certainly don't meet accessibility contrast minimums.
           Striking the right balance meant introducing guardrails in the UI
           itself: sensible defaults that meet AA contrast at minimum,
-          non-blocking nudges that make it easy to pick more accessible pairings,
-          and subtle warnings when a combination falls short. Users can still
-          override and ship inaccessible combinations. The design acknowledges
-          that floor without pretending it isn't there.
+          non-blocking nudges that make it easy to pick more accessible
+          pairings, and subtle warnings when a combination falls short. Users
+          can still override and ship inaccessible combinations. The design
+          acknowledges that floor without pretending it isn't there.
         </p>
         <div className="not-prose mb-10">
           <aside className="mb-3 w-full md:w-3/4 mx-auto rounded border border-gray-200 bg-gray-50 px-5 py-4 shadow-[0_1px_3px_0_rgb(0,0,0,0.04)]">
-            <p className="text-sm leading-relaxed text-gray-700">Picking a background fills the text colour in automatically, defaulting to a high-contrast (min AA) pairing, usually black or white. Accessibility becomes the path of least effort: text colour stops being a required step and turns into an optional override.</p>
+            <p className="text-sm leading-relaxed text-gray-700">
+              Picking a background fills the text colour in automatically,
+              defaulting to a high-contrast (min AA) pairing, usually black or
+              white. Accessibility becomes the path of least effort: text colour
+              stops being a required step and turns into an optional override.
+            </p>
           </aside>
           <Image
             src={colourSchemesAutoTextColourSelection}
@@ -288,7 +294,13 @@ export function DataTablesCaseStudy() {
         </div>
         <div className="not-prose mb-10">
           <aside className="mb-3 w-full md:w-3/4 mx-auto rounded border border-gray-200 bg-gray-50 px-5 py-4 shadow-[0_1px_3px_0_rgb(0,0,0,0.04)]">
-            <p className="text-sm leading-relaxed text-gray-700">If users attempt to override the automatic text colour, they're steered toward recommended and quick to apply text colours. The recommended set is based on the colour selection and typically includes true black or white, plus one or two variants for range and variety.</p>
+            <p className="text-sm leading-relaxed text-gray-700">
+              If users attempt to override the automatic text colour, they're
+              steered toward recommended and quick to apply text colours. The
+              recommended set is based on the colour selection and typically
+              includes true black or white, plus one or two variants for range
+              and variety.
+            </p>
           </aside>
           <Image
             src={colourSchemesRecommendedTextColours}
@@ -300,7 +312,12 @@ export function DataTablesCaseStudy() {
         </div>
         <div className="not-prose">
           <aside className="mb-3 w-full md:w-3/4 mx-auto rounded border border-gray-200 bg-gray-50 px-5 py-4 shadow-[0_1px_3px_0_rgb(0,0,0,0.04)]">
-            <p className="text-sm leading-relaxed text-gray-700">If the user proceeds with a pairing below AA contrast, an inline warning appears within the modal. A tooltip on hover provides additional information and a path forward. The pairing remains available to apply, the system informs rather than blocks.</p>
+            <p className="text-sm leading-relaxed text-gray-700">
+              If the user proceeds with a pairing below AA contrast, an inline
+              warning appears within the modal. A tooltip on hover provides
+              additional information and a path forward. The pairing remains
+              available to apply, the system informs rather than blocks.
+            </p>
           </aside>
           <Image
             src={colourSchemesNonBlockingContrastWarning}
@@ -314,8 +331,9 @@ export function DataTablesCaseStudy() {
         <Heading2 id="reflections">Reflections</Heading2>
         <p>
           The above projects are just a few snapshots from my time working on
-          the data table. I also spent time improving sorting, column reordering,
-          drag-and-drop row reordering, bulk actions, and row actions.
+          the data table. I also spent time improving sorting, column
+          reordering, drag-and-drop row reordering, bulk actions, and row
+          actions.
         </p>
       </section>
     </article>
