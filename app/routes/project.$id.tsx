@@ -112,7 +112,7 @@ export default function Project() {
                 <div
                   className={`w-full h-full ${project.bgColor} flex items-center justify-center`}
                 >
-                  <div className="text-gray-600 text-lg font-medium">
+                  <div className="px-4 text-center text-gray-600 text-lg font-medium">
                     {CaseStudyComponent ? project.title : "Coming soon"}
                   </div>
                 </div>
@@ -160,7 +160,7 @@ export default function Project() {
                         />
                       ) : (
                         <div className={`w-full h-full ${otherProject.bgColor} flex items-center justify-center`}>
-                          <div className="text-gray-600 text-sm font-medium">
+                          <div className="px-4 text-center text-gray-600 text-sm font-medium">
                             {getCaseStudyComponent(otherProject.id)
                               ? otherProject.title
                               : "Coming soon"}
