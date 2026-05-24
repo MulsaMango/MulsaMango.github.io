@@ -23,7 +23,7 @@ function LightbulbIcon() {
 export function CaseStudySnapshotCallout() {
   return (
     <aside className="not-prose mb-10 flex items-start gap-4 rounded-lg border border-gray-200 bg-white/70 px-5 py-4 shadow-sm">
-      <span className="mt-0.5 text-blue-600">
+      <span className="mt-0.5 text-[#a7b3e8]">
         <LightbulbIcon />
       </span>
       <div>
