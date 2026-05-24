@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { HEADLINE, TAGLINE } from "../lib/profile";
 import onigiri from "../routes/about-images/onigiri.png";
-import { EmailCopyLink, LinkedInLink } from "./ContactLinks";
+import { EmailCopyLink } from "./ContactLinks";
 import { CurrentlyWorking } from "./CurrentlyWorking";
 
 const STORAGE_KEY = "portfolio_auth";
@@ -114,12 +114,11 @@ export function PasswordGate({ children }: { children: React.ReactNode }) {
 
         {/* A way out if the password doesn't work — label and links share a
             line when there's room and wrap individually when there isn't */}
-        <div className="flex flex-wrap items-center justify-start gap-x-6 gap-y-2">
+        <div className="flex flex-wrap items-center justify-start gap-x-2 gap-y-2">
           <p className="font-sans text-sm text-gray-500">
-            Having trouble getting in? Reach out:
+            Having trouble getting in? Shoot me an email:
           </p>
           <EmailCopyLink className="text-sm text-gray-700 hover:underline flex items-center gap-2 font-mono" />
-          <LinkedInLink className="text-sm text-gray-700 hover:underline flex items-center gap-2 font-mono" />
         </div>
       </div>
 
