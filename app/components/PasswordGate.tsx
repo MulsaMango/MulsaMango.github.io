@@ -100,11 +100,11 @@ export function PasswordGate({ children }: { children: React.ReactNode }) {
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="password"
                 autoComplete="current-password"
-                className="flex-1 min-w-0 px-4 py-3 text-sm font-mono bg-transparent outline-none placeholder:text-black/25 text-black"
+                className="flex-1 min-w-0 px-4 py-3 text-base md:text-sm font-mono bg-transparent outline-none placeholder:text-black/25 text-black"
               />
               <button
                 type="submit"
-                className="shrink-0 px-4 py-3 text-sm font-sans font-medium text-black/50 hover:text-black hover:bg-black/5 transition-colors border-l border-black/10 cursor-pointer"
+                className="shrink-0 px-4 py-3 text-base md:text-sm font-sans font-medium text-black/50 hover:text-black hover:bg-black/5 transition-colors border-l border-black/10 cursor-pointer"
               >
                 enter
               </button>
