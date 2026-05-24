@@ -56,6 +56,9 @@ export function PasswordGate({ children }: { children: React.ReactNode }) {
       <div className="flex flex-col items-start text-left gap-12 md:gap-16 max-w-lg w-full">
         {/* Headline, tagline, and current work mirrored from the landing hero */}
         <div className="space-y-4">
+          <h1 className="font-display text-3xl md:text-4xl font-semibold leading-tight text-gray-800">
+            {HEADLINE}
+          </h1>
           <div
             className="password-gate-onigiri-float w-12 shrink-0"
             aria-hidden="true"
@@ -70,9 +73,6 @@ export function PasswordGate({ children }: { children: React.ReactNode }) {
               className="password-gate-onigiri-img w-12 h-auto select-none"
             />
           </div>
-          <h1 className="font-display text-3xl md:text-4xl font-semibold leading-tight text-gray-800">
-            {HEADLINE}
-          </h1>
           <p className="font-sans text-sm md:text-base text-gray-500 leading-[1.75]">
             {TAGLINE}
           </p>
@@ -110,15 +110,14 @@ export function PasswordGate({ children }: { children: React.ReactNode }) {
           </form>
         </div>
 
-        {/* A way out if the password doesn't work */}
-        <div className="space-y-2">
+        {/* A way out if the password doesn't work — label and links share a
+            line when there's room and wrap individually when there isn't */}
+        <div className="flex flex-wrap items-center justify-start gap-x-6 gap-y-2">
           <p className="font-sans text-sm text-gray-500">
             Having trouble getting in? Reach out:
           </p>
-          <div className="flex flex-wrap justify-start gap-x-6 gap-y-2">
-            <EmailCopyLink className="text-sm text-gray-700 hover:underline flex items-center gap-2 font-mono" />
-            <LinkedInLink className="text-sm text-gray-700 hover:underline flex items-center gap-2 font-mono" />
-          </div>
+          <EmailCopyLink className="text-sm text-gray-700 hover:underline flex items-center gap-2 font-mono" />
+          <LinkedInLink className="text-sm text-gray-700 hover:underline flex items-center gap-2 font-mono" />
         </div>
       </div>
 
