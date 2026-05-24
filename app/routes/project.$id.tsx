@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router";
 import { projects } from "../data/projects";
-import { getCaseStudyComponent } from "../case-studies";
+import { getCaseStudyComponent, isCaseStudySnapshot } from "../case-studies";
+import { CaseStudySnapshotCallout } from "../case-studies/case-study-callout";
 import { TableOfContents } from "../components/TableOfContents";
 import { InteractiveBanner } from "../components/InteractiveBanner";
 import { Footer } from "../components/Footer";
@@ -123,6 +124,7 @@ export default function Project() {
         {/* Case Study Content */}
         {CaseStudyComponent ? (
           <div className="case-study-paper-wash">
+            {isCaseStudySnapshot(project.id) && <CaseStudySnapshotCallout />}
             <CaseStudyComponent project={project} />
           </div>
         ) : (
