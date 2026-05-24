@@ -52,7 +52,7 @@ export function PasswordGate({ children }: { children: React.ReactNode }) {
     // exceed the viewport on short screens, where a fixed/centered-only layout
     // would clip the password field.
     <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center px-6 py-12">
-      <div className="flex flex-col items-center text-center gap-8 max-w-lg w-full">
+      <div className="flex flex-col items-center text-center gap-12 md:gap-16 max-w-lg w-full">
         {/* Headline, tagline, and current work mirrored from the landing hero */}
         <div className="space-y-4">
           <h1 className="font-display text-3xl md:text-4xl font-semibold leading-tight text-gray-800">
