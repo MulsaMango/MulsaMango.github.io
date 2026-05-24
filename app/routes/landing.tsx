@@ -4,7 +4,9 @@ import { getCaseStudyComponent } from "../case-studies";
 import { Footer } from "../components/Footer";
 import { SiteHeader } from "../components/SiteHeader";
 import { IconProjectPreview } from "../components/IconProjectPreview";
+import { CurrentlyWorking } from "../components/CurrentlyWorking";
 import { useHeaderScrollVisibility } from "../hooks/useHeaderScrollVisibility";
+import { HEADLINE, TAGLINE } from "../lib/profile";
 import { buildMeta } from "../lib/siteMeta";
 
 export function meta() {
@@ -38,38 +40,13 @@ export default function Landing() {
           {/* Hero Text */}
           <div className="space-y-4">
             <h2 className="text-3xl md:text-4xl font-semibold leading-tight text-gray-800">
-              Ahoy, I'm Tulsa.
+              {HEADLINE}
             </h2>
             <p className="font-sans text-sm md:text-base text-gray-500 leading-[1.75]">
-              A product designer with a design systems backbone, strong UI
-              craft, and a growing AI-enabled practice that connects design,
-              systems, and code to shape better solutions for complex product
-              problems.
+              {TAGLINE}
             </p>
             <p className="border-t border-gray-200/80 pt-3 text-sm text-gray-500 font-sans leading-relaxed">
-              <span className="grid grid-cols-[16px_1fr] items-start gap-x-1.5">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="mt-[3px] h-4 w-4 shrink-0 text-gray-400"
-                  aria-hidden
-                >
-                  <title>Location</title>
-                  <path d="M12 2.75c-3.1 0-5.45 2.43-5.45 5.65 0 4.57 4.42 9.92 5.14 10.76a.4.4 0 0 0 .62 0c.72-.84 5.14-6.19 5.14-10.76 0-3.22-2.35-5.65-5.45-5.65zm0 8.35a2.55 2.55 0 1 1 0-5.1 2.55 2.55 0 0 1 0 5.1z" />
-                </svg>
-                <span>
-                  Working on design systems for enterprise software @{" "}
-                  <a
-                    href="https://www.cargowise.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-600 hover:text-[#3CBC42] underline underline-offset-2 transition-colors"
-                  >
-                    WiseTech Global
-                  </a>
-                </span>
-              </span>
+              <CurrentlyWorking />
             </p>
           </div>
         </div>
