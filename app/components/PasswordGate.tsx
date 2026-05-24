@@ -57,7 +57,7 @@ export function PasswordGate({ children }: { children: React.ReactNode }) {
         {/* Headline, tagline, and current work mirrored from the landing hero */}
         <div className="space-y-4">
           <div className="flex items-center gap-3">
-            <h1 className="font-display text-3xl md:text-4xl font-semibold leading-tight text-gray-800">
+            <h1 className="font-display text-[clamp(1.375rem,calc((100vw-7rem)/10),2.25rem)] font-semibold leading-tight text-gray-800 whitespace-nowrap">
               {HEADLINE}
             </h1>
             <div
