@@ -6,7 +6,7 @@
  * utilities only exist if the matching --color-* keys are registered in a
  * top-level @theme, which is why the mapping below is global. The mapping
  * resolves to var(--background) etc., and those *values* are defined only
- * under .multi-level-grouping-embed — so nothing leaks into the portfolio's
+ * under .data-tables-embed — so nothing leaks into the portfolio's
  * global :root. Outside the wrapper the utilities resolve to undefined and
  * are inert. Dark-mode values are dropped: the portfolio is light-only.
  */
@@ -34,7 +34,7 @@
   --color-ring: var(--ring);
 }
 
-.multi-level-grouping-embed {
+.data-tables-embed {
   --background: #ffffff;
   --foreground: oklch(0.145 0 0);
   --card: #ffffff;
@@ -61,12 +61,12 @@
 @layer base {
   /* Mirror shadcn's base layer, scoped to the embed. Kept in @layer base so the
      token utilities (border-primary, …) in the utilities layer still win. */
-  .multi-level-grouping-embed {
+  .data-tables-embed {
     background-color: var(--background);
     color: var(--foreground);
   }
 
-  .multi-level-grouping-embed * {
+  .data-tables-embed * {
     border-color: var(--border);
   }
 }
@@ -79,10 +79,10 @@
    making a short (collapsed) table fill the panel with its own canvas while a
    tall (expanded) one grows and scrolls. Done here in the glue layer — unlayered
    so it beats the Tailwind utility — so a re-export of the prototype won't undo it. */
-.multi-level-grouping-embed {
+.data-tables-embed {
   height: 100%;
 }
-.multi-level-grouping-embed > div {
+.data-tables-embed > div {
   min-height: 100%;
   /* Extra headroom above the top control row so an over-reach toward it lands on
      padding inside the modal rather than the backdrop, which would close it. */

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-@import "./case-studies/multi-level-grouping/theme.css";
+@import "./case-studies/data-tables/theme.css";
 
 @font-face {
   font-family: "Departure Mono";

@@ -30,7 +30,7 @@ export const projects: Project[] = [
   },
   {
     id: 5,
-    title: "Core framework redesign",
+    title: "Rebuilding the product shell",
     tags: ["UX research", "Design system", "UI design", "AI"],
     image: null,
     bgColor: "bg-gray-100",

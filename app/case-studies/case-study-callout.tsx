@@ -22,19 +22,17 @@ function LightbulbIcon() {
 
 export function CaseStudySnapshotCallout() {
   return (
-    <aside className="not-prose mb-10 flex items-start gap-4 rounded-lg border border-gray-200 bg-white/70 px-5 py-4 shadow-sm">
+    <aside className="not-prose mb-10 flex items-start gap-4 rounded border border-gray-200 bg-white/70 px-5 py-4 shadow-[0_1px_3px_0_rgb(0,0,0,0.04)]">
       <span className="mt-0.5 text-[#495faf]">
         <LightbulbIcon />
       </span>
       <div>
         <p className="font-display text-xs uppercase tracking-[0.06em] text-gray-500">
-          Snapshot
+          Project Snapshot
         </p>
         <p className="mt-1 text-sm leading-relaxed text-gray-700">
-          What you&rsquo;re reading is just a snapshot, the highlights of a
-          much larger project trimmed down for a quick read. There&rsquo;s
-          plenty more depth and decision-making behind the scenes, so if
-          you&rsquo;d like the full walkthrough, I&rsquo;d love to talk you
+          Just the highlights - not everything can live here publicly, but
+          there&rsquo;s plenty more to the story. I&rsquo;d love to walk you
           through it.
         </p>
       </div>

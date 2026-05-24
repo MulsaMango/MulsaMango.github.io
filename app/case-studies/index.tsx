@@ -3,7 +3,7 @@ import type { ReactElement } from "react";
 import { AiPrototypingCaseStudy } from "./ai-prototyping";
 import { FrameworkRedesignCaseStudy } from "./framework-redesign";
 import { IconsCaseStudy } from "./icons";
-import { MultiLevelGroupingCaseStudy } from "./multi-level-grouping";
+import { DataTablesCaseStudy } from "./data-tables";
 import { VpplyDesignSystemCaseStudy } from "./vpply-design-system";
 
 export type CaseStudyComponent = (props: { project: Project }) => ReactElement;
@@ -21,7 +21,7 @@ type CaseStudy = {
 export const caseStudies: Record<number, CaseStudy> = {
   1: { component: IconsCaseStudy, format: "full" },
   3: { component: AiPrototypingCaseStudy, format: "snapshot" },
-  4: { component: MultiLevelGroupingCaseStudy, format: "snapshot" },
+  4: { component: DataTablesCaseStudy, format: "snapshot" },
   5: { component: FrameworkRedesignCaseStudy, format: "snapshot" },
   6: { component: VpplyDesignSystemCaseStudy, format: "snapshot" },
   // etc.

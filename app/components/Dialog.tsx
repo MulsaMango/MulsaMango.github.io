@@ -36,13 +36,16 @@ export function Dialog({ open, onClose, label, className, children }: DialogProp
     return () => dialog.removeEventListener("cancel", handleCancel);
   }, [onClose]);
 
-  // showModal() doesn't lock background scroll, so pin the body while open.
+  // showModal() doesn't lock background scroll, so pin both body and html while open.
   useEffect(() => {
     if (!open) return;
-    const previous = document.body.style.overflow;
+    const prevBody = document.body.style.overflow;
+    const prevHtml = document.documentElement.style.overflow;
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = previous;
+      document.body.style.overflow = prevBody;
+      document.documentElement.style.overflow = prevHtml;
     };
   }, [open]);
 

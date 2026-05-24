@@ -216,11 +216,6 @@ export function FrameworkRedesignCaseStudy(
           time. There's more to say about that workflow, but I'll save it for its
           own snapshot.
         </p>
-        <hr />
-        <p>
-          I'd love to walk through more of this in person. If anything here
-          speaks to work you're doing or thinking about, get in touch.
-        </p>
       </section>
     </article>
   );
