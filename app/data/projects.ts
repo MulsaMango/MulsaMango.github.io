@@ -39,15 +39,6 @@ export const projects: Project[] = [
     CardPreview: IconProjectPreview,
   },
   {
-    id: 3,
-    slug: "building-an-ai-prototyping-environment-for-designers",
-    title: "Building an AI prototyping environment for designers",
-    tags: ["Design system", "AI", "Tooling"],
-    image: null,
-    bgColor: "bg-gray-100",
-    CardPreview: OptionA1SequentialFan,
-  },
-  {
     id: 4,
     slug: "designing-for-complex-data-tables",
     title: "Designing for complex data tables",
@@ -55,6 +46,15 @@ export const projects: Project[] = [
     image: null,
     bgColor: "bg-gray-100",
     CardPreview: DtOptionG2SequentialOpen,
+  },
+  {
+    id: 3,
+    slug: "building-an-ai-prototyping-environment-for-designers",
+    title: "Building an AI prototyping environment for designers",
+    tags: ["Design system", "AI", "Tooling"],
+    image: null,
+    bgColor: "bg-gray-100",
+    CardPreview: OptionA1SequentialFan,
   },
   {
     id: 6,
