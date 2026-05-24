@@ -24,6 +24,7 @@ function LightbulbIcon() {
 
 interface CaseStudySnapshotCalloutProps {
   body?: string;
+  title?: string;
 }
 
 const DefaultCalloutBody = () => {
@@ -32,7 +33,7 @@ const DefaultCalloutBody = () => {
   </p>
 }
 
-export function CaseStudySnapshotCallout({ body }: CaseStudySnapshotCalloutProps) {
+export function CaseStudySnapshotCallout({ body, title = "Project Snapshot" }: CaseStudySnapshotCalloutProps) {
 
   const message = useMemo(() => {
     if (body) {
@@ -53,7 +54,7 @@ export function CaseStudySnapshotCallout({ body }: CaseStudySnapshotCalloutProps
       </span>
       <div>
         <p className="font-display text-xs uppercase tracking-[0.06em] text-gray-500">
-          Project Snapshot
+          {title}
         </p>
         {message}
       </div>

@@ -126,13 +126,15 @@ export default function Project() {
                 <BeforeAfterSlider />
               </div>
             )}
-            <CaseStudyComponent project={project} />
-            {isCaseStudySnapshot(project.id) && (
+            {project.id === 6 && (
               <CaseStudySnapshotCallout
-                body={project.id === 6
-                  ? "This project was completed in early 2023, before many of the advances in Figma and AI that have since changed how this kind of work gets done!"
-                  : undefined}
+                title="Project Info"
+                body="This project was completed in early 2023, before many of the advances in Figma and AI that have since changed how this kind of work gets done!"
               />
+            )}
+            <CaseStudyComponent project={project} />
+            {isCaseStudySnapshot(project.id) && project.id !== 6 && (
+              <CaseStudySnapshotCallout />
             )}
           </div>
         ) : (

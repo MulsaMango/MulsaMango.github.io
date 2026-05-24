@@ -20,23 +20,21 @@ export function DataTablesCaseStudy() {
     <article className="prose max-w-none">
       <section className="mb-12">
         <p>
-          For expert users in WiseTech Global's flagship logistics product, data
-          tables are the engine. They sit at the core of nearly every workflow,
-          and the logistics professionals using them spend their day inside
-          them.
+          For expert users of WiseTech Global's flagship logistics software, <strong>data
+          tables are the engine.</strong> They sit at the core of nearly every workflow.
         </p>
         <p>
           These tables are more than a way to display data in rows and columns.
           They organise and shape data; they can also be a jumping-off point.
           They need to be customisable, flexible, and unapologetically dense. A
           common instinct for designers is to try to simplify the complex - but
-          in this domain, complexity is power in the hands of an expert.
+          in this domain, <strong>complexity is power in the hands of an expert.</strong>
         </p>
 
         <Heading2 id="my-role">My role</Heading2>
         <p>
           What follows is a snapshot of some of the data table projects I've
-          been part of and led at WiseTech:
+          been part of and led at WiseTech, including but not limited to:
         </p>
         <ul>
           <li>Editable vs display tables</li>
@@ -45,14 +43,10 @@ export function DataTablesCaseStudy() {
           <li>Colour schemes</li>
         </ul>
         <p>
-          I led the UI interaction and end-to-end experience design across these
-          projects. The role covered visual exploration, interaction design,
+         My role covered visual exploration, interaction design,
           rapid AI prototyping, edge case mapping, design system contributions,
           and ongoing design reviews with UX designers, developers, and product
-          managers.
-        </p>
-        <p>
-          Much of the work meant navigating between research insight, the
+          managers. Much of the work meant navigating between research insight, the
           realities of legacy code, and where the design needed to push for
           expert users.
         </p>
@@ -76,13 +70,14 @@ export function DataTablesCaseStudy() {
         <p>
           <strong>Display tables</strong> cater to exploratory scanning and
           review workflows where the user needs to navigate larger volumes of
-          data. A zebra pattern aids in scannability, rows can be double clicked
-          to open a more detailed view of the entity represented in the row.
+          data. A zebra pattern aids in scannability, and rows can be
+          double-clicked to open a more detailed view of the entity represented
+          in the row.
         </p>
         <Image
           src={displayTableZebraPatternWithStatusBadges}
           alt="A display table showing logistics data with alternating row shading for scannability. Columns include company, contact, description, address, status, date, and distance. Status column uses colour-coded badge labels including Critical, Status, Warning, and Information. One row is highlighted in blue indicating selection."
-          caption="Display table - a jumping off point."
+          caption="Display table - a jumping-off point."
           lightbox
         />
         <p>
@@ -111,7 +106,7 @@ export function DataTablesCaseStudy() {
           My work here was a UI uplift across the existing filter model. That
           included the filter-building experience, creating filter groups,
           reordering filter strips, and a full rework of saved filter management
-          - the task flows around saving filters and resurfacing them when
+          - the task-flows around saving filters and resurfacing them when
           needed, for both individual users and organisation-wide publishing.
         </p>
         <p>
@@ -123,7 +118,7 @@ export function DataTablesCaseStudy() {
         <Image
           src={filterConfigModalAnatomy}
           alt="Annotated anatomy diagram of the filter configuration modal, with callouts labeling each UI component: drag handle, sequence indicator, and/or operator, filter group name with expand/collapse, filter group, and action buttons including Apply, Reset, and Clear values. A filter strip anatomy is shown to the right."
-          caption="Filter configuration technical spec  - excerpt from Figma."
+          caption="Filter configuration technical spec - excerpt from Figma."
           lightbox
         />
         <p>
@@ -144,15 +139,14 @@ export function DataTablesCaseStudy() {
         <Image
           src={filterChipStatesAndBehavioursSpec}
           alt="Design specification sheet for filter chips, showing four scenarios: AND vs OR operator behaviour in the chip strip, quick-add filter popover triggered from the strip's plus button, wrap behaviour when chips overflow to a second line, and mixed applied-plus-default versus all-default chip strip states."
-          caption="Filter chip states and behaviours  - excerpt from Figma."
+          caption="Filter chip states and behaviours - excerpt from Figma."
           lightbox
         />
 
         <Heading2 id="multi-level-grouping">Multi-level grouping</Heading2>
         <p>
-          Grouping lets users bundle rows that share a common value. The table
-          organises data into collapsible sections that make large datasets
-          easier to scan.
+          Grouping organises rows that share a common value into collapsible
+          sections, making large data sets easier to scan.
         </p>
         <p>
           I worked on this experience and extended the pattern to support
@@ -178,6 +172,10 @@ export function DataTablesCaseStudy() {
           designs into stateful, working interfaces. Meta-controls let me
           stress-test the pattern across a wide range of table conditions and
           find gaps that static frames couldn't surface.
+        </p>
+
+          <p>
+          I made a demo version of this multi-level grouping simulator below - feel free to have a play!
         </p>
 
         <div className="border border-gray-200 bg-white/60 p-5">
@@ -232,7 +230,7 @@ export function DataTablesCaseStudy() {
         <Heading2 id="colour-schemes">Colour schemes</Heading2>
         <p>
           Colour schemes let users apply colour to rows based on conditions,
-          similar to filter rules. When a row meets a rule, it picks up the
+          similar to filters. When a row meets a rule, it picks up the
           background and text colours defined for that rule.
         </p>
         <p>
@@ -240,23 +238,13 @@ export function DataTablesCaseStudy() {
           picking mechanics, with accessibility nudges built in.
         </p>
         <p>
-          The configuration surface follows the filter rule-builder shape -
-          conditions chained with AND/OR, nested into groups for compound
-          Boolean logic. Reusing the filter pattern was deliberate: a second
-          rule-builder for essentially the same decision wouldn't have earned
-          anything. The harder design calls sat around priority. Multiple rules
-          can match the same row, and the design exposes which one wins rather
-          than leaving it implicit - a 'Stop if true' control on each rule halts
-          evaluation once it matches. Density was the other ongoing call: expert
-          users build many rules, so each collapses to a one-line summary by
-          default and expands on demand.
+          The configuration surface follows the filter rule-builder shape,
+          AND/OR Boolean operators nested into groups for more complex rules. I
+          deliberately reused the UI of filters for colour schemes because they
+          share an underlying logic, users would be immediately capable with
+          colour schemes if they were familiar with filters, and vice versa.
         </p>
-        <p>
-          We deliberately reused the UI of filters for colour schemes because
-          they share an underlying logic - users would be immediately capable
-          with colour schemes if they were familiar with filters, and
-          vice-versa.
-        </p>
+       
         <Image
           src={colourSchemesModalAnatomy}
           alt="Annotated anatomy diagram of the colour schemes configuration modal, with callouts labeling each UI component: drag handle, color rule name with expand/collapse, color pairing preview, sequence indicator, and/or operator, add condition strip, add nested group within color rule, add new color rule, closes modal, stop if true toggle, and action buttons including Apply, Reset, and Clear values. A collapsed color rule summary view is shown to the right."
@@ -271,9 +259,7 @@ export function DataTablesCaseStudy() {
           Striking the right balance meant introducing guardrails in the UI
           itself: sensible defaults that meet AA contrast at minimum,
           non-blocking nudges that make it easy to pick more accessible
-          pairings, and subtle warnings when a combination falls short. Users
-          can still override and ship inaccessible combinations. The design
-          acknowledges that floor without pretending it isn't there.
+          pairings, and subtle warnings when a combination falls short.
         </p>
         <div className="not-prose mb-10">
           <aside className="mb-3 w-full md:w-3/4 mx-auto rounded border border-gray-200 bg-gray-50 px-5 py-4 shadow-[0_1px_3px_0_rgb(0,0,0,0.04)]">

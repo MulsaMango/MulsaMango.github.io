@@ -27,10 +27,10 @@ export function VpplyDesignSystemCaseStudy({
           cover letter and resume.
         </p>
         <p>
-          By the time I joined as the first UX/UI
-          designer on a 12-week contract in early 2023, the product had been
+          By the time I joined as one of the first UX/UI
+          designers on a 12-week contract in early 2023, the product had been
           built piece by piece by different developers, with no shared design
-          language across it. Many shades of "Vpply pink", haphazard typography,
+          language across it. Many shades of brand colour, haphazard typography,
           no agreed pattern for buttons, inputs, or navigation. Designers
           couldn't trust anything as a source of truth, developers were
           rebuilding duplicate components, and users were relearning the UI
@@ -71,8 +71,8 @@ export function VpplyDesignSystemCaseStudy({
         </ul>
         <p>
           Brad Frost's Atomic Design framework underpinned the approach. I also
-          referenced public design systems like Atlassian, GEM, and Material to
-          see how others had solved the same problems.
+          referenced other design systems like GOV.UK and Braid (SEEK's design
+          system), gaining inspiration from their pragmatic, need-first approach.
         </p>
 
         <Heading2 id="what-the-system-covered">
@@ -86,15 +86,15 @@ export function VpplyDesignSystemCaseStudy({
         <ul>
           <li>
             <strong>Colour palette:</strong> I consolidated the many shades of
-            "Vpply pink" into a tighter palette, alongside neutral and system
+            "Vpply pink" into a tighter palette, alongside foundational neutral and system
             colours. I set them up as Figma styles so designers and developers
             were pulling from the same source.
           </li>
           <li>
             <strong>An accessibility win:</strong> The original Vpply pink
-            couldn't meet WCAG 2.1 AA against white text. I proposed shifting
-            the brand pink to a slightly darker, less saturated variation,
-            accessible without losing recognisability. Leadership agreed.
+            failed WCAG 2.1 AA against white text. I successfully proposed
+            shifting the brand pink to a slightly darker, less saturated
+            variation that met the standard without losing recognisability.
           </li>
           <li>
             <strong>Typography, spacing, and grids:</strong> Montserrat was
@@ -166,10 +166,10 @@ export function VpplyDesignSystemCaseStudy({
 
         <Heading2 id="reflections">Reflections</Heading2>
         <p>
-          What I built at Vpply was a component library, not a comprehensive
-          design system. At the company's stage, on a 12-week contract, that's
-          what made sense. It gave design and engineering a shared visual
-          language to build the platform on, the foundation the team needed.
+          What I delivered wasn't a full, comprehensive design system - but it
+          was a strong step in the right direction. It established the
+          foundations for consistency, enabled scalability, and gave the team a
+          solid trajectory to keep building and expanding from.
         </p>
       </section>
     </article>
