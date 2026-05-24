@@ -1,5 +1,6 @@
 import type { Project } from "../data/projects";
 import type { ReactElement } from "react";
+import { FrameworkRedesignCaseStudy } from "./framework-redesign";
 import { IconsCaseStudy } from "./icons";
 import { MultiLevelGroupingCaseStudy } from "./multi-level-grouping";
 
@@ -18,6 +19,7 @@ type CaseStudy = {
 export const caseStudies: Record<number, CaseStudy> = {
   1: { component: IconsCaseStudy, format: "full" },
   4: { component: MultiLevelGroupingCaseStudy, format: "snapshot" },
+  5: { component: FrameworkRedesignCaseStudy, format: "snapshot" },
   // etc.
 };
 
