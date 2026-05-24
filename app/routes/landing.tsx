@@ -3,10 +3,6 @@ import { projects } from "../data/projects";
 import { getCaseStudyComponent } from "../case-studies";
 import { Footer } from "../components/Footer";
 import { SiteHeader } from "../components/SiteHeader";
-import {
-  hasProjectCardPreview,
-  ProjectCardPreview,
-} from "../components/ProjectCardPreview";
 import { CurrentlyWorking } from "../components/CurrentlyWorking";
 import { useHeaderScrollVisibility } from "../hooks/useHeaderScrollVisibility";
 import { HEADLINE, TAGLINE } from "../lib/profile";
@@ -67,12 +63,13 @@ export default function Landing() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => {
             const hasCaseStudy = Boolean(getCaseStudyComponent(project.id));
+            const CardPreview = project.CardPreview;
             const cardInner = (
               <>
                 {/* Project Image Placeholder */}
                 <div className="w-full aspect-square bg-gray-100 rounded-md mb-3 flex items-center justify-center overflow-hidden border border-gray-300 group-hover:shadow-sm transition-all">
-                  {hasProjectCardPreview(project.id) ? (
-                    <ProjectCardPreview projectId={project.id} />
+                  {CardPreview ? (
+                    <CardPreview />
                   ) : project.image ? (
                     <img
                       src={project.image}

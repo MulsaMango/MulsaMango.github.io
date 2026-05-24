@@ -1,3 +1,5 @@
+import "./framework-shell-card-previews.css";
+
 function BeforeAfterChrome({ side }: { side: "before" | "after" }) {
   if (side === "before") {
     return (

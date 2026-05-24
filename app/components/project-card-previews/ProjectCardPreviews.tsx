@@ -1,3 +1,5 @@
+import "./project-card-previews.css";
+
 function LayerStackWireframe() {
   return (
     <div className="ai-card-a-wireframe">

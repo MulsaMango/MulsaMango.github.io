@@ -6,10 +6,6 @@ import { TableOfContents } from "../components/TableOfContents";
 import { InteractiveBanner } from "../components/InteractiveBanner";
 import { Footer } from "../components/Footer";
 import { SiteHeader } from "../components/SiteHeader";
-import {
-  hasProjectCardPreview,
-  ProjectCardPreview,
-} from "../components/ProjectCardPreview";
 import { useHeaderScrollVisibility } from "../hooks/useHeaderScrollVisibility";
 import { buildMeta } from "../lib/siteMeta";
 import type { Route } from "./+types/project.$id";
@@ -150,14 +146,12 @@ export default function Project() {
               .slice(0, 3)
               .map((otherProject) => {
                 const hasOtherCaseStudy = Boolean(getCaseStudyComponent(otherProject.id));
+                const OtherCardPreview = otherProject.CardPreview;
                 const cardInner = (
                   <>
                     <div className="w-full aspect-square bg-gray-100 rounded-md mb-2 flex items-center justify-center overflow-hidden border border-gray-300 group-hover:shadow-sm transition-all">
-                      {hasProjectCardPreview(otherProject.id) ? (
-                        <ProjectCardPreview
-                          projectId={otherProject.id}
-                          compact
-                        />
+                      {OtherCardPreview ? (
+                        <OtherCardPreview compact />
                       ) : otherProject.image ? (
                         <img
                           src={otherProject.image}

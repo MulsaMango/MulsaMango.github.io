@@ -1,3 +1,5 @@
+import "./data-table-card-previews.css";
+
 function GroupPeelPreview() {
   return (
     <div

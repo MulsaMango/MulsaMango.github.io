@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import "./vpply-card-previews.css";
 
 type SearchPieceKind = "heading" | "field" | "icon" | "placeholder" | "btn";
 
