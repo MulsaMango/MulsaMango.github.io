@@ -1,6 +1,8 @@
-// Shown once at the top of every case study (rendered from project.$id.tsx, not
+// Shown at the bottom of every snapshot case study (rendered from project.$slug.tsx, not
 // from inside an individual study) so the "this is a condensed snapshot" framing
 // stays identical across studies instead of each one wording it differently.
+
+import { useMemo } from "react";
 
 // pixelarticons "lightbulb-off" (https://pixelarticons.com/icon/lightbulb-off/),
 // inlined so it takes its colour from currentColor and scales crisply.
@@ -24,9 +26,28 @@ interface CaseStudySnapshotCalloutProps {
   body?: string;
 }
 
+const DefaultCalloutBody = () => {
+  return <p className="mt-1 text-sm leading-relaxed text-gray-700">
+    This is not a full case study, just a quick summary and highlights. I'd be happy to go in to more detail on this project if it sounds interesting to you!
+  </p>
+}
+
 export function CaseStudySnapshotCallout({ body }: CaseStudySnapshotCalloutProps) {
+
+  const message = useMemo(() => {
+    if (body) {
+      return (
+        <p className="mt-1 text-sm leading-relaxed text-gray-700">
+          {body}
+        </p>
+      );
+    }
+
+    return <DefaultCalloutBody />;
+  }, [body]);
+
   return (
-    <aside className="not-prose mb-10 flex items-start gap-4 rounded border border-gray-200 bg-white/70 px-5 py-4 shadow-[0_1px_3px_0_rgb(0,0,0,0.04)]">
+    <aside className="not-prose mt-10 flex items-start gap-4 rounded border border-gray-200 bg-gray-50 px-5 py-4 shadow-[0_1px_3px_0_rgb(0,0,0,0.04)]">
       <span className="mt-0.5 text-[#495faf]">
         <LightbulbIcon />
       </span>
@@ -34,9 +55,7 @@ export function CaseStudySnapshotCallout({ body }: CaseStudySnapshotCalloutProps
         <p className="font-display text-xs uppercase tracking-[0.06em] text-gray-500">
           Project Snapshot
         </p>
-        <p className="mt-1 text-sm leading-relaxed text-gray-700">
-          {body ?? "Just the highlights - not everything can live here publicly, but there’s plenty more to the story. I’d love to walk you through it."}
-        </p>
+        {message}
       </div>
     </aside>
   );

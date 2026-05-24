@@ -123,6 +123,7 @@ export default function Project() {
                 <BeforeAfterSlider />
               </div>
             )}
+            <CaseStudyComponent project={project} />
             {isCaseStudySnapshot(project.id) && (
               <CaseStudySnapshotCallout
                 body={project.id === 6
@@ -130,7 +131,6 @@ export default function Project() {
                   : undefined}
               />
             )}
-            <CaseStudyComponent project={project} />
           </div>
         ) : (
           <div className="case-study-paper-wash">
