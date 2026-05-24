@@ -4,4 +4,5 @@ export default [
   index("routes/landing.tsx"),
   route("about", "routes/about.tsx"),
   route("project/:slug", "routes/project.$slug.tsx"),
+  route("*", "routes/not-found.tsx"),
 ] satisfies RouteConfig;
