@@ -56,22 +56,24 @@ export function PasswordGate({ children }: { children: React.ReactNode }) {
       <div className="flex flex-col items-start text-left gap-12 md:gap-16 max-w-lg w-full">
         {/* Headline, tagline, and current work mirrored from the landing hero */}
         <div className="space-y-4">
-          <h1 className="font-display text-3xl md:text-4xl font-semibold leading-tight text-gray-800">
-            {HEADLINE}
-          </h1>
-          <div
-            className="password-gate-onigiri-float w-12 shrink-0"
-            aria-hidden="true"
-          >
-            <img
-              src={onigiri}
-              alt=""
-              width={48}
-              height={48}
-              draggable={false}
-              decoding="async"
-              className="password-gate-onigiri-img w-12 h-auto select-none"
-            />
+          <div className="flex items-center gap-3">
+            <h1 className="font-display text-3xl md:text-4xl font-semibold leading-tight text-gray-800">
+              {HEADLINE}
+            </h1>
+            <div
+              className="password-gate-onigiri-float w-12 shrink-0"
+              aria-hidden="true"
+            >
+              <img
+                src={onigiri}
+                alt=""
+                width={48}
+                height={48}
+                draggable={false}
+                decoding="async"
+                className="password-gate-onigiri-img w-12 h-auto select-none"
+              />
+            </div>
           </div>
           <p className="font-sans text-sm md:text-base text-gray-500 leading-[1.75]">
             {TAGLINE}
