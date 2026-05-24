@@ -731,9 +731,10 @@ export default function About() {
 
           {/* Bio paragraph */}
           <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
-            Most of my work happens on the layer beneath product design: the
-            systems that support it, the craft that makes it feel considered,
-            and the workflows that help teams shape better solutions.
+            I'm a product designer with a systems mindset, drawn to the work
+            that makes everything else hold together: the systems that scale a
+            product, the craft that makes it feel considered, and the ways of
+            working that help teams shape better solutions.
           </p>
           <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
             I currently work on the design systems team at WiseTech Global, a
@@ -748,7 +749,7 @@ export default function About() {
             pragmatic problem solving paired with process and craft. I’ll sweat
             the details when they matter, but I always take a strategic approach
             to my work, factoring in business goals, product goals, and
-            technical or legacy constraints.
+            technical constraints.
           </p>
 
           <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
@@ -760,10 +761,10 @@ export default function About() {
           </p>
 
           <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
-            Outside the work itself, I care a lot about the team I work with. I
-            do my best work alongside people who show up as themselves and let
-            others do the same. Building software has its prickly parts, and a
-            well-placed gif or meme goes a long way :)
+            I do my best work alongside people who show up as themselves and
+            try to bring that out in others. That kind of openness is where
+            collaboration and creativity really thrive, and where a perfectly
+            timed gif counts as a genuine contribution. ;)
           </p>
 
           {/* Experience section */}
