@@ -2,11 +2,13 @@ import { IconProjectPreview } from "./IconProjectPreview";
 import { DtOptionG2SequentialOpen } from "./project-card-previews/DataTableCardPreviews";
 import { FrProjectCardFullReveal } from "./project-card-previews/FrameworkShellCardPreviews";
 import { OptionA1SequentialFan } from "./project-card-previews/ProjectCardPreviews";
+import { VpProjectCardSearchModule } from "./project-card-previews/VpplyCardPreviews";
 import "./project-card-previews/data-table-card-previews.css";
 import "./project-card-previews/framework-shell-card-previews.css";
 import "./project-card-previews/project-card-previews.css";
+import "./project-card-previews/vpply-card-previews.css";
 
-const PREVIEW_PROJECT_IDS = new Set([1, 3, 4, 5]);
+const PREVIEW_PROJECT_IDS = new Set([1, 3, 4, 5, 6]);
 
 type ProjectCardPreviewProps = {
   projectId: number;
@@ -30,6 +32,8 @@ export function ProjectCardPreview({
       return <DtOptionG2SequentialOpen />;
     case 5:
       return <FrProjectCardFullReveal />;
+    case 6:
+      return <VpProjectCardSearchModule />;
     default:
       return null;
   }

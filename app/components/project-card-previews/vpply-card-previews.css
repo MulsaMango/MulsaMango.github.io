@@ -791,80 +791,357 @@
   width: 36%;
 }
 
-/* Search lead — glass sits inside the field; field widens to hold it */
-.group:hover .vp-card-preview-compose--search-lead .vp-compose-atom--si-field,
-.group:focus-visible .vp-card-preview-compose--search-lead .vp-compose-atom--si-field {
-  width: 42%;
+/* UI compose — realistic user cards (shell + top-left fit slots) */
+
+.vp-user-card-compose {
+  container-type: inline-size;
 }
 
-.group:hover .vp-card-preview-compose--search-lead .vp-compose-frame--search-module,
-.group:focus-visible .vp-card-preview-compose--search-lead .vp-compose-frame--search-module {
-  border-color: rgba(71, 221, 78, 0.35);
+.vp-user-card-shell {
+  position: absolute;
+  z-index: 0;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  opacity: 0;
+  transition:
+    opacity 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 560ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
 }
 
-/* Search tall — two-row module with a full-width button beneath the field */
-.vp-card-preview-compose--search-tall .vp-compose-frame--search-module {
-  top: 38%;
-  height: 44%;
+.vp-user-card-compose--profile .vp-user-card-shell {
+  inset: 16% 11% 17% 11%;
 }
 
-.group:hover .vp-card-preview-compose--search-tall .vp-compose-atom--si-field,
-.group:focus-visible .vp-card-preview-compose--search-tall .vp-compose-atom--si-field {
-  width: 46%;
+.vp-user-card-compose--list-row .vp-user-card-shell {
+  inset: 36% 9% 36% 9%;
+  border-radius: 6px;
 }
 
-.group:hover .vp-card-preview-compose--search-tall .vp-compose-atom--si-btn,
-.group:focus-visible .vp-card-preview-compose--search-tall .vp-compose-atom--si-btn {
-  width: 52%;
+.vp-user-card-compose--centered .vp-user-card-shell {
+  inset: 15% 13% 16% 13%;
 }
 
-.group:hover .vp-card-preview-compose--search-tall .vp-compose-frame--search-module,
-.group:focus-visible .vp-card-preview-compose--search-tall .vp-compose-frame--search-module {
-  border-color: rgba(71, 221, 78, 0.35);
+.group:hover .vp-user-card-shell,
+.group:focus-visible .vp-user-card-shell {
+  opacity: 1;
+  border-color: #e5e7eb;
+  background: #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
 }
 
-/* Search burst — a centre pile springs out into the row */
-.group:hover .vp-card-preview-compose--search-burst .vp-compose-frame--search-module,
-.group:focus-visible .vp-card-preview-compose--search-burst .vp-compose-frame--search-module {
-  border-color: rgba(71, 221, 78, 0.35);
+.group:hover .vp-user-card-compose--profile .vp-user-card-shell,
+.group:focus-visible .vp-user-card-compose--profile .vp-user-card-shell,
+.group:hover .vp-user-card-compose--centered .vp-user-card-shell,
+.group:focus-visible .vp-user-card-compose--centered .vp-user-card-shell {
+  border-color: rgba(71, 221, 78, 0.32);
 }
 
-/* User tray — left-aligned profile column */
-.group:hover .vp-card-preview-compose--user-tray .vp-compose-atom--ph-title,
-.group:focus-visible .vp-card-preview-compose--user-tray .vp-compose-atom--ph-title {
+.vp-user-card-piece {
+  position: absolute;
+  z-index: 1;
+  top: var(--rest-top);
+  left: var(--rest-left);
+  transform: translate(-50%, -50%);
+  transition:
+    top 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    left 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    width 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    height 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 420ms ease;
+  transition-delay: var(--piece-delay);
+}
+
+.vp-user-card-piece--avatar {
+  width: 0.82rem;
+  height: 0.82rem;
+  border-radius: 999px;
+  background: #d1d5db;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #e5e7eb;
+}
+
+.vp-user-card-piece--avatar::after {
+  content: "";
+  position: absolute;
+  top: 28%;
+  left: 50%;
+  width: 38%;
+  height: 38%;
+  border-radius: 999px;
+  background: #e5e7eb;
+  transform: translateX(-50%);
+}
+
+.vp-user-card-piece--title {
+  width: 28%;
+  height: 0.32rem;
+  border-radius: 2px;
+  background: #4b5563;
+}
+
+.vp-user-card-piece--body,
+.vp-user-card-piece--body-short {
+  width: 32%;
+  height: 0.22rem;
+  border-radius: 2px;
+  background: #e5e7eb;
+}
+
+.vp-user-card-piece--btn {
+  width: 22%;
+  height: 0.48rem;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #4b5563 0%, #374151 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.group:hover .vp-user-card-piece,
+.group:focus-visible .vp-user-card-piece {
+  top: var(--fit-top);
+  left: var(--fit-left);
+  width: var(--fit-w);
+  height: var(--fit-h);
+  transform: none;
+}
+
+.group:hover .vp-user-card-piece--avatar,
+.group:focus-visible .vp-user-card-piece--avatar {
+  border-radius: 999px;
+}
+
+.group:hover .vp-user-card-piece--btn,
+.group:focus-visible .vp-user-card-piece--btn {
+  border-radius: 4px;
+}
+
+.vp-user-card-compose--list-row .vp-user-card-piece--btn {
+  border-radius: 4px;
+}
+
+.group:hover .vp-user-card-compose--list-row .vp-user-card-piece--btn,
+.group:focus-visible .vp-user-card-compose--list-row .vp-user-card-piece--btn {
+  border-radius: 4px;
+}
+
+.group:hover .vp-user-card-compose--centered .vp-user-card-piece--btn,
+.group:focus-visible .vp-user-card-compose--centered .vp-user-card-piece--btn {
+  border-radius: 999px;
+}
+
+/* UI compose — realistic search (designed composed-first, then scattered) */
+
+.vp-search-compose {
+  container-type: inline-size;
+}
+
+.vp-search-shell {
+  position: absolute;
+  z-index: 0;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  opacity: 0;
+  transition:
+    opacity 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 560ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+/* Shell wraps heading + search row with minimal padding */
+.vp-search-compose--module .vp-search-shell {
+  inset: 19% 10% 59% 10%;
+  border-radius: 7px;
+}
+
+.vp-search-compose--module-soft .vp-search-shell {
+  inset: 17.5% 11% 60% 11%;
+  border-radius: 12px;
+}
+
+.vp-search-compose--module-tight .vp-search-shell {
+  inset: 20% 10% 59.5% 10%;
+  border-radius: 4px;
+}
+
+.vp-search-compose--module-pill .vp-search-shell {
+  inset: 18% 11% 60% 11%;
+  border-radius: 14px;
+}
+
+.vp-search-compose--attached .vp-search-shell {
+  inset: 20% 7% 42% 7%;
+}
+
+.group:hover .vp-search-shell,
+.group:focus-visible .vp-search-shell {
+  opacity: 1;
+  border-color: #e5e7eb;
+  background: #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.group:hover .vp-search-compose--module .vp-search-shell,
+.group:focus-visible .vp-search-compose--module .vp-search-shell,
+.group:hover .vp-search-compose--module-soft .vp-search-shell,
+.group:focus-visible .vp-search-compose--module-soft .vp-search-shell,
+.group:hover .vp-search-compose--module-tight .vp-search-shell,
+.group:focus-visible .vp-search-compose--module-tight .vp-search-shell,
+.group:hover .vp-search-compose--module-pill .vp-search-shell,
+.group:focus-visible .vp-search-compose--module-pill .vp-search-shell {
+  border-color: rgba(71, 221, 78, 0.28);
+}
+
+.vp-search-piece {
+  position: absolute;
+  z-index: 1;
+  top: var(--rest-top);
+  left: var(--rest-left);
+  transform: translate(-50%, -50%);
+  transition:
+    top 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    left 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    width 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    height 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 420ms ease,
+    transform 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 420ms ease;
+  transition-delay: var(--piece-delay);
+}
+
+.vp-search-piece--heading {
   width: 30%;
+  height: 0.32rem;
+  border-radius: 2px;
+  background: #737373;
 }
 
-.group:hover .vp-card-preview-compose--user-tray .vp-compose-frame--user-card,
-.group:focus-visible .vp-card-preview-compose--user-tray .vp-compose-frame--user-card {
-  border-color: rgba(71, 221, 78, 0.35);
+.vp-search-piece--field {
+  width: 28%;
+  height: 0.55rem;
+  border-radius: 5px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
 }
 
-/* User header — avatar + title band with a trailing action */
-.group:hover .vp-card-preview-compose--user-header .vp-compose-atom--ph-body,
-.group:focus-visible .vp-card-preview-compose--user-header .vp-compose-atom--ph-body {
-  width: 40%;
+.vp-search-piece--icon {
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 1.5px solid #b8bcc4;
+  border-radius: 999px;
+  background: transparent;
+  z-index: 2;
 }
 
-.group:hover .vp-card-preview-compose--user-header .vp-compose-frame--user-card,
-.group:focus-visible .vp-card-preview-compose--user-header .vp-compose-frame--user-card {
-  border-color: rgba(71, 221, 78, 0.35);
+.vp-search-piece--icon::after {
+  content: "";
+  position: absolute;
+  right: -0.1rem;
+  bottom: -0.08rem;
+  width: 0.2rem;
+  height: 1.5px;
+  background: #b8bcc4;
+  transform: rotate(45deg);
+  transform-origin: left center;
 }
 
-/* User row — short horizontal list item */
-.vp-card-preview-compose--user-row .vp-compose-frame--user-card {
-  top: 36%;
-  height: 30%;
+.vp-search-piece--placeholder {
+  width: 32%;
+  height: 0.2rem;
+  border-radius: 2px;
+  background: #f3f4f6;
+  z-index: 2;
 }
 
-.group:hover .vp-card-preview-compose--user-row .vp-compose-atom--ph-body,
-.group:focus-visible .vp-card-preview-compose--user-row .vp-compose-atom--ph-body {
-  width: 34%;
+.vp-search-piece--btn {
+  width: 20%;
+  height: 0.5rem;
+  border-radius: 5px;
+  background: linear-gradient(180deg, #a3a3a3 0%, #8f8f8f 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  z-index: 2;
 }
 
-.group:hover .vp-card-preview-compose--user-row .vp-compose-frame--user-card,
-.group:focus-visible .vp-card-preview-compose--user-row .vp-compose-frame--user-card {
-  border-color: rgba(71, 221, 78, 0.35);
+.vp-search-piece--btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 52%;
+  height: 0.18rem;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.42);
+  transform: translate(-50%, -50%);
+}
+
+.group:hover .vp-search-piece,
+.group:focus-visible .vp-search-piece {
+  top: var(--fit-top);
+  left: var(--fit-left);
+  width: var(--fit-w);
+  height: var(--fit-h);
+  transform: none;
+}
+
+.group:hover .vp-search-piece--field,
+.group:focus-visible .vp-search-piece--field {
+  border-color: #dfe3e8;
+  background: #fff;
+}
+
+.group:hover .vp-search-compose--module .vp-search-piece--field,
+.group:focus-visible .vp-search-compose--module .vp-search-piece--field,
+.group:hover .vp-search-compose--module-soft .vp-search-piece--field,
+.group:focus-visible .vp-search-compose--module-soft .vp-search-piece--field {
+  border-radius: 6px;
+}
+
+.group:hover .vp-search-compose--module-soft .vp-search-piece--field,
+.group:focus-visible .vp-search-compose--module-soft .vp-search-piece--field {
+  border-radius: 9px;
+}
+
+.group:hover .vp-search-compose--module-soft .vp-search-piece--btn,
+.group:focus-visible .vp-search-compose--module-soft .vp-search-piece--btn {
+  border-radius: 8px;
+}
+
+.group:hover .vp-search-compose--module-tight .vp-search-piece--field,
+.group:focus-visible .vp-search-compose--module-tight .vp-search-piece--field,
+.group:hover .vp-search-compose--module-tight .vp-search-piece--btn,
+.group:focus-visible .vp-search-compose--module-tight .vp-search-piece--btn {
+  border-radius: 3px;
+}
+
+.group:hover .vp-search-compose--module-pill .vp-search-piece--field,
+.group:focus-visible .vp-search-compose--module-pill .vp-search-piece--field,
+.group:hover .vp-search-compose--module-pill .vp-search-piece--btn,
+.group:focus-visible .vp-search-compose--module-pill .vp-search-piece--btn {
+  border-radius: 999px;
+}
+
+.group:hover .vp-search-compose--module .vp-search-piece--btn,
+.group:focus-visible .vp-search-compose--module .vp-search-piece--btn {
+  border-radius: 6px;
+}
+
+.group:hover .vp-search-compose--attached .vp-search-piece--field,
+.group:focus-visible .vp-search-compose--attached .vp-search-piece--field {
+  border-radius: 4px 0 0 4px;
+  border-right-color: transparent;
+}
+
+.group:hover .vp-search-compose--attached .vp-search-piece--btn,
+.group:focus-visible .vp-search-compose--attached .vp-search-piece--btn {
+  border-radius: 0 4px 4px 0;
 }
 
 /* ── VP3: single source ── */
@@ -4342,6 +4619,10 @@
   .vp-screen-nav,
   .vp-compose-atom,
   .vp-compose-frame,
+  .vp-user-card-piece,
+  .vp-user-card-shell,
+  .vp-search-piece,
+  .vp-search-shell,
   .vp-source-duo,
   .vp-source-canonical,
   .vp-source-variants,

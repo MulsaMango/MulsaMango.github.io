@@ -120,56 +120,6 @@ const USER_INLINE_ATOMS: ComposeAtom[] = [
   { id: "btn", kind: "uc-btn", restTop: 74, restLeft: 18, slotTop: 66, slotLeft: 50, delay: 270 },
 ];
 
-// Parts wait in a tray along the bottom, then the glass tucks inside the field
-const SEARCH_LEAD_ATOMS: ComposeAtom[] = [
-  { id: "field", kind: "si-field", restTop: 85, restLeft: 40, slotTop: 56, slotLeft: 54, delay: 90 },
-  { id: "glass", kind: "si-glass", restTop: 85, restLeft: 62, slotTop: 56, slotLeft: 36, delay: 170 },
-  { id: "title", kind: "ph-title", restTop: 85, restLeft: 16, slotTop: 36, slotLeft: 36, delay: 0 },
-  { id: "btn", kind: "si-btn", restTop: 85, restLeft: 84, slotTop: 56, slotLeft: 83, delay: 250 },
-];
-
-// Scattered parts resolve into a taller two-row module with a full-width button
-const SEARCH_TALL_ATOMS: ComposeAtom[] = [
-  { id: "title", kind: "ph-title", restTop: 70, restLeft: 20, slotTop: 24, slotLeft: 30, delay: 0 },
-  { id: "glass", kind: "si-glass", restTop: 22, restLeft: 78, slotTop: 50, slotLeft: 28, delay: 120 },
-  { id: "field", kind: "si-field", restTop: 80, restLeft: 60, slotTop: 50, slotLeft: 56, delay: 200 },
-  { id: "btn", kind: "si-btn", restTop: 26, restLeft: 30, slotTop: 74, slotLeft: 52, delay: 300 },
-];
-
-// A loose pile in the centre bursts outward into the search row
-const SEARCH_BURST_ATOMS: ComposeAtom[] = [
-  { id: "title", kind: "ph-title", restTop: 48, restLeft: 46, slotTop: 26, slotLeft: 50, delay: 0 },
-  { id: "glass", kind: "si-glass", restTop: 54, restLeft: 54, slotTop: 52, slotLeft: 24, delay: 60 },
-  { id: "field", kind: "si-field", restTop: 50, restLeft: 50, slotTop: 52, slotLeft: 50, delay: 120 },
-  { id: "btn", kind: "si-btn", restTop: 46, restLeft: 56, slotTop: 52, slotLeft: 78, delay: 180 },
-];
-
-// Parts wait in a tray, then stack into a left-aligned profile column
-const USER_TRAY_ATOMS: ComposeAtom[] = [
-  { id: "avatar", kind: "uc-avatar", restTop: 85, restLeft: 14, slotTop: 28, slotLeft: 28, delay: 0 },
-  { id: "title", kind: "ph-title", restTop: 85, restLeft: 34, slotTop: 42, slotLeft: 36, delay: 80 },
-  { id: "body1", kind: "ph-body", restTop: 85, restLeft: 54, slotTop: 54, slotLeft: 38, delay: 160 },
-  { id: "body2", kind: "ph-body-short", restTop: 85, restLeft: 70, slotTop: 62, slotLeft: 34, delay: 240 },
-  { id: "btn", kind: "uc-btn", restTop: 85, restLeft: 88, slotTop: 74, slotLeft: 30, delay: 320 },
-];
-
-// Avatar and title settle into a header band, body below, button bottom-right
-const USER_HEADER_ATOMS: ComposeAtom[] = [
-  { id: "avatar", kind: "uc-avatar", restTop: 20, restLeft: 80, slotTop: 30, slotLeft: 28, delay: 0 },
-  { id: "title", kind: "ph-title", restTop: 24, restLeft: 14, slotTop: 30, slotLeft: 54, delay: 80 },
-  { id: "body1", kind: "ph-body", restTop: 50, restLeft: 84, slotTop: 52, slotLeft: 50, delay: 160 },
-  { id: "body2", kind: "ph-body-short", restTop: 60, restLeft: 16, slotTop: 60, slotLeft: 44, delay: 220 },
-  { id: "btn", kind: "uc-btn", restTop: 80, restLeft: 70, slotTop: 72, slotLeft: 70, delay: 300 },
-];
-
-// Scattered parts line up as a horizontal list row with a trailing button
-const USER_ROW_ATOMS: ComposeAtom[] = [
-  { id: "avatar", kind: "uc-avatar", restTop: 76, restLeft: 22, slotTop: 50, slotLeft: 22, delay: 0 },
-  { id: "title", kind: "ph-title", restTop: 20, restLeft: 70, slotTop: 42, slotLeft: 52, delay: 90 },
-  { id: "body1", kind: "ph-body", restTop: 70, restLeft: 80, slotTop: 56, slotLeft: 52, delay: 170 },
-  { id: "btn", kind: "uc-btn", restTop: 26, restLeft: 24, slotTop: 50, slotLeft: 82, delay: 250 },
-];
-
 const ORBIT_MOLECULE_ATOMS: MoleculeAtom[] = [
   { id: "a1", restTop: 20, restLeft: 48, slotTop: 34, slotLeft: 32, delay: 0 },
   { id: "a2", restTop: 31, restLeft: 74, slotTop: 34, slotLeft: 48, delay: 50 },
@@ -228,6 +178,180 @@ function AtomicComposePreview({
         />
       ))}
       <div className="vp-compose-caption">{caption}</div>
+    </div>
+  );
+}
+
+type UserCardPieceKind = "avatar" | "title" | "body" | "body-short" | "btn";
+
+type UserCardPiece = {
+  id: string;
+  kind: UserCardPieceKind;
+  restTop: number;
+  restLeft: number;
+  fitTop: number;
+  fitLeft: number;
+  fitWidth: string;
+  fitHeight: string;
+  delay: number;
+};
+
+// All fit values are % of the square card, so widths and heights share one
+// pixel base and alignment holds at any size. avatar fit is kept square.
+const USER_REAL_PROFILE: UserCardPiece[] = [
+  { id: "avatar", kind: "avatar", restTop: 20, restLeft: 76, fitTop: 20, fitLeft: 13, fitWidth: "16%", fitHeight: "16%", delay: 0 },
+  { id: "title", kind: "title", restTop: 16, restLeft: 18, fitTop: 22, fitLeft: 33, fitWidth: "46%", fitHeight: "3.4%", delay: 70 },
+  { id: "body1", kind: "body", restTop: 46, restLeft: 84, fitTop: 29, fitLeft: 33, fitWidth: "44%", fitHeight: "2.6%", delay: 140 },
+  { id: "body2", kind: "body-short", restTop: 60, restLeft: 14, fitTop: 34, fitLeft: 33, fitWidth: "32%", fitHeight: "2.6%", delay: 210 },
+  { id: "btn", kind: "btn", restTop: 78, restLeft: 66, fitTop: 60, fitLeft: 13, fitWidth: "76%", fitHeight: "12%", delay: 280 },
+];
+
+const USER_REAL_LIST: UserCardPiece[] = [
+  { id: "avatar", kind: "avatar", restTop: 72, restLeft: 20, fitTop: 41, fitLeft: 12, fitWidth: "18%", fitHeight: "18%", delay: 0 },
+  { id: "title", kind: "title", restTop: 18, restLeft: 74, fitTop: 43, fitLeft: 33, fitWidth: "36%", fitHeight: "3%", delay: 80 },
+  { id: "body1", kind: "body", restTop: 68, restLeft: 82, fitTop: 50.5, fitLeft: 33, fitWidth: "30%", fitHeight: "2.4%", delay: 160 },
+  { id: "btn", kind: "btn", restTop: 22, restLeft: 16, fitTop: 43, fitLeft: 74, fitWidth: "15%", fitHeight: "14%", delay: 240 },
+];
+
+const USER_REAL_CENTERED: UserCardPiece[] = [
+  { id: "avatar", kind: "avatar", restTop: 24, restLeft: 16, fitTop: 19, fitLeft: 41, fitWidth: "18%", fitHeight: "18%", delay: 0 },
+  { id: "title", kind: "title", restTop: 38, restLeft: 80, fitTop: 39, fitLeft: 26, fitWidth: "48%", fitHeight: "3.4%", delay: 80 },
+  { id: "body1", kind: "body", restTop: 54, restLeft: 12, fitTop: 46, fitLeft: 29, fitWidth: "42%", fitHeight: "2.6%", delay: 160 },
+  { id: "body2", kind: "body-short", restTop: 70, restLeft: 78, fitTop: 51, fitLeft: 34, fitWidth: "32%", fitHeight: "2.6%", delay: 230 },
+  { id: "btn", kind: "btn", restTop: 82, restLeft: 24, fitTop: 62, fitLeft: 24, fitWidth: "52%", fitHeight: "11%", delay: 300 },
+];
+
+function UserCardComposePreview({
+  variant,
+  pieces,
+  caption,
+}: {
+  variant: string;
+  pieces: UserCardPiece[];
+  caption: string;
+}) {
+  return (
+    <div
+      className={`vp-card-preview vp-user-card-compose vp-user-card-compose--${variant}`.trim()}
+      aria-hidden="true"
+    >
+      <div className="vp-user-card-shell" />
+      {pieces.map((piece) => (
+        <div
+          key={piece.id}
+          className={`vp-user-card-piece vp-user-card-piece--${piece.kind}`}
+          style={
+            {
+              "--rest-top": `${piece.restTop}%`,
+              "--rest-left": `${piece.restLeft}%`,
+              "--fit-top": `${piece.fitTop}%`,
+              "--fit-left": `${piece.fitLeft}%`,
+              "--fit-w": piece.fitWidth,
+              "--fit-h": piece.fitHeight,
+              "--piece-delay": `${piece.delay}ms`,
+            } as CSSProperties
+          }
+        />
+      ))}
+      <div className="vp-compose-caption">{caption}</div>
+    </div>
+  );
+}
+
+type SearchPieceKind = "heading" | "field" | "icon" | "placeholder" | "btn";
+
+type SearchPiece = {
+  id: string;
+  kind: SearchPieceKind;
+  restTop: number;
+  restLeft: number;
+  fitTop: number;
+  fitLeft: number;
+  fitWidth: string;
+  fitHeight: string;
+  delay: number;
+};
+
+// All fit values are % of the square card. Within a field of height H at top T,
+// the icon (6%) and placeholder centre on T + H/2; the button matches the field.
+const SEARCH_REAL_MODULE: SearchPiece[] = [
+  { id: "heading", kind: "heading", restTop: 16, restLeft: 78, fitTop: 21, fitLeft: 13, fitWidth: "42%", fitHeight: "2.8%", delay: 0 },
+  { id: "field", kind: "field", restTop: 72, restLeft: 18, fitTop: 26.5, fitLeft: 13, fitWidth: "52%", fitHeight: "13%", delay: 80 },
+  { id: "icon", kind: "icon", restTop: 68, restLeft: 82, fitTop: 30, fitLeft: 15.5, fitWidth: "5.5%", fitHeight: "5.5%", delay: 160 },
+  { id: "placeholder", kind: "placeholder", restTop: 48, restLeft: 84, fitTop: 31.2, fitLeft: 24, fitWidth: "32%", fitHeight: "2.8%", delay: 220 },
+  { id: "btn", kind: "btn", restTop: 26, restLeft: 14, fitTop: 26.5, fitLeft: 68.5, fitWidth: "18.5%", fitHeight: "13%", delay: 300 },
+];
+
+const SEARCH_MODULE_SOFT: SearchPiece[] = [
+  { id: "heading", kind: "heading", restTop: 14, restLeft: 82, fitTop: 19.5, fitLeft: 14, fitWidth: "38%", fitHeight: "2.6%", delay: 0 },
+  { id: "field", kind: "field", restTop: 74, restLeft: 16, fitTop: 24.5, fitLeft: 14, fitWidth: "48%", fitHeight: "14%", delay: 80 },
+  { id: "icon", kind: "icon", restTop: 66, restLeft: 84, fitTop: 28.5, fitLeft: 17, fitWidth: "5%", fitHeight: "5%", delay: 160 },
+  { id: "placeholder", kind: "placeholder", restTop: 50, restLeft: 86, fitTop: 29.8, fitLeft: 25, fitWidth: "30%", fitHeight: "2.6%", delay: 220 },
+  { id: "btn", kind: "btn", restTop: 28, restLeft: 12, fitTop: 24.5, fitLeft: 68, fitWidth: "17%", fitHeight: "14%", delay: 300 },
+];
+
+const SEARCH_MODULE_TIGHT: SearchPiece[] = [
+  { id: "heading", kind: "heading", restTop: 18, restLeft: 76, fitTop: 22, fitLeft: 13, fitWidth: "44%", fitHeight: "2.6%", delay: 0 },
+  { id: "field", kind: "field", restTop: 70, restLeft: 20, fitTop: 27, fitLeft: 13, fitWidth: "54%", fitHeight: "11.5%", delay: 80 },
+  { id: "icon", kind: "icon", restTop: 64, restLeft: 80, fitTop: 30, fitLeft: 15, fitWidth: "5%", fitHeight: "5%", delay: 160 },
+  { id: "placeholder", kind: "placeholder", restTop: 46, restLeft: 82, fitTop: 31, fitLeft: 23.5, fitWidth: "34%", fitHeight: "2.6%", delay: 220 },
+  { id: "btn", kind: "btn", restTop: 24, restLeft: 16, fitTop: 27, fitLeft: 69.5, fitWidth: "18%", fitHeight: "11.5%", delay: 300 },
+];
+
+const SEARCH_MODULE_PILL: SearchPiece[] = [
+  { id: "heading", kind: "heading", restTop: 16, restLeft: 80, fitTop: 20, fitLeft: 14, fitWidth: "40%", fitHeight: "2.6%", delay: 0 },
+  { id: "field", kind: "field", restTop: 72, restLeft: 18, fitTop: 25, fitLeft: 14, fitWidth: "50%", fitHeight: "13.5%", delay: 80 },
+  { id: "icon", kind: "icon", restTop: 68, restLeft: 84, fitTop: 29.2, fitLeft: 16.5, fitWidth: "5%", fitHeight: "5%", delay: 160 },
+  { id: "placeholder", kind: "placeholder", restTop: 48, restLeft: 86, fitTop: 30.4, fitLeft: 24.5, fitWidth: "31%", fitHeight: "2.6%", delay: 220 },
+  { id: "btn", kind: "btn", restTop: 26, restLeft: 14, fitTop: 25, fitLeft: 69, fitWidth: "17.5%", fitHeight: "13.5%", delay: 300 },
+];
+
+// Field and button joined as one control
+const SEARCH_REAL_ATTACHED: SearchPiece[] = [
+  { id: "heading", kind: "heading", restTop: 18, restLeft: 16, fitTop: 25, fitLeft: 11, fitWidth: "40%", fitHeight: "3.4%", delay: 0 },
+  { id: "field", kind: "field", restTop: 76, restLeft: 22, fitTop: 39, fitLeft: 11, fitWidth: "58%", fitHeight: "14%", delay: 80 },
+  { id: "icon", kind: "icon", restTop: 62, restLeft: 80, fitTop: 43, fitLeft: 13.5, fitWidth: "6%", fitHeight: "6%", delay: 160 },
+  { id: "placeholder", kind: "placeholder", restTop: 44, restLeft: 12, fitTop: 44.5, fitLeft: 22, fitWidth: "42%", fitHeight: "3%", delay: 230 },
+  { id: "btn", kind: "btn", restTop: 28, restLeft: 84, fitTop: 39, fitLeft: 69, fitWidth: "20%", fitHeight: "14%", delay: 310 },
+];
+
+function SearchComposePreview({
+  variant,
+  pieces,
+  caption,
+  showCaption = true,
+}: {
+  variant: string;
+  pieces: SearchPiece[];
+  caption?: string;
+  showCaption?: boolean;
+}) {
+  return (
+    <div
+      className={`vp-card-preview vp-search-compose vp-search-compose--${variant}`.trim()}
+      aria-hidden="true"
+    >
+      <div className="vp-search-shell" />
+      {pieces.map((piece) => (
+        <div
+          key={piece.id}
+          className={`vp-search-piece vp-search-piece--${piece.kind}`}
+          style={
+            {
+              "--rest-top": `${piece.restTop}%`,
+              "--rest-left": `${piece.restLeft}%`,
+              "--fit-top": `${piece.fitTop}%`,
+              "--fit-left": `${piece.fitLeft}%`,
+              "--fit-w": piece.fitWidth,
+              "--fit-h": piece.fitHeight,
+              "--piece-delay": `${piece.delay}ms`,
+            } as CSSProperties
+          }
+        />
+      ))}
+      {showCaption && caption ? (
+        <div className="vp-compose-caption">{caption}</div>
+      ) : null}
     </div>
   );
 }
@@ -409,74 +533,101 @@ export function VpOptionComposeUserInline() {
   );
 }
 
-/** VPC7 — Tray of parts; the glass tucks inside the field as a leading icon */
-export function VpOptionComposeSearchLead() {
+/** VPC13 — Profile card with aligned lo-fi layout */
+export function VpOptionComposeUserRealProfile() {
   return (
-    <AtomicComposePreview
-      variant="search-lead"
-      atoms={SEARCH_LEAD_ATOMS}
-      caption="Tray → search input"
-      frame="search-module"
+    <UserCardComposePreview
+      variant="profile"
+      pieces={USER_REAL_PROFILE}
+      caption="Parts → profile card"
     />
   );
 }
 
-/** VPC8 — A taller search module: icon + field row over a full-width button */
-export function VpOptionComposeSearchTall() {
+/** VPC14 — Applicant list row, vertically centred */
+export function VpOptionComposeUserRealList() {
   return (
-    <AtomicComposePreview
-      variant="search-tall"
-      atoms={SEARCH_TALL_ATOMS}
-      caption="Parts → search panel"
-      frame="search-module"
+    <UserCardComposePreview
+      variant="list-row"
+      pieces={USER_REAL_LIST}
+      caption="Bits → list row"
     />
   );
 }
 
-/** VPC9 — A loose pile in the centre bursts out into the search row */
-export function VpOptionComposeSearchBurst() {
+/** VPC15 — Centred avatar with stacked copy */
+export function VpOptionComposeUserRealCentered() {
   return (
-    <AtomicComposePreview
-      variant="search-burst"
-      atoms={SEARCH_BURST_ATOMS}
-      caption="Pile → search input"
-      frame="search-module"
+    <UserCardComposePreview
+      variant="centered"
+      pieces={USER_REAL_CENTERED}
+      caption="Pieces → centred card"
     />
   );
 }
 
-/** VPC10 — Tray of parts stacks into a left-aligned profile column */
-export function VpOptionComposeUserTray() {
+/** VPC18 — Search module with heading, field, and side button */
+export function VpOptionComposeSearchRealModule() {
   return (
-    <AtomicComposePreview
-      variant="user-tray"
-      atoms={USER_TRAY_ATOMS}
-      caption="Tray → profile card"
-      frame="user-card"
+    <SearchComposePreview
+      variant="module"
+      pieces={SEARCH_REAL_MODULE}
+      caption="Parts → search module"
     />
   );
 }
 
-/** VPC11 — Avatar + title header band, body below, button bottom-right */
-export function VpOptionComposeUserHeader() {
+/** VPC18a — Softer corners, looser spacing */
+export function VpOptionComposeSearchModuleSoft() {
   return (
-    <AtomicComposePreview
-      variant="user-header"
-      atoms={USER_HEADER_ATOMS}
-      caption="Bits → profile header"
-      frame="user-card"
+    <SearchComposePreview
+      variant="module-soft"
+      pieces={SEARCH_MODULE_SOFT}
+      caption="Soft radius · airy"
     />
   );
 }
 
-/** VPC12 — Scattered parts line up as a horizontal user list row */
-export function VpOptionComposeUserRow() {
+/** VPC18b — Sharper corners, compact spacing */
+export function VpOptionComposeSearchModuleTight() {
   return (
-    <AtomicComposePreview
-      variant="user-row"
-      atoms={USER_ROW_ATOMS}
-      caption="Fragments → user row"
-      frame="user-card"
+    <SearchComposePreview
+      variant="module-tight"
+      pieces={SEARCH_MODULE_TIGHT}
+      caption="Tight radius · compact"
+    />
+  );
+}
+
+/** Landing card — VPC18b search module */
+export function VpProjectCardSearchModule() {
+  return (
+    <SearchComposePreview
+      variant="module-tight"
+      pieces={SEARCH_MODULE_TIGHT}
+      showCaption={false}
+    />
+  );
+}
+
+/** VPC18c — Pill field and button */
+export function VpOptionComposeSearchModulePill() {
+  return (
+    <SearchComposePreview
+      variant="module-pill"
+      pieces={SEARCH_MODULE_PILL}
+      caption="Pill controls"
+    />
+  );
+}
+
+/** VPC20 — Input and button joined as one control */
+export function VpOptionComposeSearchRealAttached() {
+  return (
+    <SearchComposePreview
+      variant="attached"
+      pieces={SEARCH_REAL_ATTACHED}
+      caption="Pieces → attached search"
     />
   );
 }

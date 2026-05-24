@@ -59,20 +59,22 @@ import {
   VpOptionComposeInputGroup,
   VpOptionComposeListRow,
   VpOptionComposeSearchBar,
-  VpOptionComposeSearchBurst,
-  VpOptionComposeSearchLead,
   VpOptionComposeSearchLedger,
   VpOptionComposeSearchQuadrant,
+  VpOptionComposeSearchRealAttached,
+  VpOptionComposeSearchRealModule,
+  VpOptionComposeSearchModulePill,
+  VpOptionComposeSearchModuleSoft,
+  VpOptionComposeSearchModuleTight,
   VpOptionComposeSearchStack,
-  VpOptionComposeSearchTall,
   VpOptionComposeTabBar,
   VpOptionComposeToolbar,
-  VpOptionComposeUserHeader,
   VpOptionComposeUserInline,
-  VpOptionComposeUserRow,
+  VpOptionComposeUserRealCentered,
+  VpOptionComposeUserRealList,
+  VpOptionComposeUserRealProfile,
   VpOptionComposeUserSide,
   VpOptionComposeUserStack,
-  VpOptionComposeUserTray,
   VpOptionContrastPass,
   VpOptionLibraryPublish,
   VpOptionMoleculeBondChain,
@@ -534,48 +536,65 @@ const VP_COMPOSE_UI_VARIATIONS: CardOption[] = [
   },
 ];
 
-const VP_COMPOSE_UI_MORE: CardOption[] = [
+const VP_COMPOSE_USER_REAL: CardOption[] = [
   {
-    id: "vpc7",
-    label: "VPC7 — Search lead icon",
+    id: "vpc13",
+    label: "VPC13 — Profile card",
     description:
-      "Parts wait in a tray along the bottom; on hover the magnifier tucks inside the field as a leading icon, button alongside.",
-    Preview: VpOptionComposeSearchLead,
+      "Lo-fi profile layout: avatar and title share a row, body lines align beneath, full-width button anchored at the bottom.",
+    Preview: VpOptionComposeUserRealProfile,
   },
   {
-    id: "vpc8",
-    label: "VPC8 — Search tall",
+    id: "vpc14",
+    label: "VPC14 — List row",
     description:
-      "Scattered pieces resolve into a taller two-row module: icon and field up top, a full-width button beneath.",
-    Preview: VpOptionComposeSearchTall,
+      "Applicant-style list item — avatar, two-line meta, and a compact trailing action, all vertically centred in a short bar.",
+    Preview: VpOptionComposeUserRealList,
   },
   {
-    id: "vpc9",
-    label: "VPC9 — Search burst",
+    id: "vpc15",
+    label: "VPC15 — Centred card",
     description:
-      "A loose pile of parts overlapping in the centre springs outward into a single search row.",
-    Preview: VpOptionComposeSearchBurst,
+      "Avatar centred above stacked title and body placeholders, with a pill-shaped button below.",
+    Preview: VpOptionComposeUserRealCentered,
+  },
+];
+
+const VP_COMPOSE_SEARCH_REAL: CardOption[] = [
+  {
+    id: "vpc18",
+    label: "VPC18 — Search module",
+    description:
+      "Balanced lo-fi module: muted stone tones, 6px corners, comfortable gap between field and button.",
+    Preview: VpOptionComposeSearchRealModule,
   },
   {
-    id: "vpc10",
-    label: "VPC10 — User tray",
+    id: "vpc18a",
+    label: "VPC18a — Soft & airy",
     description:
-      "Avatar, title, body blocks, and button sit in a tray, then stack into a left-aligned profile column.",
-    Preview: VpOptionComposeUserTray,
+      "Rounder 9px field and 8px button, more padding inside the card shell, wider gaps between pieces.",
+    Preview: VpOptionComposeSearchModuleSoft,
   },
   {
-    id: "vpc11",
-    label: "VPC11 — User header",
+    id: "vpc18b",
+    label: "VPC18b — Tight & sharp",
     description:
-      "Avatar and title settle into a header band, body placeholders below, with the button in the bottom-right.",
-    Preview: VpOptionComposeUserHeader,
+      "Compact vertical rhythm with 3px corners — heading sits closer to the search row, shorter field height.",
+    Preview: VpOptionComposeSearchModuleTight,
   },
   {
-    id: "vpc12",
-    label: "VPC12 — User row",
+    id: "vpc18c",
+    label: "VPC18c — Pill controls",
     description:
-      "Scattered parts line up as a horizontal list item: avatar left, title and body centre, button trailing right.",
-    Preview: VpOptionComposeUserRow,
+      "Same spacing as the soft variant but the field and button resolve to full pills inside the rounded card.",
+    Preview: VpOptionComposeSearchModulePill,
+  },
+  {
+    id: "vpc20",
+    label: "VPC20 — Attached search",
+    description:
+      "Field and button flush together as one split control, with a heading above the joined input group.",
+    Preview: VpOptionComposeSearchRealAttached,
   },
 ];
 
@@ -1008,17 +1027,35 @@ export default function ProjectCardOptions() {
 
         <div className="mb-8 max-w-2xl space-y-2">
           <h2 className="text-xl font-semibold text-gray-900">
-            UI compose — more layouts
+            User card — refined
           </h2>
           <p className="font-sans text-sm leading-relaxed text-gray-500">
-            More takes on the same loose parts, with different ways of sitting
-            around at rest — a tray, a centre pile, a scatter — and different
-            composed results: a leading-icon field, a tall module, a profile
-            column, a header band, and a list row.
+            Same atoms-to-molecule idea, but pieces snap to top-left slots inside
+            a card shell so the composed state reads like real lo-fi UI — aligned
+            rows, sensible proportions, and believable spacing.
           </p>
         </div>
 
-        <OptionCardGrid options={VP_COMPOSE_UI_MORE} />
+        <OptionCardGrid options={VP_COMPOSE_USER_REAL} />
+
+        <div
+          className="my-12 border-t border-gray-200/80"
+          role="separator"
+          aria-hidden="true"
+        />
+
+        <div className="mb-8 max-w-2xl space-y-2">
+          <h2 className="text-xl font-semibold text-gray-900">
+            Search — refined
+          </h2>
+          <p className="font-sans text-sm leading-relaxed text-gray-500">
+            Composed-first search modules: each starts as a believable lo-fi
+            card with heading, leading icon, placeholder bar, and button label —
+            then the pieces scatter at rest and snap back on hover.
+          </p>
+        </div>
+
+        <OptionCardGrid options={VP_COMPOSE_SEARCH_REAL} />
 
         <div
           className="my-12 border-t border-gray-200/80"
