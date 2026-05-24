@@ -3,7 +3,7 @@
 // stays identical across studies instead of each one wording it differently.
 
 // pixelarticons "lightbulb-off" (https://pixelarticons.com/icon/lightbulb-off/),
-// inlined so it inherits the brand green via currentColor and scales crisply.
+// inlined so it takes its colour from currentColor and scales crisply.
 // Decorative: the adjacent copy carries the meaning, so it's hidden from AT.
 function LightbulbIcon() {
   return (
@@ -22,8 +22,8 @@ function LightbulbIcon() {
 
 export function CaseStudySnapshotCallout() {
   return (
-    <aside className="not-prose mb-10 flex items-start gap-4 rounded-lg border border-gray-200 bg-white/60 px-5 py-4">
-      <span className="mt-0.5 text-[#47DD4E]">
+    <aside className="not-prose mb-10 flex items-start gap-4 rounded-lg border border-gray-200 bg-white/70 px-5 py-4 shadow-sm">
+      <span className="mt-0.5 text-blue-600">
         <LightbulbIcon />
       </span>
       <div>
