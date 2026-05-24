@@ -198,6 +198,7 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
             src={iconGrid}
             alt="Diagram showing a 20 px icon canvas with a 14 px live area and a 3 px inset, plus example icons aligned to key shapes (rounded rectangles, circle, square)."
             caption="Built on a 20 by 20 px canvas, with a 14 by 14 px live area (3 px inset) and 1 px stroke weight."
+            lightbox
           />
         </p>
         <Heading3 id="system-layer-a-naming-convention-that-optimizes-for-scale-and-long-term-clarity">
@@ -271,6 +272,7 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
             src={iconWorkshop}
             alt="Screenshot of a FigJam workshop board showing collaborative work with embedded designers to capture search terms and keywords for icon discoverability"
             caption="Icon search terms and naming workshop facilitated in FigJam with 18+ embedded designers."
+            lightbox
           />
         </p>
         <Heading3 id="operational-layer-a-new-contribution-process">
@@ -305,6 +307,7 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
             alt="Samples from the icon contribution guide showing documentation, examples, and guidelines for contributing new icons to the design system"
             caption="Samples from the contribution guide. At the time, our Design System was called Supply."
             noBorder
+            lightbox
           />
         </p>
         <Heading3 id="operational-layer-design-to-production-parity">
