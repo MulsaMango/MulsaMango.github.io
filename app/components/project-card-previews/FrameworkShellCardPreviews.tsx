@@ -83,18 +83,27 @@ function BeforeAfterChrome({ side }: { side: "before" | "after" }) {
   );
 }
 
-function BeforeAfterPreview({ variant }: { variant?: string }) {
+function BeforeAfterPreview({
+  variant,
+  showLabels = true,
+}: {
+  variant?: string;
+  showLabels?: boolean;
+}) {
   const variantClass = variant ? `fr-card-preview-before-after--${variant}` : "";
+  const noLabelsClass = showLabels ? "" : "fr-card-preview-before-after--no-labels";
 
   return (
     <div
-      className={`fr-card-preview fr-card-preview-before-after ${variantClass}`.trim()}
+      className={`fr-card-preview fr-card-preview-before-after ${variantClass} ${noLabelsClass}`.trim()}
       aria-hidden="true"
     >
-      <div className="fr-ba-labels">
-        <span className="fr-ba-label fr-ba-label--before">Before</span>
-        <span className="fr-ba-label fr-ba-label--after">After</span>
-      </div>
+      {showLabels ? (
+        <div className="fr-ba-labels">
+          <span className="fr-ba-label fr-ba-label--before">Before</span>
+          <span className="fr-ba-label fr-ba-label--after">After</span>
+        </div>
+      ) : null}
       <div className="fr-ba-before">
         <BeforeAfterChrome side="before" />
       </div>
@@ -133,6 +142,11 @@ export function FrOptionFr2fVerticalSweep() {
 
 export function FrOptionFr2gFullReveal() {
   return <BeforeAfterPreview variant="full" />;
+}
+
+/** Landing card — full reveal without before/after labels */
+export function FrProjectCardFullReveal() {
+  return <BeforeAfterPreview variant="full" showLabels={false} />;
 }
 
 /** FR3 — Configurable nav pins and expands */

@@ -54,17 +54,50 @@ import {
 import "../components/project-card-previews/project-card-previews.css";
 import {
   VpOptionAtomicCompose,
+  VpOptionButtonWrangle,
   VpOptionComposeActionCard,
   VpOptionComposeInputGroup,
   VpOptionComposeListRow,
   VpOptionComposeSearchBar,
+  VpOptionComposeSearchBurst,
+  VpOptionComposeSearchLead,
+  VpOptionComposeSearchLedger,
+  VpOptionComposeSearchQuadrant,
+  VpOptionComposeSearchStack,
+  VpOptionComposeSearchTall,
   VpOptionComposeTabBar,
   VpOptionComposeToolbar,
+  VpOptionComposeUserHeader,
+  VpOptionComposeUserInline,
+  VpOptionComposeUserRow,
+  VpOptionComposeUserSide,
+  VpOptionComposeUserStack,
+  VpOptionComposeUserTray,
+  VpOptionContrastPass,
   VpOptionLibraryPublish,
+  VpOptionMoleculeBondChain,
+  VpOptionMoleculeFamily,
+  VpOptionMoleculeLibraryGate,
+  VpOptionMoleculeOrbitButton,
+  VpOptionMoleculeRecipeInput,
+  VpOptionMoleculeVideoApply,
+  VpOptionPinkWrangler,
+  VpOptionResumeToVideo,
   VpOptionSharedPatterns,
   VpOptionSingleSource,
+  VpOptionSourceCascade,
+  VpOptionSourceOfTruth,
+  VpOptionSourceRadial,
+  VpOptionSourceReattach,
+  VpOptionTwelveWeekKit,
+  VpOptionTypeSpecimen,
+  VpOptionVariantInput,
+  VpOptionVariantSegments,
+  VpOptionVariantSliders,
+  VpOptionVariantSwitches,
   VpOptionTokenScale,
   VpOptionVariantMatrix,
+  VpOptionVideoApplication,
 } from "../components/project-card-previews/VpplyCardPreviews";
 import "../components/project-card-previews/vpply-card-previews.css";
 import { SiteHeader } from "../components/SiteHeader";
@@ -456,6 +489,141 @@ const VP2_VARIATIONS: CardOption[] = [
   },
 ];
 
+const VP_COMPOSE_UI_VARIATIONS: CardOption[] = [
+  {
+    id: "vpc1",
+    label: "VPC1 — Search stack",
+    description:
+      "Title block, magnifier, input field, and button snap into a stacked search module.",
+    Preview: VpOptionComposeSearchStack,
+  },
+  {
+    id: "vpc2",
+    label: "VPC2 — Search ledger",
+    description:
+      "Left-aligned title placeholder with a wide search row below — icon, field, and action.",
+    Preview: VpOptionComposeSearchLedger,
+  },
+  {
+    id: "vpc3",
+    label: "VPC3 — Search quadrant",
+    description:
+      "Four pieces scattered to the corners converge slowly into one search input.",
+    Preview: VpOptionComposeSearchQuadrant,
+  },
+  {
+    id: "vpc4",
+    label: "VPC4 — User side",
+    description:
+      "Avatar, title block, two body placeholders, and button form a horizontal user card.",
+    Preview: VpOptionComposeUserSide,
+  },
+  {
+    id: "vpc5",
+    label: "VPC5 — User stack",
+    description:
+      "Centered avatar with title and body blocks stacked above a full-width action.",
+    Preview: VpOptionComposeUserStack,
+  },
+  {
+    id: "vpc6",
+    label: "VPC6 — User inline",
+    description:
+      "Compact tile: avatar and title on one row, body block, then button.",
+    Preview: VpOptionComposeUserInline,
+  },
+];
+
+const VP_COMPOSE_UI_MORE: CardOption[] = [
+  {
+    id: "vpc7",
+    label: "VPC7 — Search lead icon",
+    description:
+      "Parts wait in a tray along the bottom; on hover the magnifier tucks inside the field as a leading icon, button alongside.",
+    Preview: VpOptionComposeSearchLead,
+  },
+  {
+    id: "vpc8",
+    label: "VPC8 — Search tall",
+    description:
+      "Scattered pieces resolve into a taller two-row module: icon and field up top, a full-width button beneath.",
+    Preview: VpOptionComposeSearchTall,
+  },
+  {
+    id: "vpc9",
+    label: "VPC9 — Search burst",
+    description:
+      "A loose pile of parts overlapping in the centre springs outward into a single search row.",
+    Preview: VpOptionComposeSearchBurst,
+  },
+  {
+    id: "vpc10",
+    label: "VPC10 — User tray",
+    description:
+      "Avatar, title, body blocks, and button sit in a tray, then stack into a left-aligned profile column.",
+    Preview: VpOptionComposeUserTray,
+  },
+  {
+    id: "vpc11",
+    label: "VPC11 — User header",
+    description:
+      "Avatar and title settle into a header band, body placeholders below, with the button in the bottom-right.",
+    Preview: VpOptionComposeUserHeader,
+  },
+  {
+    id: "vpc12",
+    label: "VPC12 — User row",
+    description:
+      "Scattered parts line up as a horizontal list item: avatar left, title and body centre, button trailing right.",
+    Preview: VpOptionComposeUserRow,
+  },
+];
+
+const VP_MOLECULE_RIFFS: CardOption[] = [
+  {
+    id: "vpm1",
+    label: "VPM1 — Orbit button",
+    description:
+      "Quiet atoms orbit at rest, then bond into a compact button molecule with a pink active core.",
+    Preview: VpOptionMoleculeOrbitButton,
+  },
+  {
+    id: "vpm2",
+    label: "VPM2 — Bond chain",
+    description:
+      "Type, state, tone, space, and motion click into a molecular chain of variant properties.",
+    Preview: VpOptionMoleculeBondChain,
+  },
+  {
+    id: "vpm3",
+    label: "VPM3 — Input recipe",
+    description:
+      "Tiny ingredient atoms settle into a labeled input molecule with field, label, and hint.",
+    Preview: VpOptionMoleculeRecipeInput,
+  },
+  {
+    id: "vpm4",
+    label: "VPM4 — Molecule family",
+    description:
+      "One loose atom cloud recombines into the practical MVP family: button, input, and nav.",
+    Preview: VpOptionMoleculeFamily,
+  },
+  {
+    id: "vpm5",
+    label: "VPM5 — Video molecule",
+    description:
+      "Play, timer, field, and CTA atoms resolve into the video-first application component.",
+    Preview: VpOptionMoleculeVideoApply,
+  },
+  {
+    id: "vpm6",
+    label: "VPM6 — Library gate",
+    description:
+      "Loose atoms pass through a Figma-like library frame and leave as published molecules.",
+    Preview: VpOptionMoleculeLibraryGate,
+  },
+];
+
 const VPPLY_OPTIONS: CardOption[] = [
   {
     id: "vp1",
@@ -498,6 +666,134 @@ const VPPLY_OPTIONS: CardOption[] = [
     description:
       "Loose components get framed and aligned inside a published team library.",
     Preview: VpOptionLibraryPublish,
+  },
+  {
+    id: "vp7",
+    label: "VP7 — Pink wrangler",
+    description:
+      "A mess of Vpply pinks gets politely herded into one accessible AA-ready brand token.",
+    Preview: VpOptionPinkWrangler,
+  },
+  {
+    id: "vp8",
+    label: "VP8 — Video application",
+    description:
+      "The video-first job application becomes a tight little UI loop: record, add details, apply.",
+    Preview: VpOptionVideoApplication,
+  },
+  {
+    id: "vp9",
+    label: "VP9 — Button wrangle",
+    description:
+      "Duplicate one-off buttons get lassoed into a single primary component. Slightly cheeky, still tidy.",
+    Preview: VpOptionButtonWrangle,
+  },
+  {
+    id: "vp10",
+    label: "VP10 — 12-week kit",
+    description:
+      "A constrained contract timeline snaps into the practical MVP kit: buttons, inputs, and nav.",
+    Preview: VpOptionTwelveWeekKit,
+  },
+];
+
+const VP_FRESH_TAKES: CardOption[] = [
+  {
+    id: "vpf1",
+    label: "VPF1 — Pink that passes",
+    description:
+      "A washed-out Vpply pink with barely-legible text deepens to the accessible AA pink on hover, the ratio badge flipping from fail to pass.",
+    Preview: VpOptionContrastPass,
+  },
+  {
+    id: "vpf2",
+    label: "VPF2 — Source of truth",
+    description:
+      "Edit the main component and the change ripples down the links to every instance, so they all match. One source, no drift.",
+    Preview: VpOptionSourceOfTruth,
+  },
+  {
+    id: "vpf3",
+    label: "VPF3 — Variant switches",
+    description:
+      "Flip the property toggles and the button restyles in response, focus ring and all. Components wired with variant properties.",
+    Preview: VpOptionVariantSwitches,
+  },
+  {
+    id: "vpf4",
+    label: "VPF4 — Type specimen",
+    description:
+      "Haphazard, rotated type bars settle into a clean stepped scale and the specimen sharpens. Montserrat, finally in order.",
+    Preview: VpOptionTypeSpecimen,
+  },
+  {
+    id: "vpf5",
+    label: "VPF5 — Press record",
+    description:
+      "A fanned paper resume and cover letter slide away to reveal the video-first application card. 90 seconds, not 9 pages.",
+    Preview: VpOptionResumeToVideo,
+  },
+];
+
+const VPF2_VARIATIONS: CardOption[] = [
+  {
+    id: "vpf2",
+    label: "VPF2 — Source of truth",
+    description:
+      "Edit the main component and the change ripples down the links to three instances. Neutral darks, a blue link, a green source mark.",
+    Preview: VpOptionSourceOfTruth,
+  },
+  {
+    id: "vpf2b",
+    label: "VPF2b — Radial hub",
+    description:
+      "The source sits at the centre with instances ringing it; the edit radiates outward to each one in turn.",
+    Preview: VpOptionSourceRadial,
+  },
+  {
+    id: "vpf2c",
+    label: "VPF2c — Cascade",
+    description:
+      "A blue rail fills top to bottom as a vertical stack of instances syncs in sequence behind it.",
+    Preview: VpOptionSourceCascade,
+  },
+  {
+    id: "vpf2d",
+    label: "VPF2d — Reattach",
+    description:
+      "One drifted, tilted duplicate with a broken link snaps back into the row and re-adopts the source on hover.",
+    Preview: VpOptionSourceReattach,
+  },
+];
+
+const VPF3_VARIATIONS: CardOption[] = [
+  {
+    id: "vpf3",
+    label: "VPF3 — Variant switches",
+    description:
+      "Flip the Type / State / Size toggles and the button restyles to a blue solid with a green focus ring.",
+    Preview: VpOptionVariantSwitches,
+  },
+  {
+    id: "vpf3b",
+    label: "VPF3b — Segmented control",
+    description:
+      "A Ghost / Solid / Soft selector slides from ghost to solid, and the button morphs from outline to filled to match.",
+    Preview: VpOptionVariantSegments,
+  },
+  {
+    id: "vpf3c",
+    label: "VPF3c — Input variants",
+    description:
+      "The component is a text input: empty resolves to focused (blue ring) and valid (green check) as the state advances.",
+    Preview: VpOptionVariantInput,
+  },
+  {
+    id: "vpf3d",
+    label: "VPF3d — Token sliders",
+    description:
+      "Size and radius sliders drive the button: as the knobs travel right it grows and rounds, blue fill and all.",
+    Preview: VpOptionVariantSliders,
   },
 ];
 
@@ -685,6 +981,120 @@ export default function ProjectCardOptions() {
         </div>
 
         <OptionCardGrid options={VP2_VARIATIONS} />
+
+        <div
+          className="my-12 border-t border-gray-200/80"
+          role="separator"
+          aria-hidden="true"
+        />
+
+        <div className="mb-8 max-w-2xl space-y-2">
+          <h2 className="text-xl font-semibold text-gray-900">
+            UI compose — search &amp; user card
+          </h2>
+          <p className="font-sans text-sm leading-relaxed text-gray-500">
+            Loose UI fragments — block placeholders, icons, fields, and buttons
+            — that snap together into composed search inputs and user cards.
+          </p>
+        </div>
+
+        <OptionCardGrid options={VP_COMPOSE_UI_VARIATIONS} />
+
+        <div
+          className="my-12 border-t border-gray-200/80"
+          role="separator"
+          aria-hidden="true"
+        />
+
+        <div className="mb-8 max-w-2xl space-y-2">
+          <h2 className="text-xl font-semibold text-gray-900">
+            UI compose — more layouts
+          </h2>
+          <p className="font-sans text-sm leading-relaxed text-gray-500">
+            More takes on the same loose parts, with different ways of sitting
+            around at rest — a tray, a centre pile, a scatter — and different
+            composed results: a leading-icon field, a tall module, a profile
+            column, a header band, and a list row.
+          </p>
+        </div>
+
+        <OptionCardGrid options={VP_COMPOSE_UI_MORE} />
+
+        <div
+          className="my-12 border-t border-gray-200/80"
+          role="separator"
+          aria-hidden="true"
+        />
+
+        <div className="mb-8 max-w-2xl space-y-2">
+          <h2 className="text-xl font-semibold text-gray-900">
+            Molecule riffs
+          </h2>
+          <p className="font-sans text-sm leading-relaxed text-gray-500">
+            More literal atomic-design concepts: particles bonding,
+            recombining, and passing through a shared library into usable UI
+            molecules.
+          </p>
+        </div>
+
+        <OptionCardGrid options={VP_MOLECULE_RIFFS} />
+
+        <div
+          className="my-12 border-t border-gray-200/80"
+          role="separator"
+          aria-hidden="true"
+        />
+
+        <div className="mb-8 max-w-2xl space-y-2">
+          <h2 className="text-xl font-semibold text-gray-900">
+            Fresh takes
+          </h2>
+          <p className="font-sans text-sm leading-relaxed text-gray-500">
+            Five more angles on the Vpply story: the accessible-pink win, a
+            single source of truth, variant properties, the type scale, and the
+            video-first pitch. Quiet at rest, bold on hover.
+          </p>
+        </div>
+
+        <OptionCardGrid options={VP_FRESH_TAKES} />
+
+        <div
+          className="my-12 border-t border-gray-200/80"
+          role="separator"
+          aria-hidden="true"
+        />
+
+        <div className="mb-8 max-w-2xl space-y-2">
+          <h2 className="text-xl font-semibold text-gray-900">
+            VPF2 variations — source of truth
+          </h2>
+          <p className="font-sans text-sm leading-relaxed text-gray-500">
+            One main component, edits propagating to its instances. Same idea,
+            different layouts and motion. Neutrals and a blue link, with a green
+            source highlight.
+          </p>
+        </div>
+
+        <OptionCardGrid options={VPF2_VARIATIONS} />
+
+        <div
+          className="my-12 border-t border-gray-200/80"
+          role="separator"
+          aria-hidden="true"
+        />
+
+        <div className="mb-8 max-w-2xl space-y-2">
+          <h2 className="text-xl font-semibold text-gray-900">
+            VPF3 variations — variant properties
+          </h2>
+          <p className="font-sans text-sm leading-relaxed text-gray-500">
+            Adjust the controls, the component reacts. Toggles, a segmented
+            control, input states, and token sliders — blue component, green
+            highlight.
+          </p>
+        </div>
+
+        <OptionCardGrid options={VPF3_VARIATIONS} />
       </section>
 
       <Footer />

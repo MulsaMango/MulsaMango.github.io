@@ -10,7 +10,24 @@ type ComposeAtom = {
   delay: number;
 };
 
-type ComposeFrame = "none" | "bar" | "card" | "row";
+type ComposeFrame =
+  | "none"
+  | "bar"
+  | "card"
+  | "row"
+  | "search-module"
+  | "search-row"
+  | "user-card";
+
+type MoleculeAtom = {
+  id: string;
+  kind?: string;
+  restTop: number;
+  restLeft: number;
+  slotTop: number;
+  slotLeft: number;
+  delay: number;
+};
 
 const BASE_ATOMS: ComposeAtom[] = [
   { id: "dot", kind: "dot", restTop: 24, restLeft: 22, slotTop: 30, slotLeft: 50, delay: 0 },
@@ -57,6 +74,123 @@ const TOOLBAR_ATOMS: ComposeAtom[] = [
   { id: "label", kind: "toolbar-label", restTop: 38, restLeft: 14, slotTop: 50, slotLeft: 38, delay: 80 },
   { id: "divider", kind: "toolbar-divider", restTop: 58, restLeft: 82, slotTop: 50, slotLeft: 58, delay: 160 },
   { id: "action", kind: "toolbar-action", restTop: 72, restLeft: 26, slotTop: 50, slotLeft: 78, delay: 240 },
+];
+
+const SEARCH_STACK_ATOMS: ComposeAtom[] = [
+  { id: "title", kind: "ph-title", restTop: 16, restLeft: 22, slotTop: 24, slotLeft: 50, delay: 0 },
+  { id: "glass", kind: "si-glass", restTop: 72, restLeft: 18, slotTop: 50, slotLeft: 22, delay: 90 },
+  { id: "field", kind: "si-field", restTop: 48, restLeft: 82, slotTop: 50, slotLeft: 50, delay: 180 },
+  { id: "btn", kind: "si-btn", restTop: 78, restLeft: 68, slotTop: 50, slotLeft: 80, delay: 270 },
+];
+
+const SEARCH_LEDGER_ATOMS: ComposeAtom[] = [
+  { id: "title", kind: "ph-title", restTop: 20, restLeft: 78, slotTop: 22, slotLeft: 28, delay: 0 },
+  { id: "glass", kind: "si-glass", restTop: 65, restLeft: 15, slotTop: 52, slotLeft: 18, delay: 80 },
+  { id: "field", kind: "si-field", restTop: 38, restLeft: 55, slotTop: 52, slotLeft: 48, delay: 160 },
+  { id: "btn", kind: "si-btn", restTop: 74, restLeft: 85, slotTop: 52, slotLeft: 84, delay: 240 },
+];
+
+const SEARCH_QUADRANT_ATOMS: ComposeAtom[] = [
+  { id: "title", kind: "ph-title", restTop: 14, restLeft: 12, slotTop: 24, slotLeft: 50, delay: 0 },
+  { id: "glass", kind: "si-glass", restTop: 12, restLeft: 88, slotTop: 50, slotLeft: 22, delay: 120 },
+  { id: "field", kind: "si-field", restTop: 86, restLeft: 14, slotTop: 50, slotLeft: 50, delay: 240 },
+  { id: "btn", kind: "si-btn", restTop: 88, restLeft: 86, slotTop: 50, slotLeft: 80, delay: 360 },
+];
+
+const USER_SIDE_ATOMS: ComposeAtom[] = [
+  { id: "avatar", kind: "uc-avatar", restTop: 18, restLeft: 78, slotTop: 36, slotLeft: 26, delay: 0 },
+  { id: "title", kind: "ph-title", restTop: 22, restLeft: 14, slotTop: 30, slotLeft: 58, delay: 70 },
+  { id: "body1", kind: "ph-body", restTop: 48, restLeft: 82, slotTop: 42, slotLeft: 58, delay: 140 },
+  { id: "body2", kind: "ph-body-short", restTop: 58, restLeft: 16, slotTop: 50, slotLeft: 58, delay: 210 },
+  { id: "btn", kind: "uc-btn", restTop: 76, restLeft: 72, slotTop: 66, slotLeft: 50, delay: 280 },
+];
+
+const USER_STACK_ATOMS: ComposeAtom[] = [
+  { id: "avatar", kind: "uc-avatar", restTop: 20, restLeft: 18, slotTop: 28, slotLeft: 50, delay: 0 },
+  { id: "title", kind: "ph-title", restTop: 34, restLeft: 82, slotTop: 40, slotLeft: 50, delay: 80 },
+  { id: "body1", kind: "ph-body", restTop: 52, restLeft: 12, slotTop: 50, slotLeft: 50, delay: 160 },
+  { id: "body2", kind: "ph-body-short", restTop: 64, restLeft: 75, slotTop: 58, slotLeft: 50, delay: 240 },
+  { id: "btn", kind: "uc-btn", restTop: 78, restLeft: 28, slotTop: 70, slotLeft: 50, delay: 320 },
+];
+
+const USER_INLINE_ATOMS: ComposeAtom[] = [
+  { id: "avatar", kind: "uc-avatar", restTop: 24, restLeft: 72, slotTop: 34, slotLeft: 28, delay: 0 },
+  { id: "title", kind: "ph-title", restTop: 20, restLeft: 16, slotTop: 34, slotLeft: 58, delay: 90 },
+  { id: "body1", kind: "ph-body", restTop: 56, restLeft: 84, slotTop: 50, slotLeft: 50, delay: 180 },
+  { id: "btn", kind: "uc-btn", restTop: 74, restLeft: 18, slotTop: 66, slotLeft: 50, delay: 270 },
+];
+
+// Parts wait in a tray along the bottom, then the glass tucks inside the field
+const SEARCH_LEAD_ATOMS: ComposeAtom[] = [
+  { id: "field", kind: "si-field", restTop: 85, restLeft: 40, slotTop: 56, slotLeft: 54, delay: 90 },
+  { id: "glass", kind: "si-glass", restTop: 85, restLeft: 62, slotTop: 56, slotLeft: 36, delay: 170 },
+  { id: "title", kind: "ph-title", restTop: 85, restLeft: 16, slotTop: 36, slotLeft: 36, delay: 0 },
+  { id: "btn", kind: "si-btn", restTop: 85, restLeft: 84, slotTop: 56, slotLeft: 83, delay: 250 },
+];
+
+// Scattered parts resolve into a taller two-row module with a full-width button
+const SEARCH_TALL_ATOMS: ComposeAtom[] = [
+  { id: "title", kind: "ph-title", restTop: 70, restLeft: 20, slotTop: 24, slotLeft: 30, delay: 0 },
+  { id: "glass", kind: "si-glass", restTop: 22, restLeft: 78, slotTop: 50, slotLeft: 28, delay: 120 },
+  { id: "field", kind: "si-field", restTop: 80, restLeft: 60, slotTop: 50, slotLeft: 56, delay: 200 },
+  { id: "btn", kind: "si-btn", restTop: 26, restLeft: 30, slotTop: 74, slotLeft: 52, delay: 300 },
+];
+
+// A loose pile in the centre bursts outward into the search row
+const SEARCH_BURST_ATOMS: ComposeAtom[] = [
+  { id: "title", kind: "ph-title", restTop: 48, restLeft: 46, slotTop: 26, slotLeft: 50, delay: 0 },
+  { id: "glass", kind: "si-glass", restTop: 54, restLeft: 54, slotTop: 52, slotLeft: 24, delay: 60 },
+  { id: "field", kind: "si-field", restTop: 50, restLeft: 50, slotTop: 52, slotLeft: 50, delay: 120 },
+  { id: "btn", kind: "si-btn", restTop: 46, restLeft: 56, slotTop: 52, slotLeft: 78, delay: 180 },
+];
+
+// Parts wait in a tray, then stack into a left-aligned profile column
+const USER_TRAY_ATOMS: ComposeAtom[] = [
+  { id: "avatar", kind: "uc-avatar", restTop: 85, restLeft: 14, slotTop: 28, slotLeft: 28, delay: 0 },
+  { id: "title", kind: "ph-title", restTop: 85, restLeft: 34, slotTop: 42, slotLeft: 36, delay: 80 },
+  { id: "body1", kind: "ph-body", restTop: 85, restLeft: 54, slotTop: 54, slotLeft: 38, delay: 160 },
+  { id: "body2", kind: "ph-body-short", restTop: 85, restLeft: 70, slotTop: 62, slotLeft: 34, delay: 240 },
+  { id: "btn", kind: "uc-btn", restTop: 85, restLeft: 88, slotTop: 74, slotLeft: 30, delay: 320 },
+];
+
+// Avatar and title settle into a header band, body below, button bottom-right
+const USER_HEADER_ATOMS: ComposeAtom[] = [
+  { id: "avatar", kind: "uc-avatar", restTop: 20, restLeft: 80, slotTop: 30, slotLeft: 28, delay: 0 },
+  { id: "title", kind: "ph-title", restTop: 24, restLeft: 14, slotTop: 30, slotLeft: 54, delay: 80 },
+  { id: "body1", kind: "ph-body", restTop: 50, restLeft: 84, slotTop: 52, slotLeft: 50, delay: 160 },
+  { id: "body2", kind: "ph-body-short", restTop: 60, restLeft: 16, slotTop: 60, slotLeft: 44, delay: 220 },
+  { id: "btn", kind: "uc-btn", restTop: 80, restLeft: 70, slotTop: 72, slotLeft: 70, delay: 300 },
+];
+
+// Scattered parts line up as a horizontal list row with a trailing button
+const USER_ROW_ATOMS: ComposeAtom[] = [
+  { id: "avatar", kind: "uc-avatar", restTop: 76, restLeft: 22, slotTop: 50, slotLeft: 22, delay: 0 },
+  { id: "title", kind: "ph-title", restTop: 20, restLeft: 70, slotTop: 42, slotLeft: 52, delay: 90 },
+  { id: "body1", kind: "ph-body", restTop: 70, restLeft: 80, slotTop: 56, slotLeft: 52, delay: 170 },
+  { id: "btn", kind: "uc-btn", restTop: 26, restLeft: 24, slotTop: 50, slotLeft: 82, delay: 250 },
+];
+
+const ORBIT_MOLECULE_ATOMS: MoleculeAtom[] = [
+  { id: "a1", restTop: 20, restLeft: 48, slotTop: 34, slotLeft: 32, delay: 0 },
+  { id: "a2", restTop: 31, restLeft: 74, slotTop: 34, slotLeft: 48, delay: 50 },
+  { id: "a3", restTop: 56, restLeft: 78, slotTop: 48, slotLeft: 48, delay: 100 },
+  { id: "a4", restTop: 76, restLeft: 54, slotTop: 62, slotLeft: 48, delay: 150 },
+  { id: "a5", restTop: 64, restLeft: 25, slotTop: 62, slotLeft: 32, delay: 200 },
+  { id: "a6", restTop: 36, restLeft: 22, slotTop: 48, slotLeft: 32, delay: 250 },
+];
+
+const RECIPE_MOLECULE_ATOMS: MoleculeAtom[] = [
+  { id: "type", kind: "type", restTop: 28, restLeft: 22, slotTop: 35, slotLeft: 29, delay: 0 },
+  { id: "state", kind: "state", restTop: 24, restLeft: 72, slotTop: 35, slotLeft: 51, delay: 70 },
+  { id: "space", kind: "space", restTop: 68, restLeft: 19, slotTop: 58, slotLeft: 29, delay: 140 },
+  { id: "pink", kind: "pink", restTop: 72, restLeft: 75, slotTop: 58, slotLeft: 51, delay: 210 },
+];
+
+const VIDEO_MOLECULE_ATOMS: MoleculeAtom[] = [
+  { id: "play", kind: "video-play", restTop: 25, restLeft: 30, slotTop: 35, slotLeft: 35, delay: 0 },
+  { id: "timer", kind: "video-timer", restTop: 25, restLeft: 69, slotTop: 57, slotLeft: 35, delay: 80 },
+  { id: "field", kind: "video-field", restTop: 70, restLeft: 25, slotTop: 44, slotLeft: 65, delay: 160 },
+  { id: "cta", kind: "video-cta", restTop: 72, restLeft: 71, slotTop: 65, slotLeft: 65, delay: 240 },
 ];
 
 function AtomicComposePreview({
@@ -203,6 +337,309 @@ export function VpOptionComposeToolbar() {
   );
 }
 
+/** VPC1 — Title block + search row snap into a search module */
+export function VpOptionComposeSearchStack() {
+  return (
+    <AtomicComposePreview
+      variant="search-stack"
+      atoms={SEARCH_STACK_ATOMS}
+      caption="Parts → search module"
+      frame="search-module"
+    />
+  );
+}
+
+/** VPC2 — Left-aligned title with a wide search row below */
+export function VpOptionComposeSearchLedger() {
+  return (
+    <AtomicComposePreview
+      variant="search-ledger"
+      atoms={SEARCH_LEDGER_ATOMS}
+      caption="Blocks → search panel"
+      frame="search-row"
+    />
+  );
+}
+
+/** VPC3 — Corner-scattered pieces converge on one search input */
+export function VpOptionComposeSearchQuadrant() {
+  return (
+    <AtomicComposePreview
+      variant="search-quadrant"
+      atoms={SEARCH_QUADRANT_ATOMS}
+      caption="Corners → search input"
+      frame="search-module"
+    />
+  );
+}
+
+/** VPC4 — Avatar beside title, body blocks, and action button */
+export function VpOptionComposeUserSide() {
+  return (
+    <AtomicComposePreview
+      variant="user-side"
+      atoms={USER_SIDE_ATOMS}
+      caption="Fragments → user card"
+      frame="user-card"
+    />
+  );
+}
+
+/** VPC5 — Centered avatar with stacked placeholder copy */
+export function VpOptionComposeUserStack() {
+  return (
+    <AtomicComposePreview
+      variant="user-stack"
+      atoms={USER_STACK_ATOMS}
+      caption="Pieces → profile card"
+      frame="user-card"
+    />
+  );
+}
+
+/** VPC6 — Compact card: avatar + title row, body block, button */
+export function VpOptionComposeUserInline() {
+  return (
+    <AtomicComposePreview
+      variant="user-inline"
+      atoms={USER_INLINE_ATOMS}
+      caption="Bits → user tile"
+      frame="user-card"
+    />
+  );
+}
+
+/** VPC7 — Tray of parts; the glass tucks inside the field as a leading icon */
+export function VpOptionComposeSearchLead() {
+  return (
+    <AtomicComposePreview
+      variant="search-lead"
+      atoms={SEARCH_LEAD_ATOMS}
+      caption="Tray → search input"
+      frame="search-module"
+    />
+  );
+}
+
+/** VPC8 — A taller search module: icon + field row over a full-width button */
+export function VpOptionComposeSearchTall() {
+  return (
+    <AtomicComposePreview
+      variant="search-tall"
+      atoms={SEARCH_TALL_ATOMS}
+      caption="Parts → search panel"
+      frame="search-module"
+    />
+  );
+}
+
+/** VPC9 — A loose pile in the centre bursts out into the search row */
+export function VpOptionComposeSearchBurst() {
+  return (
+    <AtomicComposePreview
+      variant="search-burst"
+      atoms={SEARCH_BURST_ATOMS}
+      caption="Pile → search input"
+      frame="search-module"
+    />
+  );
+}
+
+/** VPC10 — Tray of parts stacks into a left-aligned profile column */
+export function VpOptionComposeUserTray() {
+  return (
+    <AtomicComposePreview
+      variant="user-tray"
+      atoms={USER_TRAY_ATOMS}
+      caption="Tray → profile card"
+      frame="user-card"
+    />
+  );
+}
+
+/** VPC11 — Avatar + title header band, body below, button bottom-right */
+export function VpOptionComposeUserHeader() {
+  return (
+    <AtomicComposePreview
+      variant="user-header"
+      atoms={USER_HEADER_ATOMS}
+      caption="Bits → profile header"
+      frame="user-card"
+    />
+  );
+}
+
+/** VPC12 — Scattered parts line up as a horizontal user list row */
+export function VpOptionComposeUserRow() {
+  return (
+    <AtomicComposePreview
+      variant="user-row"
+      atoms={USER_ROW_ATOMS}
+      caption="Fragments → user row"
+      frame="user-card"
+    />
+  );
+}
+
+/** VPM1 — Neutral atoms orbit into a button molecule */
+export function VpOptionMoleculeOrbitButton() {
+  return (
+    <div className="vp-card-preview vp-card-preview-molecule vp-card-preview-molecule-orbit" aria-hidden="true">
+      <div className="vp-molecule-orbit-ring" />
+      <div className="vp-molecule-button-shell">
+        <span className="vp-molecule-button-dot" />
+        <span className="vp-molecule-button-line" />
+      </div>
+      {ORBIT_MOLECULE_ATOMS.map((atom) => (
+        <span
+          key={atom.id}
+          className="vp-molecule-atom vp-molecule-orbit-atom"
+          style={
+            {
+              "--mol-rest-top": `${atom.restTop}%`,
+              "--mol-rest-left": `${atom.restLeft}%`,
+              "--mol-slot-top": `${atom.slotTop}%`,
+              "--mol-slot-left": `${atom.slotLeft}%`,
+              "--mol-delay": `${atom.delay}ms`,
+            } as CSSProperties
+          }
+        />
+      ))}
+      <div className="vp-molecule-caption">atoms bond into button</div>
+    </div>
+  );
+}
+
+/** VPM2 — Atoms form a visible molecular bond chain */
+export function VpOptionMoleculeBondChain() {
+  return (
+    <div className="vp-card-preview vp-card-preview-molecule vp-card-preview-molecule-chain" aria-hidden="true">
+      <svg className="vp-molecule-chain-bonds" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path d="M18 58 L33 42 L50 58 L67 42 L82 58" />
+      </svg>
+      {["type", "state", "tone", "space", "motion"].map((atom, index) => (
+        <span key={atom} className={`vp-molecule-chain-atom vp-molecule-chain-atom--${index + 1}`}>
+          {atom}
+        </span>
+      ))}
+      <div className="vp-molecule-chain-result">
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className="vp-molecule-caption">properties form variants</div>
+    </div>
+  );
+}
+
+/** VPM3 — Component ingredients resolve into an input molecule */
+export function VpOptionMoleculeRecipeInput() {
+  return (
+    <div className="vp-card-preview vp-card-preview-molecule vp-card-preview-molecule-recipe" aria-hidden="true">
+      <div className="vp-molecule-recipe-stage" />
+      {RECIPE_MOLECULE_ATOMS.map((atom) => (
+        <span
+          key={atom.id}
+          className={`vp-molecule-atom vp-molecule-recipe-atom vp-molecule-recipe-atom--${atom.kind}`}
+          style={
+            {
+              "--mol-rest-top": `${atom.restTop}%`,
+              "--mol-rest-left": `${atom.restLeft}%`,
+              "--mol-slot-top": `${atom.slotTop}%`,
+              "--mol-slot-left": `${atom.slotLeft}%`,
+              "--mol-delay": `${atom.delay}ms`,
+            } as CSSProperties
+          }
+        />
+      ))}
+      <div className="vp-molecule-input-result">
+        <span className="vp-molecule-input-label" />
+        <span className="vp-molecule-input-field" />
+        <span className="vp-molecule-input-hint" />
+      </div>
+      <div className="vp-molecule-caption">recipe becomes input</div>
+    </div>
+  );
+}
+
+/** VPM4 — Same atoms recombine into three related molecules */
+export function VpOptionMoleculeFamily() {
+  return (
+    <div className="vp-card-preview vp-card-preview-molecule vp-card-preview-molecule-family" aria-hidden="true">
+      <div className="vp-molecule-family-cloud">
+        {Array.from({ length: 9 }, (_, index) => (
+          <span key={index} className={`vp-molecule-family-atom vp-molecule-family-atom--${index + 1}`} />
+        ))}
+      </div>
+      <div className="vp-molecule-family-grid">
+        <div className="vp-molecule-family-card vp-molecule-family-card--button">Button</div>
+        <div className="vp-molecule-family-card vp-molecule-family-card--input">Input</div>
+        <div className="vp-molecule-family-card vp-molecule-family-card--nav">Nav</div>
+      </div>
+      <div className="vp-molecule-caption">one kit, three molecules</div>
+    </div>
+  );
+}
+
+/** VPM5 — Video-application parts snap into one product molecule */
+export function VpOptionMoleculeVideoApply() {
+  return (
+    <div className="vp-card-preview vp-card-preview-molecule vp-card-preview-molecule-video" aria-hidden="true">
+      <div className="vp-molecule-video-shell">
+        <div className="vp-molecule-video-screen" />
+        <div className="vp-molecule-video-copy">
+          <span />
+          <span />
+        </div>
+        <div className="vp-molecule-video-button">Apply</div>
+      </div>
+      {VIDEO_MOLECULE_ATOMS.map((atom) => (
+        <span
+          key={atom.id}
+          className={`vp-molecule-atom vp-molecule-video-atom vp-molecule-video-atom--${atom.kind}`}
+          style={
+            {
+              "--mol-rest-top": `${atom.restTop}%`,
+              "--mol-rest-left": `${atom.restLeft}%`,
+              "--mol-slot-top": `${atom.slotTop}%`,
+              "--mol-slot-left": `${atom.slotLeft}%`,
+              "--mol-delay": `${atom.delay}ms`,
+            } as CSSProperties
+          }
+        />
+      ))}
+      <div className="vp-molecule-caption">video flow molecule</div>
+    </div>
+  );
+}
+
+/** VPM6 — Atoms pass through a Figma-like library gate */
+export function VpOptionMoleculeLibraryGate() {
+  return (
+    <div className="vp-card-preview vp-card-preview-molecule vp-card-preview-molecule-gate" aria-hidden="true">
+      <div className="vp-molecule-gate-rail">
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className="vp-molecule-gate-frame">
+        <span>Library</span>
+      </div>
+      <div className="vp-molecule-gate-atoms">
+        <span className="vp-molecule-gate-atom vp-molecule-gate-atom--one" />
+        <span className="vp-molecule-gate-atom vp-molecule-gate-atom--two" />
+        <span className="vp-molecule-gate-atom vp-molecule-gate-atom--three" />
+      </div>
+      <div className="vp-molecule-gate-output">
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className="vp-molecule-caption">published molecules</div>
+    </div>
+  );
+}
+
 /** VP3 — Duplicate one-offs become one sourced component */
 export function VpOptionSingleSource() {
   return (
@@ -299,6 +736,303 @@ export function VpOptionLibraryPublish() {
           <div className="vp-publish-piece vp-publish-piece--nav">Nav</div>
         </div>
       </div>
+    </div>
+  );
+}
+
+/** VP7 — Many brand pinks become one accessible token */
+export function VpOptionPinkWrangler() {
+  return (
+    <div className="vp-card-preview vp-card-preview-pink" aria-hidden="true">
+      <div className="vp-pink-swatch vp-pink-swatch--one" />
+      <div className="vp-pink-swatch vp-pink-swatch--two" />
+      <div className="vp-pink-swatch vp-pink-swatch--three" />
+      <div className="vp-pink-swatch vp-pink-swatch--four" />
+      <div className="vp-pink-token">
+        <span>Vpply pink</span>
+        <strong>AA</strong>
+      </div>
+      <div className="vp-pink-caption">pink, but behaving</div>
+    </div>
+  );
+}
+
+/** VP8 — Video-first job application flow */
+export function VpOptionVideoApplication() {
+  return (
+    <div className="vp-card-preview vp-card-preview-video" aria-hidden="true">
+      <div className="vp-video-card">
+        <div className="vp-video-screen">
+          <div className="vp-video-play" />
+        </div>
+        <div className="vp-video-timer">00:10-01:30</div>
+      </div>
+      <div className="vp-video-form">
+        <div />
+        <div />
+        <div />
+      </div>
+      <div className="vp-video-cta">Apply</div>
+    </div>
+  );
+}
+
+/** VP9 — Duplicate components get politely rounded up */
+export function VpOptionButtonWrangle() {
+  return (
+    <div className="vp-card-preview vp-card-preview-wrangle" aria-hidden="true">
+      <div className="vp-wrangle-lasso" />
+      <div className="vp-wrangle-button vp-wrangle-button--one">Apply</div>
+      <div className="vp-wrangle-button vp-wrangle-button--two">Apply</div>
+      <div className="vp-wrangle-button vp-wrangle-button--three">Apply</div>
+      <div className="vp-wrangle-canonical">Button / primary</div>
+      <div className="vp-wrangle-caption">button chaos, sorted</div>
+    </div>
+  );
+}
+
+/** VPF1 — The accessible-pink win: a failing swatch passes WCAG AA on hover */
+export function VpOptionContrastPass() {
+  return (
+    <div className="vp-card-preview vp-card-preview-contrast" aria-hidden="true">
+      <div className="vp-contrast-swatch">
+        <span className="vp-contrast-sample">Apply</span>
+        <div className="vp-contrast-meter">
+          <span className="vp-contrast-meter-fill" />
+        </div>
+        <div className="vp-contrast-badge">
+          <span className="vp-contrast-ratio vp-contrast-ratio--fail">2.1 : 1</span>
+          <span className="vp-contrast-ratio vp-contrast-ratio--pass">AA ✓</span>
+        </div>
+      </div>
+      <div className="vp-contrast-caption">pink that passes</div>
+    </div>
+  );
+}
+
+/** VPF2 — One main component; edits ripple out to every linked instance */
+export function VpOptionSourceOfTruth() {
+  return (
+    <div className="vp-card-preview vp-card-preview-truth" aria-hidden="true">
+      <svg className="vp-truth-links" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path d="M50 22 L22 56" />
+        <path d="M50 22 L50 56" />
+        <path d="M50 22 L78 56" />
+      </svg>
+      <div className="vp-truth-main">
+        <span className="vp-truth-diamond" />
+        Button
+      </div>
+      <div className="vp-truth-instances">
+        <div className="vp-truth-instance vp-truth-instance--1">Button</div>
+        <div className="vp-truth-instance vp-truth-instance--2">Button</div>
+        <div className="vp-truth-instance vp-truth-instance--3">Button</div>
+      </div>
+      <div className="vp-truth-caption">change one, change all</div>
+    </div>
+  );
+}
+
+/** VPF2b — Source of truth, radial: the main sits centre, instances ring it */
+export function VpOptionSourceRadial() {
+  return (
+    <div className="vp-card-preview vp-card-preview-radial" aria-hidden="true">
+      <svg className="vp-radial-links" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path d="M50 50 L50 14" />
+        <path d="M50 50 L79 50" />
+        <path d="M50 50 L50 78" />
+        <path d="M50 50 L21 50" />
+      </svg>
+      <div className="vp-radial-instance vp-radial-instance--n">Button</div>
+      <div className="vp-radial-instance vp-radial-instance--e">Button</div>
+      <div className="vp-radial-instance vp-radial-instance--s">Button</div>
+      <div className="vp-radial-instance vp-radial-instance--w">Button</div>
+      <div className="vp-radial-main">
+        <span className="vp-radial-diamond" />
+      </div>
+      <div className="vp-radial-caption">one source, everywhere</div>
+    </div>
+  );
+}
+
+/** VPF2c — Source of truth, cascade: a rail fills as instances sync downward */
+export function VpOptionSourceCascade() {
+  return (
+    <div className="vp-card-preview vp-card-preview-cascade" aria-hidden="true">
+      <div className="vp-cascade-rail">
+        <span className="vp-cascade-rail-fill" />
+      </div>
+      <div className="vp-cascade-main">
+        <span className="vp-cascade-diamond" />
+        Button
+      </div>
+      <div className="vp-cascade-instance vp-cascade-instance--1">Button</div>
+      <div className="vp-cascade-instance vp-cascade-instance--2">Button</div>
+      <div className="vp-cascade-instance vp-cascade-instance--3">Button</div>
+      <div className="vp-cascade-caption">push once, sync all</div>
+    </div>
+  );
+}
+
+/** VPF2d — Source of truth, reattach: a drifted duplicate snaps back to source */
+export function VpOptionSourceReattach() {
+  return (
+    <div className="vp-card-preview vp-card-preview-reattach" aria-hidden="true">
+      <svg className="vp-reattach-links" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path d="M50 22 L24 54" />
+        <path d="M50 22 L51 54" />
+        <path className="vp-reattach-broken" d="M50 22 L78 54" />
+      </svg>
+      <div className="vp-reattach-main">
+        <span className="vp-reattach-diamond" />
+        Button
+      </div>
+      <div className="vp-reattach-instance vp-reattach-instance--1">Button</div>
+      <div className="vp-reattach-instance vp-reattach-instance--2">Button</div>
+      <div className="vp-reattach-instance vp-reattach-instance--3">Button</div>
+      <div className="vp-reattach-caption">no more drift</div>
+    </div>
+  );
+}
+
+/** VPF3 — Variant props panel: flip the switches, the component reacts */
+export function VpOptionVariantSwitches() {
+  return (
+    <div className="vp-card-preview vp-card-preview-props" aria-hidden="true">
+      <div className="vp-props-stage">
+        <span className="vp-props-button">Apply</span>
+      </div>
+      <div className="vp-props-panel">
+        {["Type", "State", "Size"].map((row) => (
+          <div key={row} className="vp-props-row">
+            <span className="vp-props-label">{row}</span>
+            <span className="vp-props-toggle">
+              <span className="vp-props-knob" />
+            </span>
+          </div>
+        ))}
+      </div>
+      <div className="vp-props-caption">props, all wired</div>
+    </div>
+  );
+}
+
+/** VPF3b — Variants, segmented: slide the selector, the button restyles */
+export function VpOptionVariantSegments() {
+  return (
+    <div className="vp-card-preview vp-card-preview-segments" aria-hidden="true">
+      <div className="vp-segments-stage">
+        <span className="vp-segments-button">Apply</span>
+      </div>
+      <div className="vp-segments-control">
+        <span className="vp-segments-thumb" />
+        <span className="vp-segments-seg">Ghost</span>
+        <span className="vp-segments-seg">Solid</span>
+        <span className="vp-segments-seg">Soft</span>
+      </div>
+      <div className="vp-segments-caption">pick a variant</div>
+    </div>
+  );
+}
+
+/** VPF3c — Variants, input: an empty field resolves to focused-and-valid */
+export function VpOptionVariantInput() {
+  return (
+    <div className="vp-card-preview vp-card-preview-vinput" aria-hidden="true">
+      <div className="vp-vinput-field">
+        <span className="vp-vinput-value" />
+        <span className="vp-vinput-check" />
+      </div>
+      <div className="vp-vinput-states">
+        <span className="vp-vinput-state">Empty</span>
+        <span className="vp-vinput-state">Focus</span>
+        <span className="vp-vinput-state">Valid</span>
+      </div>
+      <div className="vp-vinput-caption">states, all wired</div>
+    </div>
+  );
+}
+
+/** VPF3d — Variants, sliders: token values drive the component's size and radius */
+export function VpOptionVariantSliders() {
+  return (
+    <div className="vp-card-preview vp-card-preview-sliders" aria-hidden="true">
+      <div className="vp-sliders-stage">
+        <span className="vp-sliders-button">Apply</span>
+      </div>
+      <div className="vp-sliders-panel">
+        {["Size", "Radius"].map((row) => (
+          <div key={row} className="vp-sliders-row">
+            <span className="vp-sliders-label">{row}</span>
+            <span className="vp-sliders-track">
+              <span className="vp-sliders-fill" />
+              <span className="vp-sliders-knob" />
+            </span>
+          </div>
+        ))}
+      </div>
+      <div className="vp-sliders-caption">tune the tokens</div>
+    </div>
+  );
+}
+
+/** VPF4 — Haphazard type settles into a Montserrat-style scale */
+export function VpOptionTypeSpecimen() {
+  return (
+    <div className="vp-card-preview vp-card-preview-type" aria-hidden="true">
+      <div className="vp-type-specimen">Aa</div>
+      <div className="vp-type-lines">
+        <span className="vp-type-line vp-type-line--h1" />
+        <span className="vp-type-line vp-type-line--h2" />
+        <span className="vp-type-line vp-type-line--body" />
+        <span className="vp-type-line vp-type-line--caption" />
+      </div>
+      <div className="vp-type-caption">type, in order</div>
+    </div>
+  );
+}
+
+/** VPF5 — The video-first pitch: ditch the paper, press record */
+export function VpOptionResumeToVideo() {
+  return (
+    <div className="vp-card-preview vp-card-preview-reel" aria-hidden="true">
+      <div className="vp-reel-paper vp-reel-paper--back">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className="vp-reel-paper vp-reel-paper--front">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className="vp-reel-video">
+        <div className="vp-reel-play" />
+        <div className="vp-reel-timer">0:42</div>
+      </div>
+      <div className="vp-reel-caption">90 seconds, not 9 pages</div>
+    </div>
+  );
+}
+
+/** VP10 — Tight MVP scope, useful system foundation */
+export function VpOptionTwelveWeekKit() {
+  return (
+    <div className="vp-card-preview vp-card-preview-kit" aria-hidden="true">
+      <div className="vp-kit-calendar">
+        <span>12 weeks</span>
+        <div />
+        <div />
+        <div />
+      </div>
+      <div className="vp-kit-stack">
+        <div className="vp-kit-piece vp-kit-piece--button">Button</div>
+        <div className="vp-kit-piece vp-kit-piece--input">Input</div>
+        <div className="vp-kit-piece vp-kit-piece--nav">Nav</div>
+      </div>
+      <div className="vp-kit-foundation">MVP system</div>
     </div>
   );
 }

@@ -3,7 +3,10 @@ import { projects } from "../data/projects";
 import { getCaseStudyComponent } from "../case-studies";
 import { Footer } from "../components/Footer";
 import { SiteHeader } from "../components/SiteHeader";
-import { IconProjectPreview } from "../components/IconProjectPreview";
+import {
+  hasProjectCardPreview,
+  ProjectCardPreview,
+} from "../components/ProjectCardPreview";
 import { CurrentlyWorking } from "../components/CurrentlyWorking";
 import { useHeaderScrollVisibility } from "../hooks/useHeaderScrollVisibility";
 import { HEADLINE, TAGLINE } from "../lib/profile";
@@ -68,8 +71,8 @@ export default function Landing() {
               <>
                 {/* Project Image Placeholder */}
                 <div className="w-full aspect-square bg-gray-100 rounded-md mb-3 flex items-center justify-center overflow-hidden border border-gray-300 group-hover:shadow-sm transition-all">
-                  {project.id === 1 ? (
-                    <IconProjectPreview />
+                  {hasProjectCardPreview(project.id) ? (
+                    <ProjectCardPreview projectId={project.id} />
                   ) : project.image ? (
                     <img
                       src={project.image}

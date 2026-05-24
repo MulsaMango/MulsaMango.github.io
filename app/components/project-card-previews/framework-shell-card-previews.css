@@ -116,6 +116,11 @@
   background: #f3f4f6;
 }
 
+.fr-card-preview-before-after--no-labels .fr-ba-before,
+.fr-card-preview-before-after--no-labels .fr-ba-after {
+  padding: 10% 8%;
+}
+
 .fr-ba-labels {
   position: absolute;
   top: 8%;

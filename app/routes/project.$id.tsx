@@ -6,7 +6,10 @@ import { TableOfContents } from "../components/TableOfContents";
 import { InteractiveBanner } from "../components/InteractiveBanner";
 import { Footer } from "../components/Footer";
 import { SiteHeader } from "../components/SiteHeader";
-import { IconProjectPreview } from "../components/IconProjectPreview";
+import {
+  hasProjectCardPreview,
+  ProjectCardPreview,
+} from "../components/ProjectCardPreview";
 import { useHeaderScrollVisibility } from "../hooks/useHeaderScrollVisibility";
 import { buildMeta } from "../lib/siteMeta";
 import type { Route } from "./+types/project.$id";
@@ -150,8 +153,11 @@ export default function Project() {
                 const cardInner = (
                   <>
                     <div className="w-full aspect-square bg-gray-100 rounded-md mb-2 flex items-center justify-center overflow-hidden border border-gray-300 group-hover:shadow-sm transition-all">
-                      {otherProject.id === 1 ? (
-                        <IconProjectPreview compact />
+                      {hasProjectCardPreview(otherProject.id) ? (
+                        <ProjectCardPreview
+                          projectId={otherProject.id}
+                          compact
+                        />
                       ) : otherProject.image ? (
                         <img
                           src={otherProject.image}
