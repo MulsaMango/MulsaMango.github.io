@@ -3,9 +3,12 @@ import {
   ReactCompareSliderImage,
 } from "react-compare-slider";
 import type { Project } from "../../data/projects";
+import { Image } from "../case-study-image";
 import { Heading2 } from "../case-study-typography";
 import frameworkAfter from "./images/framework-after.png";
 import frameworkBefore from "./images/framework-before.png";
+import visualDirectionExplorations from "./images/product-shell-visual-direction-explorations.png";
+import sidebarNavigationExploration from "./images/sidebar-navigation-user-customisation-feature-exploration.png";
 
 // Custom drag handle so the slider reads like the rest of the site (thin neutral
 // line + a circular grip) rather than the library's default chrome. It spans the
@@ -114,8 +117,15 @@ export function FrameworkRedesignCaseStudy(
           workflows. This snapshot focuses on the shell, the slice I led.
         </p>
         <p>
-          The shell is the scaffolding around the flagship logistics product: the
-          side navigation, the top bar, the page chrome, and the content layout.
+          The shell is the scaffolding around the flagship logistics product:
+        </p>
+        <ul>
+          <li>Side navigation</li>
+          <li>Top bar</li>
+          <li>Page chrome</li>
+          <li>Content layout</li>
+        </ul>
+        <p>
           It's where the system asserts itself before the user even reaches the
           screen they came for.
         </p>
@@ -187,6 +197,19 @@ export function FrameworkRedesignCaseStudy(
           downstream direction. It shaped the shell work directly, and fed into
           the broader system rethink running in parallel.
         </p>
+        <Image
+          src={visualDirectionExplorations}
+          alt="Multiple overlapping browser windows showing iterative explorations of the CargoWise product shell, including variations of the side navigation, top bar, and page chrome across different product contexts."
+          caption="A number of visual directions were explored in a healthy discovery phase."
+          lightbox
+          noBorder
+        />
+        <Image
+          src={sidebarNavigationExploration}
+          alt="Figma exploration of the sidebar navigation feature set, showing designs for reorderable sections, collapsible sections, dynamic search, and drag and drop favourite reordering - all in service of a user-configurable navigation experience."
+          caption="Sidebar navigation feature set exploration - user configurability was a central focus - excerpt from Figma."
+          lightbox
+        />
 
         <Heading2 id="the-redesigned-shell">The redesigned shell</Heading2>
         <p>

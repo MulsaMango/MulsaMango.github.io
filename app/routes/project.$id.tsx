@@ -12,6 +12,7 @@ import { useHeaderScrollVisibility } from "../hooks/useHeaderScrollVisibility";
 import { buildMeta } from "../lib/siteMeta";
 import type { Route } from "./+types/project.$id";
 import aiPrototypingHero from "../case-studies/ai-prototyping/images/prototyping-playground-claude-code-session-warehouse-dashboard.png";
+import productShellHero from "../case-studies/framework-redesign/images/product-shell-redesigned-default-navigation-state.png";
 
 export function meta({ params }: Route.MetaArgs) {
   const project = projects.find((p) => p.id === Number(params.id));
@@ -113,6 +114,16 @@ export default function Project() {
                   src={aiPrototypingHero}
                   alt="The Prototyping Playground in use - Claude Code running the design-advisory skill on the left, with the resulting warehouse management dashboard prototype in a browser on the right"
                   caption="The 'Prototyping Playground' - Claude Code on the left, the generated prototype on the right."
+                  className="w-full h-auto rounded-sm shadow-sm"
+                  lightbox
+                />
+              </div>
+            )}
+            {project.id === 5 && (
+              <div className="mb-6">
+                <Image
+                  src={productShellHero}
+                  alt="The redesigned CargoWise product shell showing the default navigation state - a configurable side navigation with collapsible sections, favourites, and recents, alongside the top bar and page chrome."
                   className="w-full h-auto rounded-sm shadow-sm"
                   lightbox
                 />
