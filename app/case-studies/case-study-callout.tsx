@@ -20,7 +20,11 @@ function LightbulbIcon() {
   );
 }
 
-export function CaseStudySnapshotCallout() {
+interface CaseStudySnapshotCalloutProps {
+  body?: string;
+}
+
+export function CaseStudySnapshotCallout({ body }: CaseStudySnapshotCalloutProps) {
   return (
     <aside className="not-prose mb-10 flex items-start gap-4 rounded border border-gray-200 bg-white/70 px-5 py-4 shadow-[0_1px_3px_0_rgb(0,0,0,0.04)]">
       <span className="mt-0.5 text-[#495faf]">
@@ -31,9 +35,7 @@ export function CaseStudySnapshotCallout() {
           Project Snapshot
         </p>
         <p className="mt-1 text-sm leading-relaxed text-gray-700">
-          Just the highlights - not everything can live here publicly, but
-          there&rsquo;s plenty more to the story. I&rsquo;d love to walk you
-          through it.
+          {body ?? "Just the highlights - not everything can live here publicly, but there’s plenty more to the story. I’d love to walk you through it."}
         </p>
       </div>
     </aside>

@@ -71,9 +71,11 @@ export function AiPrototypingCaseStudy({
           Figma. The gain was clearest with developers: hand-offs arriving as
           working code they could pick up and build on directly.
         </p>
-        <p>
-          Context is the difference between a generic output and a useful one.
-        </p>
+        <div className="not-prose">
+          <aside className="rounded border border-gray-200 bg-gray-50 px-5 py-4 shadow-[0_1px_3px_0_rgb(0,0,0,0.04)]">
+            <p className="text-base leading-relaxed text-gray-700 text-center font-medium">Context is the difference between a generic output and a useful one.</p>
+          </aside>
+        </div>
 
         <Heading2 id="my-role">My role</Heading2>
         <p>
@@ -127,10 +129,6 @@ export function AiPrototypingCaseStudy({
           who it exists for, and what 'good' looks like.
         </p>
         <p>AI speeds up building. It doesn't decide what's worth building.</p>
-        <p>
-          If anything here catches your interest, I'd be happy to walk through
-          more.
-        </p>
       </section>
     </article>
   );

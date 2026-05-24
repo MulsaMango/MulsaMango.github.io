@@ -196,7 +196,7 @@ export function DataTablesCaseStudy() {
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="group hidden shrink-0 cursor-pointer font-display text-xs uppercase tracking-[0.06em] text-gray-500 transition-colors hover:text-gray-900 lg:block"
+              className="hidden shrink-0 cursor-pointer rounded border border-gray-200 bg-white px-3 py-1.5 font-display text-xs uppercase tracking-[0.06em] text-gray-500 transition-colors hover:border-gray-300 hover:text-gray-900 lg:block"
             >
               Try it out →
             </button>

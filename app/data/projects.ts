@@ -23,7 +23,7 @@ export const projects: Project[] = [
   },
   {
     id: 4,
-    title: "Designing for complex data tables",
+    title: "Designing for complex data tables",
     tags: ["UI design", "Interaction design", "AI"],
     image: null,
     bgColor: "bg-gray-100",

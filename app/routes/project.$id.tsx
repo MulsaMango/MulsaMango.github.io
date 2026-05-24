@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router";
 import { projects } from "../data/projects";
 import { getCaseStudyComponent, isCaseStudySnapshot } from "../case-studies";
 import { CaseStudySnapshotCallout } from "../case-studies/case-study-callout";
+import { Image } from "../case-studies/case-study-image";
 import { TableOfContents } from "../components/TableOfContents";
 import { InteractiveBanner } from "../components/InteractiveBanner";
 import { Footer } from "../components/Footer";
@@ -10,6 +11,7 @@ import { IconProjectPreview } from "../components/IconProjectPreview";
 import { useHeaderScrollVisibility } from "../hooks/useHeaderScrollVisibility";
 import { buildMeta } from "../lib/siteMeta";
 import type { Route } from "./+types/project.$id";
+import aiPrototypingHero from "../case-studies/ai-prototyping/images/prototyping-playground-claude-code-session-warehouse-dashboard.png";
 
 export function meta({ params }: Route.MetaArgs) {
   const project = projects.find((p) => p.id === Number(params.id));
@@ -96,35 +98,33 @@ export default function Project() {
           </h1>
         </div>
 
-        {/* Project Image/Placeholder */}
-        <div className="mb-12">
-          {project.id === 1 ? (
+        {project.id === 1 && (
+          <div className="mb-12">
             <InteractiveBanner />
-          ) : (
-            <div className="w-full aspect-video bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
-              {project.image ? (
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div
-                  className={`w-full h-full ${project.bgColor} flex items-center justify-center`}
-                >
-                  <div className="px-4 text-center text-gray-600 text-lg font-medium">
-                    {CaseStudyComponent ? project.title : "Coming soon"}
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
+          </div>
+        )}
 
         {/* Case Study Content */}
         {CaseStudyComponent ? (
           <div className="case-study-paper-wash">
-            {isCaseStudySnapshot(project.id) && <CaseStudySnapshotCallout />}
+            {project.id === 3 && (
+              <div className="mb-6">
+                <Image
+                  src={aiPrototypingHero}
+                  alt="The Prototyping Playground in use - Claude Code running the design-advisory skill on the left, with the resulting warehouse management dashboard prototype in a browser on the right"
+                  caption="The 'Prototyping Playground' - Claude Code on the left, the generated prototype on the right."
+                  className="w-full h-auto rounded-sm shadow-sm"
+                  lightbox
+                />
+              </div>
+            )}
+            {isCaseStudySnapshot(project.id) && (
+              <CaseStudySnapshotCallout
+                body={project.id === 6
+                  ? "This project was completed in early 2023, before many of the advances in Figma and AI that have since changed how this kind of work gets done!"
+                  : undefined}
+              />
+            )}
             <CaseStudyComponent project={project} />
           </div>
         ) : (
