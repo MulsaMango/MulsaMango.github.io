@@ -11,6 +11,7 @@ import { useHeaderScrollVisibility } from "../hooks/useHeaderScrollVisibility";
 import { buildMeta } from "../lib/siteMeta";
 import type { Route } from "./+types/project.$slug";
 import aiPrototypingHero from "../case-studies/ai-prototyping/images/prototyping-playground-claude-code-session-warehouse-dashboard.png";
+import { NotFoundContent } from "../components/NotFoundContent";
 import { BeforeAfterSlider } from "../case-studies/framework-redesign/index";
 
 export function meta({ params }: Route.MetaArgs) {
@@ -41,12 +42,14 @@ export default function Project() {
   if (!project) {
     return (
       <div className="min-h-screen pt-[88px]">
-        <div className="max-w-7xl mx-auto px-6 py-20">
-          <h1 className="text-2xl font-semibold mb-4">Project not found</h1>
-          <Link to="/" className="text-blue-600 hover:underline">
-            ← Back to home
-          </Link>
-        </div>
+        <SiteHeader isVisible={isHeaderVisible} />
+        <main className="max-w-7xl mx-auto px-6 py-20">
+          <NotFoundContent
+            heading="Project not found"
+            message="This project doesn't exist or may have been removed."
+          />
+        </main>
+        <Footer />
       </div>
     );
   }
