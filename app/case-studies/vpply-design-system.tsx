@@ -23,7 +23,7 @@ export function VpplyDesignSystemCaseStudy({
         </Heading2>
         <p>
           Vpply is an early-stage HR startup running a video-first job board,
-          where applicants record a 10–90 second video instead of submitting a
+          where applicants record a 10-90 second video instead of submitting a
           cover letter and resume.
         </p>
         <p>

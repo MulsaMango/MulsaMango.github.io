@@ -189,7 +189,7 @@ export function FrameworkRedesignCaseStudy(
         </p>
         <p>
           A few of the themes that emerged: layouts that flex with the work,
-          navigation users can configure to their own needs, color reserved for
+          navigation users can configure to their own needs, colour reserved for
           signal and meaning, and scalable, adaptive placement for critical
           actions.
         </p>
@@ -215,10 +215,10 @@ export function FrameworkRedesignCaseStudy(
         <Heading2 id="the-redesigned-shell">The redesigned shell</Heading2>
         <p>
           The redesigned shell brings together a configurable side navigation, a
-          clearer hierarchy in the page chrome, a more deliberate use of color,
+          clearer hierarchy in the page chrome, a more deliberate use of colour,
           and content layouts that flex with the work. It doesn't shy away from
           density where expert workflows demand it. Controls stay within reach,
-          and the system optimizes for speed over visual restraint.
+          and the system optimises for speed over visual restraint.
         </p>
         <Image
           src={productShellHero}
@@ -241,7 +241,7 @@ export function FrameworkRedesignCaseStudy(
           playground repo where decisions could move in and out of Figma as the
           design progressed: sketching on the canvas, prototyping in code,
           bringing learnings back as patterns took shape. The balance meant I
-          could explore visual direction and interaction behavior at the same
+          could explore visual direction and interaction behaviour at the same
           time. There's more to say about that workflow, but I'll save it for its
           own snapshot.
         </p>

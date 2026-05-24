@@ -201,7 +201,7 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
           />
         </p>
         <Heading3 id="system-layer-a-naming-convention-that-optimizes-for-scale-and-long-term-clarity">
-          System layer: a naming convention that optimizes for scale and long
+          System layer: a naming convention that optimises for scale and long
           term clarity
         </Heading3>
         <p>
@@ -259,7 +259,7 @@ export function IconsCaseStudy({ project }: IconsCaseStudyProps) {
           <li>
             Ran a short workshop with embedded designers to capture the terms
             they would actually search to find certain icons, so keywords
-            reflect real behavior and shared mental models.{" "}
+            reflect real behaviour and shared mental models.{" "}
           </li>
         </ul>
         <p>

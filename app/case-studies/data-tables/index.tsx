@@ -26,9 +26,9 @@ export function DataTablesCaseStudy() {
         </p>
         <p>
           These tables are more than a way to display data in rows and columns.
-          They organize and shape data; they can also be a jumping-off point.
-          They need to be customizable, flexible, and unapologetically dense. A
-          common instinct for designers is to try to simplify the complex — but
+          They organise and shape data; they can also be a jumping-off point.
+          They need to be customisable, flexible, and unapologetically dense. A
+          common instinct for designers is to try to simplify the complex - but
           in this domain, complexity is power in the hands of an expert.
         </p>
 
@@ -41,7 +41,7 @@ export function DataTablesCaseStudy() {
           <li>Editable vs display tables</li>
           <li>Filters</li>
           <li>Multi-level grouping</li>
-          <li>Color schemes</li>
+          <li>Colour schemes</li>
         </ul>
         <p>
           I led the UI interaction and end-to-end experience design across these
@@ -103,20 +103,20 @@ export function DataTablesCaseStudy() {
         <Heading2 id="filters">Filters</Heading2>
         <p>
           Filtering is how expert users navigate dense data sets. Quick filters
-          and a search bar don't go far enough — expert users need more granular
+          and a search bar don't go far enough - expert users need more granular
           control.
         </p>
         <p>
           My work here was a UI uplift across the existing filter model. That
           included the filter-building experience, creating filter groups,
           reordering filter strips, and a full rework of saved filter management
-          — the task flows around saving filters and resurfacing them when
-          needed, for both individual users and organization-wide publishing.
+          - the task flows around saving filters and resurfacing them when
+          needed, for both individual users and organisation-wide publishing.
         </p>
         <p>
           Throughout the work I drew on the broader data table research effort,
           ran multiple design critiques with embedded designers across the
-          organization, and had a regular touch point with the e-learning
+          organisation, and had a regular touch point with the e-learning
           specialist responsible for data table material for end-users.
         </p>
         <Image
@@ -127,7 +127,7 @@ export function DataTablesCaseStudy() {
         />
         <p>
           This work was closely linked with the design of the filter chip
-          pattern — a compact way to present applied filters on top of the table.
+          pattern - a compact way to present applied filters on top of the table.
           In an earlier version of the product, filters appeared alongside the
           data so users could see both at once. The web version moved filters
           into a dedicated modal, which degraded that visibility. Chips restored
@@ -149,17 +149,17 @@ export function DataTablesCaseStudy() {
         <Heading2 id="multi-level-grouping">Multi-level grouping</Heading2>
         <p>
           Grouping lets users bundle rows that share a common value. The table
-          organizes data into collapsible sections that make large datasets
+          organises data into collapsible sections that make large datasets
           easier to scan.
         </p>
         <p>
           I worked on this experience and extended the pattern to support
           multi-level grouping. Grouping also encompasses aggregates that can be
-          turned on for numeric columns to summarize each group.
+          turned on for numeric columns to summarise each group.
         </p>
         <p>
           Nested grouping introduces visual complexity, especially on large data
-          sets. There's a tension here — the product is built around density,
+          sets. There's a tension here - the product is built around density,
           but hierarchical views need to use space to effectively communicate
           that hierarchy. Balancing indentation, padding, and font weight while
           maintaining adequate density was key.
@@ -231,29 +231,29 @@ export function DataTablesCaseStudy() {
 
         <Heading2 id="colour-schemes">Colour schemes</Heading2>
         <p>
-          Colour schemes let users apply color to rows based on conditions,
+          Colour schemes let users apply colour to rows based on conditions,
           similar to filter rules. When a row meets a rule, it picks up the
-          background and text colors defined for that rule.
+          background and text colours defined for that rule.
         </p>
         <p>
-          My work covered the rule-building configuration modal and color picking
+          My work covered the rule-building configuration modal and colour picking
           mechanics, with accessibility nudges built in.
         </p>
         <p>
-          The configuration surface follows the filter rule-builder shape —
+          The configuration surface follows the filter rule-builder shape -
           conditions chained with AND/OR, nested into groups for compound Boolean
           logic. Reusing the filter pattern was deliberate: a second rule-builder
           for essentially the same decision wouldn't have earned anything. The
           harder design calls sat around priority. Multiple rules can match the
           same row, and the design exposes which one wins rather than leaving it
-          implicit — a 'Stop if true' control on each rule halts evaluation once
+          implicit - a 'Stop if true' control on each rule halts evaluation once
           it matches. Density was the other ongoing call: expert users build many
           rules, so each collapses to a one-line summary by default and expands
           on demand.
         </p>
         <p>
           We deliberately reused the UI of filters for colour schemes because
-          they share an underlying logic — users would be immediately capable
+          they share an underlying logic - users would be immediately capable
           with colour schemes if they were familiar with filters, and vice-versa.
         </p>
         <Image
@@ -263,7 +263,7 @@ export function DataTablesCaseStudy() {
           lightbox
         />
         <p>
-          Expert users want full control over what colors mean in their tables,
+          Expert users want full control over what colours mean in their tables,
           and the product needs to give it to them. The flip side is that full
           control includes the freedom to choose combinations that have poor
           contrast and certainly don't meet accessibility contrast minimums.
