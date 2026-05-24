@@ -23,7 +23,7 @@ function LightbulbIcon() {
 export function CaseStudySnapshotCallout() {
   return (
     <aside className="not-prose mb-10 flex items-start gap-4 rounded-lg border border-gray-200 bg-white/70 px-5 py-4 shadow-sm">
-      <span className="mt-0.5 text-[#a7b3e8]">
+      <span className="mt-0.5 text-[#495faf]">
         <LightbulbIcon />
       </span>
       <div>
@@ -31,8 +31,8 @@ export function CaseStudySnapshotCallout() {
           Snapshot
         </p>
         <p className="mt-1 text-sm leading-relaxed text-gray-700">
-          What you&rsquo;re reading is a snapshot &mdash; the highlights of a
-          much larger project, trimmed down for a quick read. There&rsquo;s
+          What you&rsquo;re reading is just a snapshot, the highlights of a
+          much larger project trimmed down for a quick read. There&rsquo;s
           plenty more depth and decision-making behind the scenes, so if
           you&rsquo;d like the full walkthrough, I&rsquo;d love to talk you
           through it.
