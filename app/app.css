@@ -218,26 +218,17 @@ a:hover .logo-separator {
   position: absolute;
   top: var(--icon-top);
   left: var(--icon-left);
-  display: block;
   width: 5.8%;
   min-width: 1.15rem;
   max-width: 2rem;
-  aspect-ratio: 1;
-  background-color: #c5cad3;
-  -webkit-mask-image: var(--icon-mask);
-  mask-image: var(--icon-mask);
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  opacity: 0.92;
+  height: auto;
+  opacity: 0.9;
+  filter: grayscale(100%) brightness(1.42) contrast(0.72);
   transform: translate(-50%, -50%) scale(1);
   transform-origin: center;
   transition:
     transform 640ms cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 640ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 640ms cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: 0ms;
   will-change: transform;
@@ -249,7 +240,7 @@ a:hover .logo-separator {
 
 .group:hover .icon-project-layer,
 .group:focus-visible .icon-project-layer {
-  background-color: #284195;
+  filter: none;
   opacity: 1;
   transform:
     translate(calc(-50% + var(--burst-x)), calc(-50% + var(--burst-y)))

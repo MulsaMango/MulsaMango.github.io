@@ -78,14 +78,15 @@ export function IconProjectPreview({ compact = false }: IconProjectPreviewProps)
       aria-hidden="true"
     >
       {iconLayers.map((icon, index) => (
-        <span
+        <img
           key={`${icon.label}-${index}`}
+          src={icon.src}
+          alt=""
           className="icon-project-layer"
           style={
             {
               "--icon-top": `${icon.top}%`,
               "--icon-left": `${icon.left}%`,
-              "--icon-mask": `url(${icon.src})`,
               "--burst-x": `${Math.round(icon.x * burstDistance)}px`,
               "--burst-y": `${Math.round(icon.y * burstDistance)}px`,
               "--mobile-burst-x": `${Math.round(icon.x * 0.56)}px`,

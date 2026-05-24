@@ -604,6 +604,11 @@
   transition-delay: 160ms;
 }
 
+.group:hover .dt-card-preview-peel--sequential .dt-peel-body .dt-peel-group .dt-peel-header,
+.group:focus-visible .dt-card-preview-peel--sequential .dt-peel-body .dt-peel-group .dt-peel-header {
+  border-color: rgba(71, 221, 78, 0.4);
+}
+
 /* G3 — accordion: entire tree collapsed to root header */
 .dt-card-preview-peel--accordion .dt-peel-body {
   max-height: 0;
