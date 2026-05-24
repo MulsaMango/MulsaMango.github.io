@@ -81,7 +81,7 @@ export default function Landing() {
                       className={`w-full h-full ${project.bgColor || "bg-gradient-to-br from-indigo-200 via-purple-200 to-pink-200"} flex items-center justify-center`}
                     >
                       <div
-                        className="inline-block origin-center text-gray-600 text-sm font-medium motion-safe:transition-transform motion-safe:duration-[640ms] motion-safe:[transition-timing-function:cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.08] motion-safe:group-focus-visible:scale-[1.08]"
+                        className="inline-block origin-center px-4 text-center text-gray-600 text-sm font-medium motion-safe:transition-transform motion-safe:duration-[640ms] motion-safe:[transition-timing-function:cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.08] motion-safe:group-focus-visible:scale-[1.08]"
                       >
                         {getCaseStudyComponent(project.id)
                           ? project.title
