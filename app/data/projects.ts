@@ -20,6 +20,14 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: 5,
+    title: "Rebuilding the product shell",
+    tags: ["UX research", "Design system", "UI design", "AI"],
+    image: null,
+    bgColor: "bg-gray-100",
+    CardPreview: FrProjectCardFullReveal,
+  },
+  {
     id: 1,
     title: "Building a scalable icon system",
     tags: ["Process improvement", "UI design", "Design system", "Iconography"],
@@ -37,19 +45,11 @@ export const projects: Project[] = [
   },
   {
     id: 4,
-    title: "Designing for complex data tables",
+    title: "Designing for complex data tables",
     tags: ["UI design", "Interaction design", "AI"],
     image: null,
     bgColor: "bg-gray-100",
     CardPreview: DtOptionG2SequentialOpen,
-  },
-  {
-    id: 5,
-    title: "Rebuilding the product shell",
-    tags: ["UX research", "Design system", "UI design", "AI"],
-    image: null,
-    bgColor: "bg-gray-100",
-    CardPreview: FrProjectCardFullReveal,
   },
   {
     id: 6,
@@ -64,6 +64,6 @@ export const projects: Project[] = [
     title: "Coming soon",
     tags: ["Product design"],
     image: null,
-    bgColor: "bg-gray-100",
+    bgColor: "bg-gray-50",
   },
 ];

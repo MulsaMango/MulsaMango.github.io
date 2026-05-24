@@ -11,7 +11,7 @@ import { useHeaderScrollVisibility } from "../hooks/useHeaderScrollVisibility";
 import { buildMeta } from "../lib/siteMeta";
 import type { Route } from "./+types/project.$id";
 import aiPrototypingHero from "../case-studies/ai-prototyping/images/prototyping-playground-claude-code-session-warehouse-dashboard.png";
-import productShellHero from "../case-studies/framework-redesign/images/product-shell-redesigned-default-navigation-state.png";
+import { BeforeAfterSlider } from "../case-studies/framework-redesign/index";
 
 export function meta({ params }: Route.MetaArgs) {
   const project = projects.find((p) => p.id === Number(params.id));
@@ -120,12 +120,7 @@ export default function Project() {
             )}
             {project.id === 5 && (
               <div className="mb-6">
-                <Image
-                  src={productShellHero}
-                  alt="The redesigned CargoWise product shell showing the default navigation state - a configurable side navigation with collapsible sections, favourites, and recents, alongside the top bar and page chrome."
-                  className="w-full h-auto rounded-sm shadow-sm"
-                  lightbox
-                />
+                <BeforeAfterSlider />
               </div>
             )}
             {isCaseStudySnapshot(project.id) && (
@@ -191,7 +186,7 @@ export default function Project() {
                   <Link
                     key={otherProject.id}
                     to={`/project/${otherProject.id}`}
-                    className="group block cursor-pointer transition-transform hover:scale-[1.02]"
+                    className="group block cursor-pointer"
                   >
                     {cardInner}
                   </Link>

@@ -49,7 +49,6 @@ function BeforeAfterPreview() {
       <div className="fr-ba-after">
         <BeforeAfterChrome side="after" />
       </div>
-      <div className="fr-ba-handle" />
     </div>
   );
 }

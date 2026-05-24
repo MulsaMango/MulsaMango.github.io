@@ -7,6 +7,7 @@ import { Image } from "../case-study-image";
 import { Heading2 } from "../case-study-typography";
 import frameworkAfter from "./images/framework-after.png";
 import frameworkBefore from "./images/framework-before.png";
+import productShellHero from "./images/product-shell-redesigned-default-navigation-state.png";
 import visualDirectionExplorations from "./images/product-shell-visual-direction-explorations.png";
 import sidebarNavigationExploration from "./images/sidebar-navigation-user-customisation-feature-exploration.png";
 
@@ -71,7 +72,7 @@ function SliderItem({
   );
 }
 
-function BeforeAfterSlider() {
+export function BeforeAfterSlider() {
   return (
     <div className="not-prose relative overflow-hidden rounded-lg border border-gray-200">
       <ReactCompareSlider
@@ -219,7 +220,12 @@ export function FrameworkRedesignCaseStudy(
           density where expert workflows demand it. Controls stay within reach,
           and the system optimizes for speed over visual restraint.
         </p>
-        <BeforeAfterSlider />
+        <Image
+          src={productShellHero}
+          alt="The redesigned CargoWise product shell showing the default navigation state - a configurable side navigation with collapsible sections, favourites, and recents, alongside the top bar and page chrome."
+          className="w-full h-auto rounded-sm shadow-sm"
+          lightbox
+        />
 
         <Heading2 id="reflections">Reflections</Heading2>
         <p>

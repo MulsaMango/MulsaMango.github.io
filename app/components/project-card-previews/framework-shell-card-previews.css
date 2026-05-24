@@ -9,7 +9,7 @@
 }
 
 .fr-card-preview-before-after {
-  background: #f3f4f6;
+  background: #f9fafb;
 }
 
 .fr-card-preview-before-after--no-labels .fr-ba-before,
@@ -123,7 +123,7 @@
 
 .fr-ba-action {
   flex: 0 0 22% !important;
-  background: #374151 !important;
+  background: #284195 !important;
 }
 
 .fr-ba-body {

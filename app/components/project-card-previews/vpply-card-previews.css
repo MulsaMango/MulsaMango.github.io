@@ -55,23 +55,23 @@
 }
 
 .vp-search-piece--heading {
-  width: 30%;
-  height: 0.32rem;
+  width: 37%;
+  height: 0.4rem;
   border-radius: 2px;
   background: #737373;
 }
 
 .vp-search-piece--field {
-  width: 28%;
-  height: 0.55rem;
+  width: 35%;
+  height: 0.68rem;
   border-radius: 5px;
   border: 1px solid #e5e7eb;
   background: #fff;
 }
 
 .vp-search-piece--icon {
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 0.62rem;
+  height: 0.62rem;
   border: 1.5px solid #b8bcc4;
   border-radius: 999px;
   background: transparent;
@@ -81,9 +81,9 @@
 .vp-search-piece--icon::after {
   content: "";
   position: absolute;
-  right: -0.1rem;
-  bottom: -0.08rem;
-  width: 0.2rem;
+  right: -0.12rem;
+  bottom: -0.1rem;
+  width: 0.25rem;
   height: 1.5px;
   background: #b8bcc4;
   transform: rotate(45deg);
@@ -107,16 +107,16 @@
 }
 
 .vp-search-piece--placeholder {
-  width: 32%;
-  height: 0.2rem;
+  width: 40%;
+  height: 0.26rem;
   border-radius: 2px;
   background: #f3f4f6;
   z-index: 2;
 }
 
 .vp-search-piece--btn {
-  width: 20%;
-  height: 0.5rem;
+  width: 25%;
+  height: 0.62rem;
   border-radius: 5px;
   background: linear-gradient(180deg, #a3a3a3 0%, #8f8f8f 100%);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);

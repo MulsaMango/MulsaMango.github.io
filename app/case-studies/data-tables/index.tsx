@@ -223,7 +223,7 @@ export function DataTablesCaseStudy() {
             onClose={() => setOpen(false)}
             label="Multi-level grouping prototype"
           >
-            <div className="data-tables-embed">
+            <div className="not-prose data-tables-embed">
               {open && <App />}
             </div>
           </Dialog>
