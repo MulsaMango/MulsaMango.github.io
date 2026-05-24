@@ -3,6 +3,18 @@ import { Dialog } from "../../components/Dialog";
 import { Heading2 } from "../case-study-typography";
 import App from "./prototype/App";
 
+// Surfaces the Figma Make prototype behind a launcher that opens it in a modal.
+// Housing the wide, dense tool in a dialog lets it escape the article column's
+// max-width entirely (the dialog portals to the top layer) instead of fighting
+// the layout. The .multi-level-grouping-embed wrapper travels into the dialog,
+// so the scoped shadcn tokens (see theme.css) keep applying there.
+//
+// The live tool only ships above `lg` (1024px): its control row alone is five
+// segmented controls wide and the table is intrinsically dense, so below that
+// width it can't be used as intended. Everyone gets a looping walkthrough video;
+// desktop also gets a launcher that opens the real prototype in a dialog (DES-14).
+// Visibility is CSS-only so each device class gets the correct first paint from
+// the prerendered HTML — no media-query JS, no hydration flash.
 export function MultiLevelGroupingCaseStudy() {
   const [open, setOpen] = useState(false);
 
@@ -12,7 +24,8 @@ export function MultiLevelGroupingCaseStudy() {
         <p>
           For expert users in WiseTech Global's flagship logistics product, data
           tables are the engine. They sit at the core of nearly every workflow,
-          and the logistics professionals using them spend their day inside them.
+          and the logistics professionals using them spend their day inside
+          them.
         </p>
         <p>
           These tables are more than a way to display data in rows and columns.
@@ -50,17 +63,17 @@ export function MultiLevelGroupingCaseStudy() {
           Editable vs display tables
         </Heading2>
         <p>
-          Research surfaced a distinction in how users were actually using tables
-          across the product. There were two macro types: display tables, which
-          surfaced data and acted as a jumping-off point into detail views, and
-          editable tables, where data was directly modified inline. Visually they
-          were essentially identical. It was unclear to users what the behaviour
-          of a table was until they clicked on rows and entered either the
-          'working surface' or 'jumping off' experience.
+          Research surfaced a distinction in how users were actually using
+          tables across the product. There were two macro types: display tables,
+          which surfaced data and acted as a jumping-off point into detail
+          views, and editable tables, where data was directly modified inline.
+          Visually they were essentially identical. It was unclear to users what
+          the behaviour of a table was until they clicked on rows and entered
+          either the 'working surface' or 'jumping off' experience.
         </p>
         <p>
-          The design needed to make that distinction clear{" "}
-          <em>before</em> any interaction.
+          The design needed to make that distinction clear <em>before</em> any
+          interaction.
         </p>
         <p>
           <strong>Display tables</strong> cater to exploratory scanning and
@@ -71,11 +84,11 @@ export function MultiLevelGroupingCaseStudy() {
         <p>
           <strong>Editable tables</strong> took on a more grid-like
           presentation, similar to a spreadsheet. A deliberate hover treatment
-          marks the cell under the cursor, a row-level hover supports navigation,
-          and the cells themselves mirror the design system's standard field
-          patterns. It's immediately clear that cells can be edited inline. A
-          date cell opens a calendar popover, and a select cell expands into its
-          options.
+          marks the cell under the cursor, a row-level hover supports
+          navigation, and the cells themselves mirror the design system's
+          standard field patterns. It's immediately clear that cells can be
+          edited inline. A date cell opens a calendar popover, and a select cell
+          expands into its options.
         </p>
 
         <Heading2 id="filters">Filters</Heading2>
@@ -99,11 +112,12 @@ export function MultiLevelGroupingCaseStudy() {
         </p>
         <p>
           This work was closely linked with the design of the filter chip
-          pattern — a compact way to present applied filters on top of the table.
-          In an earlier version of the product, filters appeared alongside the
-          data so users could see both at once. The web version moved filters
-          into a dedicated modal, which degraded that visibility. Chips restored
-          visibility on the table without the vertical weight of inline filters.
+          pattern — a compact way to present applied filters on top of the
+          table. In an earlier version of the product, filters appeared
+          alongside the data so users could see both at once. The web version
+          moved filters into a dedicated modal, which degraded that visibility.
+          Chips restored visibility on the table without the vertical weight of
+          inline filters.
         </p>
 
         <Heading2 id="multi-level-grouping">Multi-level grouping</Heading2>
@@ -138,33 +152,59 @@ export function MultiLevelGroupingCaseStudy() {
           find gaps that static frames couldn't surface.
         </p>
 
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="group flex w-full cursor-pointer items-center justify-between gap-4 rounded-lg border border-gray-200 bg-white/60 px-5 py-4 text-left transition-colors hover:border-gray-300 hover:bg-white"
-        >
-          <span>
-            <span className="block text-sm font-medium text-gray-900">
-              Interactive prototype
-            </span>
-            <span className="block text-sm text-gray-600">
-              Explore the multi-level grouping table in a full-width view.
-            </span>
-          </span>
-          <span className="font-display text-xs uppercase tracking-[0.06em] text-gray-500 transition-colors group-hover:text-gray-900">
-            Launch →
-          </span>
-        </button>
-
-        <Dialog
-          open={open}
-          onClose={() => setOpen(false)}
-          label="Multi-level grouping prototype"
-        >
-          <div className="multi-level-grouping-embed">
-            <App />
+        <div className="rounded-lg border border-gray-200 bg-white/60 p-5">
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <span className="block text-sm font-medium text-gray-900">
+                Interactive prototype
+              </span>
+              <span className="mt-0.5 block text-sm text-gray-600 lg:hidden">
+                This tool is built for a wider screen. Here's a quick tour of
+                grouping depth, expand/collapse views, record density, zebra
+                rows, and group labels.
+              </span>
+              <span className="mt-0.5 hidden text-sm text-gray-600 lg:block">
+                Explore the multi-level grouping table in a full-width view.
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              className="group hidden shrink-0 cursor-pointer font-display text-xs uppercase tracking-[0.06em] text-gray-500 transition-colors hover:text-gray-900 lg:block"
+            >
+              Try it out →
+            </button>
           </div>
-        </Dialog>
+
+          <div className="not-prose mt-4 overflow-hidden rounded-md border border-gray-200 bg-gray-100">
+            <video
+              className="block w-full object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
+            >
+              <source src="/multi-level-grouping-demo.mp4" type="video/mp4" />
+            </video>
+          </div>
+
+          <span className="mt-3 block font-display text-xs uppercase tracking-[0.06em] text-gray-500 lg:hidden">
+            Demo · best explored on desktop
+          </span>
+
+          <Dialog
+            open={open}
+            onClose={() => setOpen(false)}
+            label="Multi-level grouping prototype"
+          >
+            <div className="multi-level-grouping-embed">
+              {/* Defer mounting the heavy table until the dialog is opened —
+                  the launcher is hidden below lg, so this never mounts on
+                  tablet/mobile. */}
+              {open && <App />}
+            </div>
+          </Dialog>
+        </div>
 
         <Heading2 id="colour-schemes">Colour schemes</Heading2>
         <p>
@@ -173,25 +213,26 @@ export function MultiLevelGroupingCaseStudy() {
           background and text colors defined for that rule.
         </p>
         <p>
-          My work covered the rule-building configuration modal and color picking
-          mechanics, with accessibility nudges built in.
+          My work covered the rule-building configuration modal and color
+          picking mechanics, with accessibility nudges built in.
         </p>
         <p>
           The configuration surface follows the filter rule-builder shape —
-          conditions chained with AND/OR, nested into groups for compound Boolean
-          logic. Reusing the filter pattern was deliberate: a second rule-builder
-          for essentially the same decision wouldn't have earned anything. The
-          harder design calls sat around priority. Multiple rules can match the
-          same row, and the design exposes which one wins rather than leaving it
-          implicit — a 'Stop if true' control on each rule halts evaluation once
-          it matches. Density was the other ongoing call: expert users build many
-          rules, so each collapses to a one-line summary by default and expands
-          on demand.
+          conditions chained with AND/OR, nested into groups for compound
+          Boolean logic. Reusing the filter pattern was deliberate: a second
+          rule-builder for essentially the same decision wouldn't have earned
+          anything. The harder design calls sat around priority. Multiple rules
+          can match the same row, and the design exposes which one wins rather
+          than leaving it implicit — a 'Stop if true' control on each rule halts
+          evaluation once it matches. Density was the other ongoing call: expert
+          users build many rules, so each collapses to a one-line summary by
+          default and expands on demand.
         </p>
         <p>
           We deliberately reused the UI of filters for colour schemes because
           they share an underlying logic — users would be immediately capable
-          with colour schemes if they were familiar with filters, and vice-versa.
+          with colour schemes if they were familiar with filters, and
+          vice-versa.
         </p>
         <p>
           Expert users want full control over what colors mean in their tables,
@@ -200,19 +241,23 @@ export function MultiLevelGroupingCaseStudy() {
           contrast and certainly don't meet accessibility contrast minimums.
           Striking the right balance meant introducing guardrails in the UI
           itself: sensible defaults that meet AA contrast at minimum,
-          non-blocking nudges that make it easy to pick more accessible pairings,
-          and subtle warnings when a combination falls short. Users can still
-          override and ship inaccessible combinations. The design acknowledges
-          that floor without pretending it isn't there.
+          non-blocking nudges that make it easy to pick more accessible
+          pairings, and subtle warnings when a combination falls short. Users
+          can still override and ship inaccessible combinations. The design
+          acknowledges that floor without pretending it isn't there.
         </p>
 
         <Heading2 id="reflections">Reflections</Heading2>
         <p>
           The above projects are just a few snapshots from my time working on
-          the data table. I also spent time improving sorting, column reordering,
-          drag-and-drop row reordering, bulk actions, and row actions.
+          the data table. I also spent time improving sorting, column
+          reordering, drag-and-drop row reordering, bulk actions, and row
+          actions.
         </p>
-        <p>If anything here catches your interest, I'd be happy to walk through more.</p>
+        <p>
+          If anything here catches your interest, I'd be happy to walk through
+          more.
+        </p>
       </section>
     </article>
   );
