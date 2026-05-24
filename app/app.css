@@ -223,11 +223,13 @@ a:hover .logo-separator {
   min-width: 1.15rem;
   max-width: 2rem;
   height: auto;
-  opacity: 0.96;
+  opacity: 0.9;
+  filter: grayscale(100%) brightness(1.42) contrast(0.72);
   transform: translate(-50%, -50%) scale(1);
   transform-origin: center;
   transition:
     transform 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 640ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 640ms cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: 0ms;
   will-change: transform;
@@ -239,6 +241,7 @@ a:hover .logo-separator {
 
 .group:hover .icon-project-layer,
 .group:focus-visible .icon-project-layer {
+  filter: none;
   opacity: 1;
   transform:
     translate(calc(-50% + var(--burst-x)), calc(-50% + var(--burst-y)))
