@@ -12,7 +12,11 @@ import frameworkBefore from "./images/framework-before.png";
 // full height; react-compare-slider only positions it horizontally.
 function SliderHandle() {
   return (
-    <div className="flex h-full flex-col items-center">
+    // `pointer-events-auto` re-enables hits on the handle: react-compare-slider's
+    // HandleRoot sets `pointer-events: none`, and on touch devices (pointer:
+    // coarse) it only listens for drags on the handle — so without this, nothing
+    // is grabbable and the slider is dead on mobile.
+    <div className="pointer-events-auto flex h-full cursor-ew-resize flex-col items-center">
       <div className="w-0.5 flex-1 bg-white/90 shadow-[0_0_0_1px_rgba(0,0,0,0.08)]" />
       <div className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 shadow-md">
         <svg
