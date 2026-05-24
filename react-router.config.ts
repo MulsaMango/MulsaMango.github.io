@@ -9,6 +9,6 @@ export default {
   // client-rendered SPA shell, and Figma's link crawler doesn't run JS — so its
   // per-project meta tags would never be seen without listing the paths here.
   async prerender() {
-    return ["/", "/about", ...projects.map((project) => `/project/${project.id}`)];
+    return ["/", "/about", ...projects.map((project) => `/project/${project.slug}`)];
   },
 } satisfies Config;

@@ -114,7 +114,7 @@ export default function Landing() {
             return hasCaseStudy ? (
               <Link
                 key={project.id}
-                to={`/project/${project.id}`}
+                to={`/project/${project.slug}`}
                 className="group cursor-pointer block"
               >
                 {cardInner}

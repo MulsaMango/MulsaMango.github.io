@@ -9,33 +9,33 @@ import { Footer } from "../components/Footer";
 import { SiteHeader } from "../components/SiteHeader";
 import { useHeaderScrollVisibility } from "../hooks/useHeaderScrollVisibility";
 import { buildMeta } from "../lib/siteMeta";
-import type { Route } from "./+types/project.$id";
+import type { Route } from "./+types/project.$slug";
 import aiPrototypingHero from "../case-studies/ai-prototyping/images/prototyping-playground-claude-code-session-warehouse-dashboard.png";
 import { BeforeAfterSlider } from "../case-studies/framework-redesign/index";
 
 export function meta({ params }: Route.MetaArgs) {
-  const project = projects.find((p) => p.id === Number(params.id));
+  const project = projects.find((p) => p.slug === params.slug);
 
   if (!project) {
     return buildMeta({
       title: "Project not found — Tulsa Daley",
       description: "This project could not be found.",
-      path: `/project/${params.id}`,
+      path: `/project/${params.slug}`,
     });
   }
 
   return buildMeta({
     title: `${project.title} — Tulsa Daley`,
     description: `${project.title}. A case study by product designer Tulsa Daley.`,
-    path: `/project/${project.id}`,
+    path: `/project/${project.slug}`,
   });
 }
 
 export default function Project() {
-  const { id } = useParams();
+  const { slug } = useParams();
   const isHeaderVisible = useHeaderScrollVisibility();
 
-  const project = projects.find((p) => p.id === Number(id));
+  const project = projects.find((p) => p.slug === slug);
   const CaseStudyComponent = project ? getCaseStudyComponent(project.id) : undefined;
 
   if (!project) {
@@ -185,7 +185,7 @@ export default function Project() {
                 return hasOtherCaseStudy ? (
                   <Link
                     key={otherProject.id}
-                    to={`/project/${otherProject.id}`}
+                    to={`/project/${otherProject.slug}`}
                     className="group block cursor-pointer"
                   >
                     {cardInner}
@@ -204,4 +204,3 @@ export default function Project() {
     </div>
   );
 }
-

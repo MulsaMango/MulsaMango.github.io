@@ -11,6 +11,7 @@ export type ProjectCardPreviewProps = {
 
 export type Project = {
   id: number;
+  slug: string;
   title: string;
   tags: string[];
   image: string | null;
@@ -21,6 +22,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: 5,
+    slug: "rebuilding-the-product-shell",
     title: "Rebuilding the product shell",
     tags: ["UX research", "Design system", "UI design", "AI"],
     image: null,
@@ -29,6 +31,7 @@ export const projects: Project[] = [
   },
   {
     id: 1,
+    slug: "building-a-scalable-icon-system",
     title: "Building a scalable icon system",
     tags: ["Process improvement", "UI design", "Design system", "Iconography"],
     image: null,
@@ -37,6 +40,7 @@ export const projects: Project[] = [
   },
   {
     id: 3,
+    slug: "building-an-ai-prototyping-environment-for-designers",
     title: "Building an AI prototyping environment for designers",
     tags: ["Design system", "AI", "Tooling"],
     image: null,
@@ -45,6 +49,7 @@ export const projects: Project[] = [
   },
   {
     id: 4,
+    slug: "designing-for-complex-data-tables",
     title: "Designing for complex data tables",
     tags: ["UI design", "Interaction design", "AI"],
     image: null,
@@ -53,6 +58,7 @@ export const projects: Project[] = [
   },
   {
     id: 6,
+    slug: "building-a-startups-first-design-system",
     title: "Building a startup's first design system",
     tags: ["Design system", "UI design", "Process improvement"],
     image: null,
@@ -61,6 +67,7 @@ export const projects: Project[] = [
   },
   {
     id: 7,
+    slug: "coming-soon",
     title: "Coming soon",
     tags: ["Product design"],
     image: null,
