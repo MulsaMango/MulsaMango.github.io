@@ -59,7 +59,8 @@ export default function Project() {
       <SiteHeader isVisible={isHeaderVisible} />
 
       {/* Table of Contents - only show for case studies */}
-      {CaseStudyComponent && <TableOfContents />}
+      {/* key={slug} forces a remount on navigation so the heading scan re-runs for the new page */}
+      {CaseStudyComponent && <TableOfContents key={slug} />}
 
       {/* Project Content */}
       <div className="max-w-4xl mx-auto px-6 py-12">
