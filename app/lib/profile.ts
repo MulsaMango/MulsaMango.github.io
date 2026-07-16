@@ -11,8 +11,12 @@ export const TAGLINE =
 // "Currently working" line. The company is a link, so it's kept structured
 // rather than baked into a sentence the callers would have to re-parse.
 export const CURRENT_WORK = {
-  lead: "Working on design systems for enterprise software @",
+  lead: "Previously design systems at",
   company: { name: "WiseTech Global", href: "https://www.cargowise.com/" },
+  companyEmoji: "📦",
+  trail: "Incoming Product Designer at",
+  next: { name: "the ABC", href: "https://www.abc.net.au/" },
+  nextEmoji: "🍎",
 } as const;
 
 export const EMAIL = "tulsadaley@gmail.com";

@@ -1,10 +1,10 @@
 ---
 name: case-study-building
 description: >-
-  Build and write case studies for this portfolio. Use when creating,
-  drafting, editing, or reviewing case study content, structure, or
-  components. Covers voice, tone, grammar, content strategy, visual
-  content, and technical implementation in React.
+  Use when creating, drafting, editing, or reviewing case study content,
+  structure, or components for this portfolio. Covers the case study brief,
+  narrative arc, content strategy, visual content, and React implementation.
+  Builds on the writing-voice skill for tone and grammar.
 ---
 
 # Case study building
@@ -60,67 +60,21 @@ Consistent shape, flexible headings: **Context → Problem → Process → Outco
 - A short reflection at the end is encouraged but not mandatory.
 - Reflections are strongest as a structured section with named `Heading3` sub-sections (e.g. "What the architecture earned", "What it costs to maintain"), not a single closing paragraph. This creates scannable, specific reflection topics and natural places for first-person voice.
 
-## Voice, tone, and point of view
+## Voice and point of view
 
-### Tone: conversational with substance
+**Follow the `writing-voice` skill for tone, humour, grammar, dashes, and banned phrases.** It is the canonical voice reference. The notes below are the case-study-specific layer on top of it.
 
-- Sound like a smart colleague explaining their work over coffee
-- Credible first, personable second, but both present
-- Confident without being boastful. "I did this" is fine; "I single-handedly transformed" is not
-- Anti-LinkedIn-influencer. No dramatic rhetorical pivots, no thought-leader posturing
+### Point of view across the narrative arc
 
-### Point of view
+- Third person for context and problem framing.
+- First person for process, decisions, and reflection, where personal voice has the most impact.
+- Adapts to role: led end-to-end leans "I"; team work leans "we" and "the team", with "I" reserved for specific individual contributions.
+- Third person can carry more than context and problem. Process and architecture sections often read better in third person too (especially for team work), concentrating first person in reflections.
 
-- Third person for context and problem framing
-- First person for process, decisions, and reflection
-- Adapts to role in the project:
-  - **Led end-to-end:** predominantly "I"
-  - **Part of a team:** "we" and "the team" for shared work, "I" only for specific individual contributions
-- The shift between third and first person should feel natural, not mechanical
-- Third person can carry more than just context and problem. Process and architecture sections often read better in third person too (especially for team work), with first person concentrating in reflections where personal voice has the most impact
+### Bold phrases and references in case studies
 
-### Humor
-
-- Sparingly and through specifics, not forced jokes
-- Visual humor (memes, GIFs) is welcome alongside design artifacts
-- Playful captions are good ("pencil multiverse", "hello AI 👋")
-- If it needs a setup, it's probably too much
-
-### Bold key phrases
-
-- Use to anchor takeaways within paragraphs ("Process change is people change")
-- Must feel organic to surrounding text, not like standalone pull quotes
-- If it reads like a LinkedIn post on its own, cut it or rewrite it
-- Use sparingly and intentionally. A whole case study should have a handful at most, concentrated in reflections or key takeaway moments. If you're bolding something in every section, you're overusing it
-
-### External references
-
-- Citing experts or external examples adds credibility (like a relevant blog post or industry voice)
-- Use when it genuinely strengthens the point, not to name-drop
-
-## Grammar and style rules
-
-| Rule | Preference |
-|------|-----------|
-| Spelling | Australian English (formalised, recognised, colour) |
-| Commas | Oxford comma |
-| Contractions | Yes, they sound more human (don't, wasn't, it's) |
-| Headings | Sentence case ("Selected project highlights") |
-| Dashes | No en dashes or em dashes. Restructure with commas, full stops, or separate sentences |
-| Paragraphs | Short. More than 3-4 sentences should be broken up or turned into bullets |
-| Bullet points | Preferred over long flowing prose when listing deliverables, outcomes, or steps |
-| Exclamation marks | Very rare |
-
-### Banned phrases and patterns (grows over time)
-
-- "It's not X, it's Y" rhetorical pivots
-- "In today's fast-paced..." or any flavour of dramatic scene-setting
-- "Dive deep", "leverage", "holistic", "synergy"
-- "This is where the magic happens"
-- "Let's unpack this"
-- "But here's the thing..."
-- Overly dramatic transitions of any kind
-- Any phrase that sounds like AI-generated filler
+- Concentrate bold key-phrase takeaways in reflections and key moments. A whole case study should have a handful at most.
+- Citing an expert or external example (a relevant blog post or industry voice) adds credibility. Use when it strengthens the point, not to name-drop.
 
 ## Content strategy
 

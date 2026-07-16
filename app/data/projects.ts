@@ -68,7 +68,7 @@ export const projects: Project[] = [
   {
     id: 7,
     slug: "coming-soon",
-    title: "Coming soon",
+    title: "Reimagining the CargoWise home screen",
     tags: ["Product design"],
     image: null,
     bgColor: "bg-gray-50",

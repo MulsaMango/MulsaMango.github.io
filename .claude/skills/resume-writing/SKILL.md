@@ -7,28 +7,11 @@ description: Use when drafting, rewriting, reviewing, or tailoring resume conten
 
 Use this skill to draft and refine resume content for Tulsa's portfolio. The working draft lives at `docs/drafts/resume.md` and should stay easy to copy into Google Docs.
 
-This skill overlaps intentionally with `case-study-building`, but adapts the writing rules for resume context: concise, professional, specific, and skimmable.
+Resume context adapts the shared rules to be concise, professional, specific, and skimmable.
 
-## Default Positioning
+**Positioning and audience:** follow the `personal-positioning` skill for Tulsa's default positioning, differentiators, and target audiences (recruiters and design leaders). The guidance below is resume-specific craft on top of that.
 
-Unless the user says otherwise, position Tulsa as a **Product Designer with a UI and Design Systems focus**.
-
-Keep the role broad enough for product design opportunities while making these differentiators visible:
-
-- UI craft
-- Design systems
-- Complex B2B and enterprise product contexts
-- AI-enabled design workflows
-- Design-to-code fluency
-- Process improvement and documentation
-
-## Audience
-
-Write for both recruiters and design leaders.
-
-- Recruiters need quick role fit, clear keywords, and scannable sections.
-- Design leaders need enough specificity to see judgement, scope, craft, and maturity.
-- Concise does not mean vague. A short bullet still needs substance.
+**Voice:** follow the `writing-voice` skill for tone, grammar, dashes, and banned phrases, adapted for resumes as described under Resume voice below.
 
 ## Before Drafting
 
@@ -60,25 +43,13 @@ Useful option types:
 
 Keep options practical. Do not write long explanations unless the user asks for strategy.
 
-## Resume Voice
+## Resume voice
 
-Use the case study skill's writing preferences, adapted for resumes:
+**Follow the `writing-voice` skill** for the base rules (Australian English, Oxford comma, sentence case headings, no em or en dashes, no AI filler, no LinkedIn phrasing, confident without boasting). Resume-specific adaptations:
 
-- Australian English
-- Oxford comma
-- sentence case for headings, skill categories, and skill terms
-- no em dashes or en dashes
-- no AI-generated filler
-- no dramatic rhetorical pivots
-- no LinkedIn influencer phrasing
-- no corporate filler like "dive deep", "leverage", "holistic", or "synergy"
-- confident without being boastful
-- specific rather than generic
-- concise, but not empty
-- human and direct, but not casual or chatty
-- professional, but not stiff or overly formal
-
-For resumes, translate "conversational with substance" into **plain, direct, human, and professional**.
+- Translate "conversational with substance" into **plain, direct, human, and professional**. Not casual or chatty, not stiff or overly formal.
+- Specific rather than generic. Concise, but not empty.
+- Sentence case for headings, skill categories, and skill terms.
 
 Use capitals only for proper nouns, acronyms, and conventional tool or technical casing. Examples: `Figma`, `FigJam`, `Miro`, `Claude Code`, `Cursor`, `VS Code`, `GitHub Copilot`, `UX`, `UI`, `AI`, `WCAG`, `QA`, and `Git`. Keep general skills sentence case, like `research synthesis`, `usability testing`, `component libraries`, and `stakeholder management`.
 
