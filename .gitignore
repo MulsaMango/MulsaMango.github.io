@@ -10,3 +10,6 @@
 # React Router
 /.react-router/
 /build/
+
+# Superpowers brainstorming companion (local mockups, do not commit)
+.superpowers/

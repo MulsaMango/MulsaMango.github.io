@@ -317,10 +317,18 @@ const CURSOR_TIP_POSITION = {
 
 const EXPERIENCE_ITEMS = [
   {
+    role: "Product Designer",
+    organization: "The ABC",
+    period: "July 2026 - Present",
+    isCurrent: true,
+    description:
+      "On the Global Experience Framework team, supporting the end-to-end design of the ABC's design foundations, from research through to design tokens, and partnering with framework and product teams on the evolution and adoption of the design system.",
+  },
+  {
     role: "UI Designer (Design Systems)",
     organization: "WiseTech Global",
-    period: "2023 - Present",
-    isCurrent: true,
+    period: "2023 - 2026",
+    isCurrent: false,
     description:
       "Designing across both the design system itself (primitives, tokens, components, patterns) and the operational layer that holds it together (governance, documentation, contribution flows, designer tooling). I've designed complex product surfaces like data tables, led strategic research that informs the future direction of the core product framework, and co-led AI-enabled prototyping tooling designers use day to day.",
   },
