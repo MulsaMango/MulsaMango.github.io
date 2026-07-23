@@ -14,7 +14,7 @@ export const CURRENT_WORK = {
   lead: "Previously design systems at",
   company: { name: "WiseTech Global", href: "https://www.cargowise.com/" },
   companyEmoji: "📦",
-  trail: "Incoming Product Designer at",
+  trail: "Incoming product designer at",
   next: { name: "the ABC", href: "https://www.abc.net.au/" },
   nextEmoji: "🍎",
 } as const;
