@@ -322,7 +322,7 @@ const EXPERIENCE_ITEMS = [
     period: "July 2026 - Present",
     isCurrent: true,
     description:
-      "On the Global Experience Framework team, supporting the end-to-end design of the ABC's design foundations, from research through to design tokens, and partnering with framework and product teams on the evolution and adoption of the design system.",
+      "On the Framework team, working on the design system foundations that support the ABC's multi-brand product suite: News, iview, and listen. Supporting end-to-end design from research through to design tokens, and partnering with product teams on the evolution and adoption of the design system.",
   },
   {
     role: "UI Designer (Design Systems)",
@@ -745,9 +745,10 @@ export default function About() {
             working that help teams shape better solutions.
           </p>
           <p className="text-gray-600 leading-7 mb-8 max-w-2xl mx-auto font-sans text-base">
-            I recently joined the ABC as a product designer, working on the
-            design foundations that shape its products. Before that, I spent
-            three years on the design systems team at WiseTech Global, a provider
+            I'm currently at the ABC, working on the design system foundations
+            that support a multi-brand product suite: News, iview, and
+            listen. Before that, I spent three years on the design systems team
+            at WiseTech Global, a provider
             of enterprise B2B logistics software: a mature product in a complex
             domain, with expert workflows, legacy constraints, and a lot of
             breadth, where consistency and compatibility mattered as much as
