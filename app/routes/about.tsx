@@ -318,7 +318,7 @@ const CURSOR_TIP_POSITION = {
 const EXPERIENCE_ITEMS = [
   {
     role: "Product Designer",
-    organization: "The ABC",
+    organization: "ABC",
     period: "July 2026 - Present",
     isCurrent: true,
     description:
